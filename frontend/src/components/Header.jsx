@@ -10,7 +10,7 @@ const Header = () => {
                     <img className='w-28' src={assets.group_profiles} alt='pro'></img>
                     <p>Simply browse through our extensive list of doctors , <br className='hidden sm:block' /> schedule appointment hassle-free</p>
                 </div>
-                <a href=''  className='flex items-center gap-2 bg-white rounded-full py-3 px-8 me-10 w-8/10 text-gray-700  text-sm m-auto md:m-0 hover:scale-105 transition-all duration-200'>
+                <a href='#speciality'  className='flex items-center gap-2 bg-white rounded-full py-3 px-8 me-10 w-8/10 text-gray-700  text-sm m-auto md:m-0 hover:scale-105 transition-all duration-200'>
                     Book an Appointment <img className='w-3' src={assets.arrow_icon}></img>
                 </a>
             </div>
