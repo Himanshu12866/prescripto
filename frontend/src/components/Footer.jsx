@@ -35,9 +35,9 @@ const Footer = () => {
                 </div>
             </div>
             <hr className='text-black font-bold'></hr>
-          <div className='text-cener text-gray-600'>
-          <p>Copy Rights 2024 &Copy; All Right Reserved</p>
-          </div>
+            <div style={{textAlign:"center"}} className='text-cener text-gray-600'>
+                <p>Copy Rights 2024 &Copy; All Right Reserved</p>
+            </div>
         </div>
     )
 }
