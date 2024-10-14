@@ -10,57 +10,64 @@ const Appointment = () => {
   const { docId } = useParams()
   const { doctors } = useContext(AppContext)
   const [docInfo, setDocinfo] = useState(null)
-  // const [docSlot, setDocSlot] = useState([])
-  // const [slotIndex, setSlotIndex] = useState(0)
-  // const [slotTime, setSlotTime] = useState("")
+  const [docSlot, setDocSlot] = useState([])
+
   const fetchInfo = async () => {
     const docInf = doctors.find(doc => doc._id === docId)
     setDocinfo(docInf)
 
   }
-  // const SetDocSlots = async () => {
-  //   let today = new Date()
-  //   for (let i = 0; i < 7; i++) {
-  //     let currentDate = new Date(today)
-  //     currentDate.setDate(today.getDate() + 1)
-  //     let endTime = new Date(today)
-  //     endTime.setDate(today.getDate() + i)
-  //     endTime.setHours(21, 0, 0, 0)
-  //     if (today.getDate() === currentDate.getDate()) {
-  //       currentDate.setHours(currentDate.getHours() > 10 ? currentDate.getHours() + 1 : 10
-  //       )
-  //       currentDate.setMinutes(currentDate.getMinutes() > 30 ? 30 : 0)
-  //     }
-  //     else {
-  //       currentDate.setHours(10)
-  //       currentDate.setMinutes(0)
-  //     }
-  //     let timeSlots = []
-  //     while (currentDate > endTime) {
-  //       let formattedTime = currentDate.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
-  //       timeSlots.push(
-  //         {
-  //           "time": formattedTime,
-  //           datatime: new Date(currentDate)
-  //         }
-  //       )
-  //       currentDate.setMinutes(currentDate.getMinutes() + 30)
-  //     }
-  //     setDocSlot(prev => [...prev, timeSlots])
 
-  //   }
-  // }
+  const getTime = async () => {
+    setDocSlot([])
+    let today = new Date()
+    for (let i = 0; i < 7; i++) {
+      let currentDate = new Date(today)
+      currentDate.setDate(currentDate.setDate() + i)
+      setDocSlot(currentDate)
+      let endDate = new Date(today)
+      endDate.setDate(endDate.getDate() + i)
+      endDate.setHours(21, 0, 0, 0)
+
+      if (today.getDate() === currentDate.getDate()) {
+        if (currentDate.getHours() >= 10) {
+          currentDate.setHours(currentDate.getHours() + 1)
+        }
+        else {
+          currentDate.setHours(10)
+        }
+        currentDate.setMinutes(currentDate.getMinutes() >= 30 ? 30 : 0)
+      }
+      else {
+        currentDate.setHours(10)
+        currentDate.setMinutes(0)
+
+      }
+
+      let timeSlots = []
+      while (currentDate < endDate) {
+        let formattedTime = currentDate.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+        timeSlots.push({
+          time: formattedTime,
+          dateTime: new Date(currentDate)
+        })
+        currentDate.setMinutes(currentDate.getMinutes() + 30)
+      }
+      setDocSlot(prev => ([...prev , timeSlots]))
+    }
+  }
+
+
   useEffect(() => {
     fetchInfo()
   }, [doctors, docId])
 
-  // useEffect(() => {
-  //   SetDocSlots()
-  // }, [docInfo])
-
-  // useEffect(() => {
-  //   console.log(docSlot)
-  // }, [docSlot])
+  useEffect(() => {
+    getTime()
+  }, [])
+  useEffect(() => {
+    console.log(docSlot)
+  },[docSlot])
 
   if (!docInfo) {
     return <div>Loading...</div>  // You can replace this with a loading spinner or message
