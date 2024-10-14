@@ -5,17 +5,18 @@ import { AppContext } from '../context/AppContext'
 
 const Appointment = () => {
 
-  const [docInfo, setDocinfo] = useState(null)
   const { docId } = useParams()
   const { doctors } = useContext(AppContext)
   console.log(doctors)
+  const [docInfo, setDocinfo] = useState(null)
   const fetchInfo = async () => {
-    const docInfo = doctors.find(doc => doc._id=== docId)
+    const docInfo = doctors.find(doc => doc._id === docId)
     setDocinfo(docInfo)
     console.log(docInfo)
   }
   useEffect(() => {
     fetchInfo()
+    console.log(docInfo)
   }, [doctors, docId])
   return (
     <div>{
