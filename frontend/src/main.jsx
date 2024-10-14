@@ -1,6 +1,7 @@
 // import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import TimeJsx from './components/time'
+// import TimeJsx from './components/time'
+import TimeGenerator from './components/time1'
 // import App from './App.jsx'
 // import './index.css';
 // import { BrowserRouter } from 'react-router-dom';
@@ -12,6 +13,7 @@ createRoot(document.getElementById('root')).render(
   //     <App />
   //   </AppContextProvider>
   // </BrowserRouter>,
-  <TimeJsx/>
+  // <TimeJsx/>
+  <TimeGenerator/>
 )
 
