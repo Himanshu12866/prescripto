@@ -17,14 +17,14 @@ const MyProfile = () => {
     })
     const [isEdit, setIsEdit] = useState(false)
     return (
-        <div>
-            <img src={userData.image} />
+        <div className='max-w-lg flex flex-col gap-2 text-sm'>
+            <img alt='kadksnd' className='w-36 rounded' src={userData.image} />
             {
-                isEdit ? <input type='text' value={userData.name} onChange={(e) => setUserData(prev => ({ ...prev, name: e.target.value }))} /> : <p>{userData.name}</p>
+                isEdit ? <input className='bg-zinc-200 rounded font-medium text-2xl mt-2 p-2 text-black' type='text' value={userData.name} onChange={(e) => setUserData(prev => ({ ...prev, name: e.target.value }))} /> : <p className='text-gray-800 font-medium text-2xl mt-2 p-2'>{userData.name}</p>
             }
-            <hr />
-            <div>
-                <p>CONTACT INFORMATION</p>
+            <hr className='bg-zinc-600 h-0.5' />
+            <p className='p-1 underline underline-offset-1 text-gray-600 font-medium text-md'>CONTACT INFORMATION</p>
+            <div className='grid grid-cols-[1fr_3fr] mt-1 gap-y-2.5'>
                 <p>Email :</p>
                 <p>{userData.email}</p>
                 <p>Phone :</p>
@@ -38,6 +38,28 @@ const MyProfile = () => {
                         <input type='text' value={userData.address.line2} onChange={(e) => setUserData(prev => ({ ...prev, address: { ...prev.address, line2: e.target.value } }))} />
                     </p> :
                         <p>{userData.address.line1} <br /> {userData.address.line2}</p>
+                }
+            </div>
+            <p className='p-1 underline underline-offset-1 text-gray-600 font-medium text-md'>BASIC INFORMATION</p>
+            <div className='grid grid-cols-[1fr_3fr] mt-1 gap-y-2.5'>
+                <p>Gender</p>
+                {
+                    isEdit ? <select type='text' value={userData.gender} onChange={(e) =>
+                        setUserData(prev => ({ ...prev, gender: e.target.value }))}>
+                        <option value="Not Selected">Not Selected</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Male</option>
+                    </select> :
+                        <p>{userData.gender}</p>
+                }
+                <p>DOB :</p> {
+                    isEdit ? <input type='date' value={userData.dob} onChange={(e) => setUserData(prev => ({ ...prev, dob: e.target.value }))} /> : <p>{userData.dob}</p>
+                }
+                {
+                    isEdit ? <div>
+                        <button className='' onClick={() => setIsEdit(false)}>Save Detials</button> <button onClick={() => setIsEdit(false)}>Cancel</button>
+                    </div>
+                        : <button onClick={() => setIsEdit(true)}>Edit Detials</button>
                 }
             </div>
         </div>
