@@ -10,7 +10,7 @@ const Navbar = () => {
     return (
         <div className='flex item-center justify-between border-b py-4 mb-5 border-b-grey-400 text-sm'>
 
-            <img onClick={() => {navigate("/"); scrollTo(0,0)}} className='w-44 cursor-pointer' src={assets.logo} alt='' />
+            <img onClick={() => { navigate("/"); scrollTo(0, 0) }} className='w-44 cursor-pointer' src={assets.logo} alt='' />
             <ul className='hidden md:flex item-start gap-5 front-medium'>
                 <NavLink to="/">
                     <li className='my-1'>Home</li>
@@ -45,6 +45,19 @@ const Navbar = () => {
                         :
                         <button onClick={() => navigate("/login")} className='bg-primary rounded-full px-8 py-3 text-white hidden md:block'>Create Account</button>
                 }
+                <img className='md:hidden w-6' onClick={() => setshowMenu(true)} src={assets.menu_icon}></img>
+                <div className={`${showMenu ? "w-full fixed " : "h-0 w-0"} md:hidden right-0 top-0 bottom-0 mt-3 p-2 z-20 overflow-hidden bg-white transition-all`}>
+                    <div className='flex items-center justify-between'>
+                        <img className="w-36" src={assets.logo} />
+                        <img className="w-7" onClick={() => setshowMenu(false)} src={assets.cross_icon} />
+                    </div>
+                    <ul className='flex flex-col items-center gap-2 mt-5 text-lg font-medium'>
+                        <NavLink onClick={() => setshowMenu(false)} to="/"><p className='py-1 px-10 rounded-lg'>Home</p></NavLink>
+                        <NavLink onClick={() => setshowMenu(false)} to="/doctors"><p className='py-1 px-10 rounded-lg'>All Doctors</p></NavLink>
+                        <NavLink onClick={() => setshowMenu(false)} to="/about"><p className='py-1 px-10 rounded-lg'>About</p></NavLink>
+                        <NavLink onClick={() => setshowMenu(false)} to="/contact"><p className='py-1 px-10 rounded-lg'>Contact</p></NavLink>
+                    </ul>
+                </div>
             </div>
         </div>
     )

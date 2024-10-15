@@ -58,9 +58,9 @@ const MyProfile = () => {
                 }
                 {
                     isEdit ? <div className='flex flex-row w-52'>
-                        <button className='rounded bg-primary text-center text-white p-2 m-1' onClick={() => setIsEdit(false)}>Save Detials</button> <button className='rounded bg-primary text-center text-white p-2 m-1' onClick={() => setIsEdit(false)}>Cancel</button>
+                        <button className=' border border-gray-700 rounded-full text-center text-black p-2 px-3 m-1 hover:bg-slate-600 hover:text-gray-200 transition-all duration-500' onClick={() => setIsEdit(false)}>Save Detials</button> <button className='hover:bg-slate-600 hover:text-gray-200 transition-all duration-500 px-6 border border-gray-700 text-center text-black rounded-full p-2 m-1' onClick={() => setIsEdit(false)}>Cancel</button>
                     </div>
-                        : <button className='rounded bg-primary text-center text-white p-2 m-1' onClick={() => setIsEdit(true)}>Edit Detials</button>
+                        : <button className='rounded-full text-center text-black border border-gray-700 p-2 m-1 hover:bg-slate-600 hover:text-gray-200 transition-all duration-500' onClick={() => setIsEdit(true)}>Edit Detials</button>
                 }
             </div>
         </div>
