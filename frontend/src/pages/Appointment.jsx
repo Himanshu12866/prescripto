@@ -9,7 +9,9 @@ const Appointment = () => {
 
   const { docId } = useParams()
   const { doctors } = useContext(AppContext)
+  const daysOfWeak = ['SUN', "MON", "TUE", "WED", "THU", "FRI", "SAT"]
   const [docInfo, setDocinfo] = useState(null)
+  const [slotIndex , setSlotIndex] = useState(0)
   const [docSlot, setDocSlot] = useState([])
 
   const fetchInfo = async () => {
@@ -23,8 +25,8 @@ const Appointment = () => {
     let today = new Date()
     for (let i = 0; i < 7; i++) {
       let currentDate = new Date(today)
-      currentDate.setDate(currentDate.setDate() + i)
-      setDocSlot(currentDate)
+      currentDate.setDate(currentDate.getDate() + i)
+
       let endDate = new Date(today)
       endDate.setDate(endDate.getDate() + i)
       endDate.setHours(21, 0, 0, 0)
@@ -53,7 +55,7 @@ const Appointment = () => {
         })
         currentDate.setMinutes(currentDate.getMinutes() + 30)
       }
-      setDocSlot(prev => ([...prev , timeSlots]))
+      setDocSlot(prev => ([...prev, timeSlots]))
     }
   }
 
@@ -67,7 +69,7 @@ const Appointment = () => {
   }, [])
   useEffect(() => {
     console.log(docSlot)
-  },[docSlot])
+  }, [docSlot])
 
   if (!docInfo) {
     return <div>Loading...</div>  // You can replace this with a loading spinner or message
@@ -94,6 +96,20 @@ const Appointment = () => {
         </div>
       </div>
     }
+      <div className='sm:ml-72 sm:pl-4 mt-1 text-gray-500'>
+        <p className='font-medium text-2xl py-3 text-white  w-full rounded-full text-center bg-primary'>Booking Slots</p>
+        <div className='flex items-center  w-full mt-1 gap-14 overflow-x-auto'>
+          {
+            docSlot.length && docSlot.map((item, index) => (
+              <div onClick={() => (setSlotIndex(index))} className={`text-center py-5 min-w-16 rounded-full cursor-pointer  ${slotIndex === index ? 'bg-primary text-white' : 'border border-gray-200'}`} key={index}>
+                <p>{item[0] && daysOfWeak[item[0].dateTime.getDay()]}</p>
+                <p>{item[0] && item[0].dateTime.getDate()}</p>
+              </div>
+
+            ))
+          }
+        </div>
+      </div>
     </div>
   )
 }
