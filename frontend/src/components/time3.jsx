@@ -4,8 +4,11 @@ import { useEffect, useState } from "react"
 export default function TimeSlot() {
     const [slot, setSlot] = useState([])
     const getTime = async () => {
+
         setSlot([])
+
         let today = new Date()
+
         for (let i = 0; i < 7; i++) {
             let currentDate = new Date(today)
             currentDate.setDate(currentDate.getDate() + i);
@@ -14,7 +17,7 @@ export default function TimeSlot() {
             endDate.setHours(21, 0, 0, 0)
             if (today.getDate() === currentDate.getDate()) {
                 if (currentDate.getHours() >= 10) {
-                    currentDate.setHours(currentDate.getHours() + 30)
+                    currentDate.setHours(currentDate.getHours() + 1)
                 }
                 else {
                     currentDate.setHours(10)
@@ -30,8 +33,9 @@ export default function TimeSlot() {
                 let formattedTime = currentDate.toLocaleTimeString([] , {hour:"2-digit" , minute:"2-digit"})
                 timeSlot.push({
                     time:formattedTime,
-                    dateTime:currentDate
+                    dateTime:new Date(currentDate)
                 })
+                currentDate.setMinutes(currentDate.getMinutes() + 30)
             }
             setSlot(prev => ([...prev , timeSlot]))
         }
