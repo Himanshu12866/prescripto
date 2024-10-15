@@ -10,27 +10,27 @@ const Footer = () => {
                 {/* Left */}
                 <div>
                     <img className='mb-5 w-40' src={assets.logo} />
-                    <p className='w-full md:w-2/3 text-gray-600 leading-6'>kjbdbfab uhakjdbka khkcvbnm  uakdbsssssssssssssssssssss  i wwwwwwwwwwww iabbbbbbbbbb nm mb        huuuuuuuuuuuuuuuubas</p>
+                    <p className='w-full md:w-2/3 text-gray-900 leading-6'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                 </div>
 
 
                 {/* Center */}
                 <div>
                     <p className='text-xl font-bold mb-5'>Company</p>
-                    <ul className='flex  flex-col gap-2 text-gray-600'>
-                        <li>smdk</li>
-                        <li>smdk</li>
-                        <li>smdk</li>
-                        <li>smdk</li>
+                    <ul className='flex  flex-col gap-2 text-gray-900'>
+                        <li>Home</li>
+                        <li>About Us</li>
+                        <li>Delivery</li>
+                        <li>Privacy Policy</li>
                     </ul>
                 </div>
 
                 {/* Right  */}
                 <div>
                     <p className='text-xl font-bold mb-5'>Get In Touch</p>
-                    <ul className='flex  flex-col gap-2 text-gray-600'>
-                        <li>smdk</li>
-                        <li>smdk</li>
+                    <ul className='flex  flex-col gap-2 text-gray-900'>
+                        <li>011-2553-2553</li>
+                        <li>Dr@gmail.com</li>
                     </ul>
                 </div>
             </div>

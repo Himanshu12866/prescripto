@@ -10,18 +10,18 @@ const RelatedDoctors = ({ speciality, docId }) => {
     const [relDoc, setRelDoc] = useState([])
     useEffect(() => {
         if (doctors.length > 0 && speciality) {
-            const filteredDocs = doctors.filter(doc => doc.speciality === speciality && doc.id !== docId)
+            const filteredDocs = doctors.filter(doc => doc.speciality === speciality && doc._id !== docId)
             setRelDoc(filteredDocs)
         }
     }, [doctors, docId, speciality])
 
     return (
         <div className='flex flex-col items-center my-16 gap-4 text-black md:mx:10'>
-            <h1 className='text-3xl font-medium'>Top Doctors</h1>
-            <p className='sm:w1/3 text-sm text-center'>Our Doctors</p>
+            <h1 className='text-3xl font-medium'>Related Doctors</h1>
+            <p className='sm:w1/3 text-sm text-center'>Browse Related Doctors</p>
             <div className='w-full grid grid-cols-auto gap-4 pt5 gap-y-6 px-3 sm:px-0'>
                 {
-                    relDoc.slice(0, 5).map((item, index) => <div onClick={() => navigate(`/appointment/${item._id}`)} className='border border-blue-500 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500' key={index}>
+                    relDoc.slice(0, 5).map((item, index) => <div onClick={() =>{ navigate(`/appointment/${item._id}`) ; scrollTo(0,0,0)} } className=' w-fullborder border-blue-500 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500' key={index}>
 
 
                         <img className='bg-blue-50' src={item.image} alt='' />
