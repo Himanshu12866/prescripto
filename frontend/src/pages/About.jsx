@@ -14,7 +14,7 @@ const About = () => {
 
         <img className="w-full md:max-w-[360px]" src={assets.about_image} />
 
-        <div className="flex flex-col justify-center w-2/4 gap-3 text-sm ">
+        <div className="flex flex-col justify-center gap-6 text-md ">
           <p>
             Welcome to Prescripto, your trusted partner in managing your
             healthcare needs conveniently and efficiently. At Prescripto, we
@@ -40,20 +40,20 @@ const About = () => {
       <div className="text-xl text-gray-600">
         <p>WHY <span className="text-gray-900 font-semibold">CHOOSE US</span> </p>
       </div>
-      <div>
-        <div>
+      <div className="flex flex-col md:flex-row mb-20 mt-20 gap-2">
+        <div className="border px-16 py-12 flex flex-col gap-5 text-[-15px] md:px-10 hover:bg-primary  hover:text-white transition-all duration-300 text-gray-600">
           <b>EFFICIENCY:</b>
           <p>
             Streamlined appointment scheduling that fits into your busy lifestyle
           </p>
         </div>
-        <div>
+        <div className="border px-16 py-12 flex flex-col gap-5 text-[-15px] md:px-10 hover:bg-primary  hover:text-white transition-all duration-300 text-gray-600">
           <b>CONVENIENCE:</b>
           <p>
             Access to a network of trusted healthcare professionals in your area.
           </p>
         </div>
-        <div>
+        <div className="border px-16 py-12 flex flex-col gap-5 text-[-15px] md:px-10 hover:bg-primary  hover:text-white transition-all duration-300 text-gray-600">
           <b>
             PERSONALIZATION:
           </b>
