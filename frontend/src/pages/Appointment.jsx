@@ -101,7 +101,7 @@ const Appointment = () => {
       </div>
     }
       <div className='sm:ml-72 sm:pl-4 mt-1 text-gray-500'>
-        <p className='font-medium text-2xl py-3 text-white  w-full rounded-full text-center bg-primary'>Booking Slots</p>
+        <p className='font-medium text-2xl py-3'>Booking Slots</p>
         <div className='flex items-center  w-full mt-1 gap-14 overflow-x-auto'>
           {
             docSlot.length && docSlot.map((item, index) => (
@@ -116,10 +116,11 @@ const Appointment = () => {
         <div className='flex items-center  gap-3 w-full mt-3 overflow-x-scroll pb-4'>
           {
             docSlot.length && docSlot[slotIndex].map((item, index) => (
-              <p className={`text-sm font-light flex-shrink-0 py-2 px-5 border mr-2 border-zinc-600 rounded-full cursor-pointer ${item.time === slotTime ? "bg-primary text-white" : "text-black"}`} key={index}>{item.time}</p>
+              <p onClick={() => setSlotTime(item.time)} className={`text-sm font-light flex-shrink-0 py-2 px-5 border mr-2 border-zinc-600 rounded-full cursor-pointer ${item.time === slotTime ? "bg-primary text-white" : "text-black"}`} key={index}>{item.time}</p>
             ))
           }
         </div>
+        <button className=" w-full bg-primary text-white rounded-full font-medium my-2 mt-4  py-3">Book An Appointment</button>
       </div>
     </div>
   )
