@@ -17,10 +17,12 @@ const Login = () => {
             <div className='flex flex-col items-start p-7 sm:min-w-96 min-w-[340px] m-auto gap-3 border text-sm rounded-xl text-zinc-600 shadow-lg'>
                 <p className='text-2xl font-semibold text-center w-full'>{state === "Sign Up" ? "Create Account" : "Login"}</p>
                 <p>Please {state === "Sign Up" ? "sign up" : "Login"} to book appointment</p>
-                <div className='w-full'>
+               {
+                state === "Sign Up" ?  <div className='w-full'>
                     <p>Full Name : </p>
                     <input className='border rounded border-zinc-400 text-gray-600 w-full p-2 my-1' type='text' onChange={(e) => setName(e.target.value)} value={name} required />
-                </div>
+                </div>:null
+               }
                 <div className='w-full'>
                     <p>Email : </p>
                     <input className='border rounded border-zinc-400 text-gray-600 w-full p-2 my-1' type='email' onChange={(e) => setEmail(e.target.value)} value={email} required />
