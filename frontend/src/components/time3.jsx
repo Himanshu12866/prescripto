@@ -25,16 +25,28 @@ export default function TimeSlot() {
                 currentDate.setHours(10)
                 currentDate.setMinutes(0)
             }
+            let timeSlot = []
+            while(currentDate < endDate){
+                let formattedTime = currentDate.toLocaleTimeString([] , {hour:"2-digit" , minute:"2-digit"})
+                timeSlot.push({
+                    time:formattedTime,
+                    dateTime:currentDate
+                })
+            }
+            setSlot(prev => ([...prev , timeSlot]))
         }
 
     }
     useEffect(() => {
         getTime()
-        console.log(slot)
+     
     }, [])
+    useEffect(() => {
+        console.log(slot)
+    },[slot])
     return (
         <div>
-
+<h1>Hello</h1>
         </div>
     )
 }
