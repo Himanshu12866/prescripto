@@ -14,9 +14,7 @@ const RelatedDoctors = ({ speciality, docId }) => {
             setRelDoc(filteredDocs)
         }
     }, [doctors, docId, speciality])
-    useEffect(() => {
-        console.log(relDoc)
-    }, [])
+
     return (
         <div className='flex flex-col items-center my-16 gap-4 text-black md:mx:10'>
             <h1 className='text-3xl font-medium'>Top Doctors</h1>

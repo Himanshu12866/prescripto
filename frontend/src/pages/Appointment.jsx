@@ -72,9 +72,7 @@ const Appointment = () => {
   useEffect(() => {
     getTime()
   }, [])
-  useEffect(() => {
-    console.log(docSlot)
-  }, [docSlot])
+
 
   if (!docInfo) {
     return <div>Loading...</div>  // You can replace this with a loading spinner or message
