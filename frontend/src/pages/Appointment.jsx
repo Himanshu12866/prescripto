@@ -11,8 +11,9 @@ const Appointment = () => {
   const { doctors } = useContext(AppContext)
   const daysOfWeak = ['SUN', "MON", "TUE", "WED", "THU", "FRI", "SAT"]
   const [docInfo, setDocinfo] = useState(null)
-  const [slotIndex , setSlotIndex] = useState(0)
+  const [slotIndex, setSlotIndex] = useState(0)
   const [docSlot, setDocSlot] = useState([])
+  const [slotTime, setSlotTime] = useState("")
 
   const fetchInfo = async () => {
     const docInf = doctors.find(doc => doc._id === docId)
@@ -25,7 +26,7 @@ const Appointment = () => {
     setDocSlot([])
 
     let today = new Date()
-    
+
     for (let i = 0; i < 7; i++) {
       let currentDate = new Date(today)
       currentDate.setDate(currentDate.getDate() + i)
@@ -109,6 +110,13 @@ const Appointment = () => {
                 <p>{item[0] && item[0].dateTime.getDate()}</p>
               </div>
 
+            ))
+          }
+        </div>
+        <div className='flex items-center  gap-3 w-full mt-3 overflow-x-scroll pb-4'>
+          {
+            docSlot.length && docSlot[slotIndex].map((item, index) => (
+              <p className={`text-sm font-light flex-shrink-0 py-2 px-5 border mr-2 border-zinc-600 rounded-full cursor-pointer ${item.time === slotTime ? "bg-primary text-white" : "text-black"}`} key={index}>{item.time}</p>
             ))
           }
         </div>
