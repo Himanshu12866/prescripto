@@ -8,6 +8,7 @@ const Doctors = () => {
     const { speciality } = useParams()
     const { doctors } = useContext(AppContext)
     const [filterDoc, setFilterDoc] = useState([])
+    const [search, setSearch] = useState(false)
     const applyFilter = () => {
         if (speciality) {
             setFilterDoc(doctors.filter(doc => doc.speciality === speciality))
@@ -23,7 +24,8 @@ const Doctors = () => {
         <div>
             <p className='text-gray-600'>Browse Doctors theme the speciality</p>
             <div className='flex flex-col sm:flex-row items-start gap-5 mt-5'>
-                <div className='flex flex-col gap-4 text-sm text-gray-600'>
+                <button className={`${search ? "bg-primary text-white":""} border rounded-lg md:hidden text-black px-2 py-2 transition-all duration-300`} onClick={() => setSearch(prev => !prev)} >Filter Doctors</button>
+                <div className={ `${search ? "flex" : "hidden sm:flex"} flex-col gap-4 text-sm text-gray-600`}>
                     <p onClick={() => speciality === "General physician" ? navigate("/doctors") : navigate("/doctors/General physician")} className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-600  rounded transition-all cursor-pointer ${speciality === "General physician" ? "bg-green-500 border border-gray-500 text-white" : ""}`}>General physician</p>
                     <p onClick={() => speciality === "Gynecologist" ? navigate("/doctors") : navigate("/doctors/Gynecologist")} className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-600 rounded transition-all cursor-pointer ${speciality === "Gynecologist" ? "bg-green-500 border-gray-500 text-white" : ""}`}>Gynecologist</p>
                     <p onClick={() => speciality === "Dermatologist" ? navigate("/doctors") : navigate("/doctors/Dermatologist")} className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-600 rounded transition-all cursor-pointer ${speciality === "Dermatologist" ? "bg-green-500 border-gray-500 text-white" : ""}`}>Dermatologist</p>
