@@ -1,34 +1,57 @@
 import validator from "validator";
-import bcrypt from "bcrypt" ;
+import bcrypt from "bcrypt";
 import { v2 as cloudinary } from "cloudinary";
+import doctorModal from "../models/doctorModal.js";
+
 const addDoctor = async (req, res) => {
     try {
-        const { name, email, password, speciality, degree, experience, about, address, fees } = req.body
+        const { name, email, password, speciality, degree, experience, about, address, fees } = req.body;
         const imageFile = req.file;
-        // Validating all fields must be fill
+
+        // Validating all fields must be filled
         if (!name || !email || !password || !speciality || !degree || !experience || !about || !address || !fees) {
-            return res.status(400).json({ message: "Please fill all the fields", success: false })
-        }
-        //validating email with help of validator package
-        if(!validator.isEmail(email)){
-            return res.status(400).json({ message: "Invalid email", success: false })
+            return res.status(400).json({ message: "Please fill all the fields", success: false });
         }
 
-        // validating password
-        if(password.length < 8){
-            return res.status(400).json({ message: "Password must be at least 8 characters", success: false })
+        // Validating email with help of validator package
+        if (!validator.isEmail(email)) {
+            return res.status(400).json({ message: "Invalid email", success: false });
         }
 
-        // bcrypting password
-        const salt = await bcrypt.genSalt(10)
-        const hashPassword = await bcrypt.hash(password, salt)
-    
-        // upload image url to the databse
-        const imgaeUpload = await cloudinary.uploader.upload(imageFile.path , {resource_type : "image"})
+        // Checking for existing email
+        const existingDoctor = await doctorModal.findOne({ email });
+        if (existingDoctor) {
+            return res.status(400).json({ message: "Email already exists", success: false });
+        }
 
-        const imageUrl = imgaeUpload.secure_url;
+        // Validating password
+        if (password.length < 8) {
+            return res.status(400).json({ message: "Password must be at least 8 characters", success: false });
+        }
 
-        const doctorData= {
+        // Bcrypting password
+        const salt = await bcrypt.genSalt(10);
+        const hashPassword = await bcrypt.hash(password, salt);
+
+        // Validate file upload
+        if (!imageFile) {
+            return res.status(400).json({ message: "Please upload an image", success: false });
+        }
+
+        // Upload image to Cloudinary
+        const imageUpload = await cloudinary.uploader.upload(imageFile.path, { resource_type: "image" });
+        const imageUrl = imageUpload.secure_url;
+
+        // Parse the address safely
+        let parsedAddress;
+        try {
+            parsedAddress = JSON.parse(address);
+        } catch (e) {
+            return res.status(400).json({ message: "Invalid address format", success: false });
+        }
+
+        // Create doctor data object
+        const doctorData = {
             name,
             email,
             password: hashPassword,
@@ -36,15 +59,21 @@ const addDoctor = async (req, res) => {
             degree,
             experience,
             about,
-            address:JSON.parse(address),
+            address: parsedAddress,
             fees,
-            image: imageUrl, 
+            image: imageUrl,
             date: Date.now()
+        };
 
-        }
+        // Save doctor data to the database
+        const newDoctor = new doctorModal(doctorData);
+        await newDoctor.save();
 
+        res.status(201).json({ message: "Doctor added successfully", success: true });
     } catch (error) {
-
+        console.error(error);
+        res.status(500).json({ success: false, message: "Internal server error" });
     }
-}
-export default addDoctor
+};
+
+export default addDoctor;
