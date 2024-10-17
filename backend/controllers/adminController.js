@@ -2,7 +2,7 @@ import validator from "validator";
 import bcrypt from "bcrypt";
 import { v2 as cloudinary } from "cloudinary";
 import doctorModal from "../models/doctorModal.js";
-
+import jwt from "jsonwebtoken"
 const addDoctor = async (req, res) => {
     try {
         const { name, email, password, speciality, degree, experience, about, address, fees } = req.body;
@@ -78,10 +78,19 @@ const addDoctor = async (req, res) => {
 
 const loginAdmin = async () => {
     try {
-        
+        const { email, password } = req.body;
+        if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
+            const token = jwt.sign(email + password, process.env.JWT_SECRET)
+            res.status(200).json({ success: true, message: "Admin logged in successfully", token })
+
+        }
+        else {
+            return res.status(401).json({ message: "Invalid email or password", success: false });
+        }
+
     } catch (error) {
-     console.log(error)
-     res.status(401).json({success:false , message:"Some client side problem"})   
+        console.log(error)
+        res.status(401).json({ success: false, message: "Some client side problem" })
     }
 }
-export  {addDoctor, loginAdmin }
+export { addDoctor, loginAdmin }
