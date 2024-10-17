@@ -8,12 +8,11 @@ import adminRouter from "./routes/adminRoute.js";
 const app = express()
 const port = process.env.PORT || 4000;
 connectDb()
-
+connectCloudinary()
 app.use(express.json())
 
 app.use(cors())
 
-connectCloudinary()
 
 app.use("/api/admin" , adminRouter)
 
