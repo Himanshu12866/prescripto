@@ -76,4 +76,12 @@ const addDoctor = async (req, res) => {
     }
 };
 
-export default addDoctor;
+const loginAdmin = async () => {
+    try {
+        
+    } catch (error) {
+     console.log(error)
+     res.status(401).json({success:false , message:"Some client side problem"})   
+    }
+}
+export  {addDoctor, loginAdmin }
