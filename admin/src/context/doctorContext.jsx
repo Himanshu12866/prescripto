@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars*/
+
 import { createContext } from "react";
 
 
@@ -11,7 +11,7 @@ const DoctorContextProvider = (props) => {
     return (
         <DoctorContext.Provider value={value}>
             {
-                props.childern
+                props.children
             }
         </DoctorContext.Provider>
     )
