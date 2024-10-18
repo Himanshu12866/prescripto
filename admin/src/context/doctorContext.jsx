@@ -9,7 +9,7 @@ const DoctorContextProvider = (props) => {
 
     }
     return (
-        <DoctorContext.Provider>
+        <DoctorContext.Provider value={value}>
             {
                 props.childern
             }
