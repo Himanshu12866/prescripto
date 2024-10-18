@@ -13,7 +13,7 @@ const Login = () => {
 
     const [password, setPassword] = useState("")
 
-    const { setAToken, backenURL } = useContext(AdminContext)
+    const { setAToken, backendURL } = useContext(AdminContext)
 
     function onChange(value) {
 
@@ -23,7 +23,7 @@ const Login = () => {
         event.preventDefault()
         try {
             if (state === "Admin") {
-                const { data } = await axios.post(backenURL + '/api/admin/login', { email, password })
+                const { data } = await axios.post(backendURL + '/api/admin/login', { email, password })
                 if (data.success) {
                     console.log(data.token)
                 }
@@ -40,11 +40,11 @@ const Login = () => {
                 <p className='text-center w-full font-medium text-2xl'><span className='text-[#6464c1]'>{state}</span> Login</p>
                 <div className='flex flex-col gap-2 w-full'>
                     <p className='sm:text-xl text-black'>Email:</p>
-                    <input onClick={(e) => setEmail(e.target.value)} value={email} className='w-full border p-1  border-[#746060] shadow-' type='text' />
+                    <input onChange={(e) => setEmail(e.target.value)} value={email} className='w-full border p-1  border-[#746060] shadow-' type='text' />
                 </div>
                 <div className='flex flex-col gap-2 my-2 w-full'>
                     <p className='sm:text-xl text-black'>Password:</p>
-                    <input onClick={(e) => setPassword(e.target.value)} value={password} className='w-full border p-1  border-gray-500' type='password' />
+                    <input onChange={(e) => setPassword(e.target.value)} value={password} className='w-full border p-1  border-gray-500' type='password' />
                 </div>
                 <div>
                     <ReCAPTCHA
