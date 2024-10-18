@@ -5,6 +5,7 @@ import { useState } from 'react'
 import ReCAPTCHA from "react-google-recaptcha";
 import { AdminContext } from '../context/AdminContext';
 import axios from "axios"
+import { toast } from "react-toastify"
 const Login = () => {
 
     const [state, setState] = useState('Admin');
@@ -25,12 +26,14 @@ const Login = () => {
             if (state === "Admin") {
                 const { data } = await axios.post(backendURL + '/api/admin/login', { email, password })
                 if (data.success) {
-                    console.log(data.token)
+                    localStorage.setItem("Admin Token", data.token)
+                    setAToken(data.token)
+                    toast.success("Login Success")
                 }
             }
 
         } catch (error) {
-            console.log(error)
+            toast.error("Invalid Email or Password")
         }
     }
 
