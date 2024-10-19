@@ -1,15 +1,18 @@
 // import React from 'react'
 
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { assets } from "../../assets/assets"
+import { AdminContext } from "../../context/AdminContext";
 
-// import { assets } from "../../assets"
+
+import { toast } from 'react-toastify';
+import axios from "axios";
 
 const AddDoctor = () => {
 
     const [image, setImage] = useState(false);
     const [name, setName] = useState("")
-    const [specialization, setSpecialization] = useState("General physician");
+    const [speciality, setSpeciality] = useState("General physician");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [address1, setAddress1] = useState("");
@@ -18,10 +21,47 @@ const AddDoctor = () => {
     const [fees, setfees] = useState("");
     const [experience, setExperience] = useState("1 Year");
     const [degree, setDegree] = useState("");
+    const {backendURL,  aToken } = useContext(AdminContext)
 
+    const SubmitForm = async (e) => {
+        e.preventDefault()
+        console.log(backendURL)
+
+        try {
+            if (!image) {
+                 toast.error("Please Insert an Image")
+            }
+            const formData = new FormData()
+            formData.append('image', image)
+            formData.append('name', name)
+            formData.append('speciality', speciality)
+            formData.append('password', password)
+            formData.append('email', email)
+            formData.append('address', JSON.stringify({ line1: address1, line2: address2 }))
+            formData.append('about', about)
+            formData.append('fees', Number(fees))
+            formData.append('experience', experience)
+            formData.append('degree', degree)
+          
+
+            const { data } = await axios.post(backendURL+ '/api/admin/add-doctor', formData, { headers: { aToken } })
+            if(data.success) {
+                toast.success(data.success)
+            }
+            else{
+                toast.error(data.message)
+            }
+            console.log(data.message)
+        } catch  {
+
+        
+            return toast.error("Some Problems")
+
+        }
+    }
 
     return (
-        <form className=" bg-[#b0a8a81c] w-full flex justify-center h-auto">
+        <form onSubmit={SubmitForm} className=" bg-[#b0a8a81c] w-full flex justify-center h-auto">
 
             <div className="sm:w-[90%] w-full ml-3 mt-2  h-auto overflow-y-auto">
                 <p className="font-medium w-full text-start text-xl px-12  py-2 ">Add Doctor</p>
@@ -29,7 +69,7 @@ const AddDoctor = () => {
                     <label htmlFor="doc_img">
                         <img className="w-[80px] h-[80px] rounded-full cursor-pointer" src={image ? URL.createObjectURL(image) : assets.image_upload} />
                     </label>
-                    <input required type="file" onChange={(e) => setImage(e.target.files[0])} id="doc_img" hidden />
+                    <input required type="file" name="image" onChange={(e) => setImage(e.target.files[0])} id="doc_img" hidden />
                     {
                         image ? <p>Uploaded</p> : <p className="text-xs">Upload Doctor <br></br> image</p>
                     }
@@ -54,7 +94,7 @@ const AddDoctor = () => {
                                 <option value="0 Years">0 Years</option>
                                 <option value="1 Years">1 Years</option>
                                 <option value="2 Years">2 Years</option>
-                                <option value="3 Years" selected>3 Years</option>
+                                <option value="3 Years">3 Years</option>
                                 <option value="4 Years">4 Years</option>
                                 <option value="5 Years">5 Years</option>
                                 <option value="6 Years">6 Years</option>
@@ -73,7 +113,7 @@ const AddDoctor = () => {
                     <div className="mt-5">
                         <div>
                             <p>Speciality :</p>
-                            <select onChange={(e) => setSpecialization(e.target.value)} value={specialization} className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" name="" id="" required>
+                            <select onChange={(e) => setSpeciality(e.target.value)} value={speciality} className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" name="" id="" required>
                                 <option value="General physician">General physician</option>
                                 <option value="Gynecologist">Gynecologist</option>
                                 <option value="Dermatologist">Dermatologist</option>
@@ -84,7 +124,7 @@ const AddDoctor = () => {
                         </div>
                         <div>
                             <p>Degree :</p>
-                            <input onChange={(e) => setDegree(e.target.value)} value={degree} className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" type="text" placeholder="Degree" required />
+                            <input onChange={(e) => setDegree(e.target.value)} value={degree.toUpperCase()} className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" type="text" placeholder="Degree" required />
                         </div>
                         <div>
                             <p>Address :</p>
@@ -98,7 +138,7 @@ const AddDoctor = () => {
                     <textarea onChange={(e) => setAbout(e.target.value)} value={about} className="w-full p-2" rows="5" placeholder="Some Doctor's Summary" required />
                 </div>
 
-                <button className="w-52 rounded-full my-10 bg-[blue] p-2 text-white">Click</button>
+                <button type="submit" className="w-52 rounded-full my-10 bg-[blue] p-2 text-white">Click</button>
             </div>
 
 

@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext } from 'react'
 import Login from './pages/login'
+import { AdminContext } from './context/AdminContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { AdminContext } from './context/AdminContext';
 import Navbar from './components/Navbar';
 import SideNav from './components/SideNav';
 import { Route, Routes } from 'react-router-dom';
