@@ -38,19 +38,19 @@ const AddDoctor = () => {
                     <div className=" sm:p-5" >
                         <div >
                             <p>Doctor Name :</p>
-                            <input required className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" type="text" placeholder="Full Name" />
+                            <input onChange={(e) => setName(e.target.value)} value={name} required className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" type="text" placeholder="Full Name" />
                         </div>
                         <div>
                             <p>Doctor Email :</p>
-                            <input className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" required type="email" placeholder="Email" />
+                            <input onChange={(e) => setEmail(e.target.value)} value={email} className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" required type="email" placeholder="Email" />
                         </div>
                         <div>
                             <p>Doctor Password :</p>
-                            <input className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" required type="password" placeholder="Password" />
+                            <input onChange={(e) => setPassword(e.target.value)} value={password} className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" required type="password" placeholder="Password" />
                         </div>
                         <div>
                             <p>Experience :</p>
-                            <select className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm">
+                            <select onChange={(e) => setExperience(e.target.value)} value={experience} className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm">
                                 <option value="0 Years">0 Years</option>
                                 <option value="1 Years">1 Years</option>
                                 <option value="2 Years">2 Years</option>
@@ -67,13 +67,13 @@ const AddDoctor = () => {
                         </div>
                         <div>
                             <p>Fees</p>
-                            <input className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" required type="number" placeholder="Fees" />
+                            <input onChange={(e) => setfees(e.target.value)} value={fees} className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" required type="number" placeholder="Fees" />
                         </div>
                     </div>
                     <div className="mt-5">
                         <div>
                             <p>Speciality :</p>
-                            <select className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" name="" id="" required>
+                            <select onChange={(e) => setSpecialization(e.target.value)} value={specialization} className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" name="" id="" required>
                                 <option value="General physician">General physician</option>
                                 <option value="Gynecologist">Gynecologist</option>
                                 <option value="Dermatologist">Dermatologist</option>
@@ -84,18 +84,18 @@ const AddDoctor = () => {
                         </div>
                         <div>
                             <p>Degree :</p>
-                            <input className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" type="text" placeholder="Degree" required />
+                            <input onChange={(e) => setDegree(e.target.value)} value={degree} className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" type="text" placeholder="Degree" required />
                         </div>
                         <div>
                             <p>Address :</p>
-                            <input className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" type="text" placeholder="Line 1" required />
-                            <input className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" type="text" placeholder="Line 1" required />
+                            <input onChange={(e) => setAddress1(e.target.value)} value={address1} className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" type="text" placeholder="Line 1" required />
+                            <input onChange={(e) => setAddress2(e.target.value)} value={address2} className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" type="text" placeholder="Line 1" required />
                         </div>
                     </div>
                 </div>
                 <div className="sm:w-[70%] w-[80%]  ml-3 mt-2">
                     <p>About</p>
-                    <textarea className="w-full p-2" rows="5" placeholder="Some Doctor's Summary" required />
+                    <textarea onChange={(e) => setAbout(e.target.value)} value={about} className="w-full p-2" rows="5" placeholder="Some Doctor's Summary" required />
                 </div>
 
                 <button className="w-52 rounded-full my-10 bg-[blue] p-2 text-white">Click</button>
