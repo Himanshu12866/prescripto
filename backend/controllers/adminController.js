@@ -93,4 +93,16 @@ const loginAdmin = async (req, res) => {
         res.status(401).json({ success: false, message: "Some client side problem" })
     }
 }
-export { addDoctor, loginAdmin }
+const allDoctors = async (req, res) => {
+    try {
+        const doctors = await doctorModal.find({}).select("-password")
+        res.json({ success: true, doctors })
+
+
+    } catch (error) {
+        console.error("Error:", error.message); // Log error for debugging
+        return res.status(500).json({ msg: "Server error", success: false });
+
+    }
+}
+export { addDoctor, loginAdmin , allDoctors}

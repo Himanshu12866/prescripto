@@ -1,15 +1,16 @@
 import jwt from "jsonwebtoken";
 
+
 const authAdmin = async (req, res, next) => {
     try {
-        const {atoken} = req.headers
+        const { atoken } = req.headers
 
- 
+
 
         if (!atoken) {
             return res.status(401).json({ msg: "No token, authorization denied", success: false });
         }
-        const token_decoded = jwt.verify(atoken , process.env.JWT_SECRET)
+        const token_decoded = jwt.verify(atoken, process.env.JWT_SECRET)
 
         if (token_decoded !== process.env.ADMIN_EMAIL + process.env.ADMIN_PASSWORD) {
             return res.status(401).json({ msg: "Authorization denied", success: false });
@@ -22,5 +23,10 @@ const authAdmin = async (req, res, next) => {
         return res.status(500).json({ msg: "Server error", success: false });
     }
 };
+
+
+//Get Api to get all doctors list 
+
+
 
 export default authAdmin;
