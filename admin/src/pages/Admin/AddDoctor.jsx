@@ -6,9 +6,9 @@ import { assets } from "../../assets/assets"
 
 const AddDoctor = () => {
     return (
-        <form className=" bg-[#b0a8a81c] w-full flex justify-center">
+        <form className=" bg-[#b0a8a81c] w-full flex justify-center h-auto">
 
-            <div className="sm:w-[90%] w-full ml-3 mt-2 overflow-y-scroll h-[80vh]">
+            <div className="sm:w-[90%] w-full ml-3 mt-2  h-auto overflow-y-auto">
             <p className="font-medium w-full text-start text-xl px-12  py-2 ">Add Doctor</p>
                 <div className="flex items-center gap-2 w-[200px]">
                     <label htmlFor="doc_img">
@@ -76,11 +76,12 @@ const AddDoctor = () => {
                         </div>
                     </div>
                 </div>
-                <div className="sm:w-[80%] w-full ml-3 mt-2">
+                <div className="sm:w-[70%] w-[80%]  ml-3 mt-2">
                     <p>About</p>
-                    <textarea className="w-full"  placeholder="Some Doctor's Summary" required/>
+                    <textarea className="w-full p-2" rows="5"  placeholder="Some Doctor's Summary" required/>
                 </div>
 
+            <button className="w-52 rounded-full my-10 bg-[blue] p-2 text-white">Click</button>
             </div>
 
 
