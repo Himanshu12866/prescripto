@@ -21,15 +21,13 @@ const AddDoctor = () => {
     const [fees, setfees] = useState("");
     const [experience, setExperience] = useState("1 Year");
     const [degree, setDegree] = useState("");
-    const {backendURL,  aToken } = useContext(AdminContext)
-
-    const SubmitForm = async (e) => {
-        e.preventDefault()
-        console.log(backendURL)
+    const { backendURL, aToken } = useContext(AdminContext)
+ 
+    const SubmitForm = async () => {
 
         try {
             if (!image) {
-                 toast.error("Please Insert an Image")
+                toast.error("Please Insert an Image")
             }
             const formData = new FormData()
             formData.append('image', image)
@@ -42,21 +40,30 @@ const AddDoctor = () => {
             formData.append('fees', Number(fees))
             formData.append('experience', experience)
             formData.append('degree', degree)
-          
+
 
             const { data } = await axios.post(backendURL + '/api/admin/add-doctor', formData, { headers: { aToken } })
-            if(data.success) {
-                toast.success(data.success)
+            if (data.success) {
+              toast.success(data.success)
+             
+              setName("");
+              setSpeciality("General physician");
+              setPassword("");
+              setEmail("");
+              setAddress1("");
+              setAddress2("");
+              setAbout("");
+              setfees("");
+              setExperience("1 Year");
+              setDegree("");
+              setImage(false);
             }
-            else{
-                toast.error(data.message)
+            else {
+               toast.error(data.message)
             }
-            console.log(data.message)
-        } catch  {
-
-        
-            return toast.error("Some Problems")
-
+       
+        } catch(error) {
+             toast.error(error.message)
         }
     }
 
@@ -91,7 +98,7 @@ const AddDoctor = () => {
                         <div>
                             <p>Experience :</p>
                             <select onChange={(e) => setExperience(e.target.value)} value={experience} className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm">
-                                <option value="0 Years">0 Years</option>
+
                                 <option value="1 Years">1 Years</option>
                                 <option value="2 Years">2 Years</option>
                                 <option value="3 Years">3 Years</option>
