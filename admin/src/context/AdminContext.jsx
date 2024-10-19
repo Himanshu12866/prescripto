@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
+// /* eslint-disable no-unused-vars */
 import { createContext, useState } from "react";
 export const AdminContext = createContext()
 
