@@ -44,7 +44,7 @@ const AddDoctor = () => {
             formData.append('degree', degree)
           
 
-            const { data } = await axios.post(backendURL+ '/api/admin/add-doctor', formData, { headers: { aToken } })
+            const { data } = await axios.post(backendURL + '/api/admin/add-doctor', formData, { headers: { aToken } })
             if(data.success) {
                 toast.success(data.success)
             }
