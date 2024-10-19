@@ -23,10 +23,4 @@ const authAdmin = async (req, res, next) => {
         return res.status(500).json({ msg: "Server error", success: false });
     }
 };
-
-
-//Get Api to get all doctors list 
-
-
-
 export default authAdmin;
