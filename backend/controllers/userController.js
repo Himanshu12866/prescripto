@@ -3,7 +3,7 @@ import validator from "validator";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
 import userModal from "../models/userModal.js";
-const registerUser = async (req,res) => {
+const registerUser = async (req, res) => {
     try {
         const { name, email, password } = req.body;
         if (!name || !email || !password) {
@@ -29,6 +29,17 @@ const registerUser = async (req,res) => {
 
     } catch (error) {
         console.log(error)
+        res.json({ success: false, message: "Somethig went wrong" })
     }
 }
-export {registerUser }
+
+const userlogin = async (req, res) => {
+    try {
+
+    } catch (error) {
+        console.log(error)
+        res.json({ success: false, message: "Somethig went wrong" })
+
+    }
+}
+export { registerUser }
