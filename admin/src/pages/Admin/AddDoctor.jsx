@@ -68,7 +68,7 @@ const AddDoctor = () => {
     }
 
     return (
-        <form onSubmit={SubmitForm} className=" bg-[#b0a8a81c] w-full flex justify-center h-auto">
+        <form onSubmit={SubmitForm} className=" bg-[#b0a8a81c] w-full flex justify-center h-[90vh] sm:h-[80vh]">
 
             <div className="sm:w-[90%] w-full ml-3 mt-2  h-auto overflow-y-auto">
                 <p className="font-medium w-full text-start text-xl px-12  py-2 ">Add Doctor</p>
@@ -136,6 +136,7 @@ const AddDoctor = () => {
                         <div>
                             <p>Address :</p>
                             <input onChange={(e) => setAddress1(e.target.value)} value={address1} className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" type="text" placeholder="Line 1" required />
+                            <br></br>
                             <input onChange={(e) => setAddress2(e.target.value)} value={address2} className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" type="text" placeholder="Line 1" required />
                         </div>
                     </div>
