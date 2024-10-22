@@ -21,7 +21,6 @@ app.use("/api/doctor", doctorRouter)
 app.use("/api/user", userRouter)
 
 app.get("/", (req, res) => {
-
     res.send("API WORING with api")
 })
 app.listen(port, () => console.log("Server Sarted at port number", port))

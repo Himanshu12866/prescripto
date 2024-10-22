@@ -9,9 +9,8 @@ import { toast } from "react-toastify";
 const AppContextProvider = (props) => {
     const backendURL = import.meta.env.VITE_BACKEND_URL;
     const [doctors, setDoctors] = useState([]);
-    const values = {
-        doctors
-    }
+    const [token , setToken] = useState('')
+ 
     const getDrData = async () => {
         try {
 
@@ -24,6 +23,9 @@ const AppContextProvider = (props) => {
             console.log(error)
             toast.error(error.message)
         }
+    }
+    const values = {
+        doctors,token , setToken , backendURL
     }
     useEffect(() => {
         getDrData()

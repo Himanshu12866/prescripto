@@ -1,12 +1,18 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 
 import { assets } from "../assets/assets"
 import { NavLink, useNavigate } from 'react-router-dom'
+import { AppContext } from '../context/AppContext'
 const Navbar = () => {
     const navigate = useNavigate()
     const [showMenu, setshowMenu] = useState(false)
-    const [token, setToken] = useState(true)
+    const { token, setToken } = useContext(AppContext)
+    function LogOut() {
+        setToken()
+        localStorage.removeItem("token")
+    }
+
     return (
         <div className='flex item-center justify-between border-b py-4 mb-5 border-b-grey-400 text-sm'>
 
@@ -38,7 +44,7 @@ const Navbar = () => {
                             <div className='min-w-48 flex flex-col gap-4 bg-stone-100 rounded p-4'>
                                 <p onClick={() => navigate("/my-profile")} className='hover:text-black cursor-pointer'>My Profile</p>
                                 <p onClick={() => navigate("my-appointment")} className='hover:text-black cursor-pointer'>My Appointment</p>
-                                <p onClick={() => setToken(false)} className='hover:text-black cursor-pointer'>Logout</p>
+                                <p onClick={LogOut} className='hover:text-black cursor-pointer'>Logout</p>
                             </div>
                         </div>
                     </div>
