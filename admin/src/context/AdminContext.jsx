@@ -3,22 +3,22 @@
 import { createContext, useState } from "react";
 export const AdminContext = createContext()
 import axios from "axios"
-import {toast} from "react-toastify"
+import { toast } from "react-toastify"
 
 
 const AdminContextProvider = (props) => {
-    const [doctors, setDoctors] = useState([])
+    const [doctors, setDoctors] = useState([{}])
     const [aToken, setAToken] = useState(localStorage.getItem('AdminToken') ? localStorage.getItem("AdminToken") : "")
     const backendURL = import.meta.env.VITE_BACKEND_URL
-  
+
     const getAllDoctors = async () => {
         try {
-            const {data} = await axios.post(backendURL + '/api/admin/all-doctors' , {} , {headers:{aToken}})
-            if(data.success) {
-            setDoctors(data.doctors)
-            console.log(data.doctors)
+            const { data } = await axios.post(backendURL + '/api/admin/all-doctors', {}, { headers: { aToken } })
+            if (data.success) {
+                setDoctors(data.doctors)
+                console.log(data.doctors)
             }
-            else{
+            else {
                 toast.error(data.message)
             }
         } catch (error) {
@@ -26,7 +26,7 @@ const AdminContextProvider = (props) => {
         }
     }
     const value = {
-        aToken, setAToken, backendURL,doctors,getAllDoctors
+        aToken, setAToken, backendURL, doctors, getAllDoctors
     }
     return (
         <AdminContext.Provider value={value}>
