@@ -104,5 +104,6 @@ const allDoctors = async (req, res) => {
         return res.status(500).json({ msg: "Server error", success: false });
 
     }
+    
 }
 export { addDoctor, loginAdmin , allDoctors}
