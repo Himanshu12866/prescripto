@@ -17,7 +17,7 @@ const checkAvailablity = async (req, res) => {
 
 }
 
-const doctorList = async () => {
+const doctorList = async (req,res) => {
     try {
         const doctors = await doctorModal.find({}).select(["-password", "-email"])
         res.json({ succes: true, doctors })
