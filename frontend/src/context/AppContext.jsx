@@ -49,7 +49,7 @@ const AppContextProvider = (props) => {
         setToken,
         backendURL,
         userData, setUserData,
-        userProfile
+        userProfile, getDrData
     };
 
     useEffect(() => {
