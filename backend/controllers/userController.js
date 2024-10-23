@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 import userModal from "../models/userModal.js";
 import { v2 as cloudinary } from "cloudinary"
 import doctorModal from "../models/doctorModal.js";
+import appointmentModel from "../models/appointment.js";
 const registerUser = async (req, res) => {
     try {
         const { name, email, password } = req.body;
@@ -97,6 +98,36 @@ const bookAppointment = async (req, res) => {
         if (!docData.available) {
             return res.status(400).json({ message: "Doctor is not available", success: false })
         }
+        let slot_booked = docData.slot_booked;
+        if (slot_booked[slotDate]) {
+            if (slot_booked[slotDate].includes(slotTime)) {
+                return res.status(400).json({ message: "Slot already booked", success: false })
+            }
+            else {
+                slot_booked[slotDate].push(slotTime)
+            }
+
+        }
+        else {
+            slot_booked[slotDate] = []
+            slot_booked[slotDate].push(slotTime)
+        }
+
+        let userData = await userModal.findById(userId).select("-password")
+        delete docData.slot_booked
+        const appointmentData = {
+            userId,
+            docId,
+            userData,
+            amount: docData.fees,
+            docData,
+            slotDate,
+            slotTime,
+            date: Date.now()
+        }
+        const newAppointment = new appointmentModel(appointmentData)
+        await newAppointment.save()
+
     } catch (error) {
         console.log(error)
         res.status(400).json({ success: false, message: "Somethig went wrong" })
