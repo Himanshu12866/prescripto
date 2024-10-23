@@ -9,11 +9,10 @@ import { toast } from "react-toastify";
 const AppContextProvider = (props) => {
     const backendURL = import.meta.env.VITE_BACKEND_URL;
     const [doctors, setDoctors] = useState([]);
-    const [token , setToken] = useState('')
- 
+    const [token, setToken] = useState('')
+
     const getDrData = async () => {
         try {
-
             const { data } = await axios.get(backendURL + "/api/doctor/list")
             if (data) {
                 setDoctors(data.doctors)
@@ -25,11 +24,11 @@ const AppContextProvider = (props) => {
         }
     }
     const values = {
-        doctors,token , setToken , backendURL
+        doctors, token, setToken, backendURL
     }
     useEffect(() => {
         getDrData()
-    }, [])
+    }, [token])
 
     return (
         <AppContext.Provider value={values}>

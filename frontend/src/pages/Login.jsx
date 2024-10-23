@@ -15,7 +15,7 @@ const Login = () => {
 
 
     const handleSubmit = async () => {
-
+        console.log(token)
 
         try {
             if (state === "Sign Up") {
