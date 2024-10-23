@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
 import userModal from "../models/userModal.js";
 import { v2 as cloudinary } from "cloudinary"
+import doctorModal from "../models/doctorModal.js";
 const registerUser = async (req, res) => {
     try {
         const { name, email, password } = req.body;
@@ -87,5 +88,19 @@ const updateProfile = async (req, res) => {
         res.status(400).json({ success: false, message: "Somethig went wrong" })
     }
 
+}
+
+const bookAppointment = async (req, res) => {
+    try {
+        const { userId, docId, slotDate, slotTime } = req.body;
+        const docData = await doctorModal.findById(docId).select("-password")
+        if (!docData.available) {
+            return res.status(400).json({ message: "Doctor is not available", success: false })
+        }
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({ success: false, message: "Somethig went wrong" })
+
+    }
 }
 export { registerUser, userlogin, getProfile, updateProfile }
