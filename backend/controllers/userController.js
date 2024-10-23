@@ -10,13 +10,13 @@ const registerUser = async (req, res) => {
     try {
         const { name, email, password } = req.body;
         if (!name || !email || !password) {
-            return res.status(400).json({ message: "Please fill in all fields." });
+            return res.status(400).json({ message: "Please fill in all fields. 🙄" });
         }
         if (!validator.isEmail(email)) {
-            return res.status(400).json({ message: "Invalid email address." });
+            return res.status(400).json({ message: "Invalid email address. 🙄" });
         }
         if (password.length < 8) {
-            return res.status(400).json({ message: "Password must be at least 8 characters" })
+            return res.status(400).json({ message: "Password must be at least 8 characters 🙄" })
         }
         const salt = await bcrypt.genSalt(10)
         const hashedPassword = await bcrypt.hash(password, salt);
@@ -32,7 +32,7 @@ const registerUser = async (req, res) => {
 
     } catch (error) {
         console.log(error)
-        res.json({ success: false, message: "Somethig went wrong" })
+        res.json({ success: false, message: "Somethig went wrong 😵‍💫" })
     }
 }
 
@@ -41,7 +41,7 @@ const userlogin = async (req, res) => {
         const { email, password } = req.body
         const user = await userModal.findOne({ email })
         if (!user) {
-            return res.status(400).json({ message: "Invalid email or password" })
+            return res.status(400).json({ message: "Invalid email or password. 🙄" })
         }
         const isMatch = await bcrypt.compare(password, user.password)
         if (isMatch) {
@@ -49,11 +49,11 @@ const userlogin = async (req, res) => {
             res.json({ success: true, token })
         }
         else {
-            return res.status(400).json({ message: "Invalid email or password" })
+            return res.status(400).json({ message: "Invalid email or password 🙄" })
         }
     } catch (error) {
         console.log(error)
-        res.status(500).json({ success: false, message: "Somethig went wrong" })
+        res.status(500).json({ success: false, message: "Somethig went wrong 🙄" })
 
     }
 }
@@ -65,7 +65,7 @@ const getProfile = async (req, res) => {
         res.json({ success: true, userData })
     } catch (error) {
         console.log(error)
-        res.status(400).json({ success: false, message: "Somethig went wrong" })
+        res.status(400).json({ success: false, message: "Somethig went wrong 😵‍💫" })
     }
 }
 
@@ -75,7 +75,7 @@ const updateProfile = async (req, res) => {
         const imageFile = req.file
 
         if (!name || !gender || !dob || !phone) {
-            return res.status(400).json({ message: "Please fill all the fields", success: false })
+            return res.status(400).json({ message: "Please fill all the fields 🙄", success: false })
         }
         await userModal.findByIdAndUpdate(userId, { name, gender, dob, phone, address: JSON.parse(address) })
         if (imageFile) {
@@ -83,10 +83,10 @@ const updateProfile = async (req, res) => {
             const imageURL = image.secure_url
             await userModal.findByIdAndUpdate(userId, { image: imageURL })
         }
-        res.json({ success: true, message: "Profile updated successfully" })
+        res.json({ success: true, message: "Profile updated successfully 😊" })
     } catch (error) {
         console.log(error)
-        res.status(400).json({ success: false, message: "Somethig went wrong" })
+        res.status(400).json({ success: false, message: "Somethig went wrong 😵‍💫" })
     }
 
 }
@@ -96,12 +96,12 @@ const bookAppointment = async (req, res) => {
         const { userId, docId, slotDate, slotTime } = req.body;
         const docData = await doctorModal.findById(docId).select("-password")
         if (!docData.available) {
-            return res.status(400).json({ message: "Doctor is not available", success: false })
+            return res.status(400).json({ message: "Doctor is not available 😑", success: false })
         }
         let slot_booked = docData.slot_booked;
         if (slot_booked[slotDate]) {
             if (slot_booked[slotDate].includes(slotTime)) {
-                return res.status(400).json({ message: "Slot already booked", success: false })
+                return res.status(400).json({ message: "Slot already booked 😒", success: false })
             }
             else {
                 slot_booked[slotDate].push(slotTime)
@@ -127,10 +127,12 @@ const bookAppointment = async (req, res) => {
         }
         const newAppointment = new appointmentModel(appointmentData)
         await newAppointment.save()
+        await doctorModal.findByIdAndUpdate(docId, {slot_booked})
+        res.status(200).json({ message: "Appointment booked 😊", success: true })
 
     } catch (error) {
         console.log(error)
-        res.status(400).json({ success: false, message: "Somethig went wrong" })
+        res.status(400).json({ success: false, message: "Somethig went wrong 😢" })
 
     }
 }

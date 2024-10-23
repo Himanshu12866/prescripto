@@ -10,23 +10,23 @@ const addDoctor = async (req, res) => {
 
         // Validating all fields must be filled
         if (!name || !email || !password || !speciality || !degree || !experience || !about || !address || !fees) {
-            return res.status(400).json({ message: "Please fill all the fields", success: false });
+            return res.status(400).json({ message: "Please fill all the fields 🙄", success: false });
         }
 
         // Validating email with help of validator package
         if (!validator.isEmail(email)) {
-            return res.status(400).json({ message: "Invalid email", success: false });
+            return res.status(400).json({ message: "Invalid email 🙄", success: false });
         }
 
         // Checking for existing email
         const existingDoctor = await doctorModal.findOne({ email });
         if (existingDoctor) {
-            return res.status(400).json({ message: "Email already exists", success: false });
+            return res.status(400).json({ message: "Email already exists 🙄", success: false });
         }
 
         // Validating password
         if (password.length < 8) {
-            return res.status(400).json({ message: "Password must be at least 8 characters", success: false });
+            return res.status(400).json({ message: "Password must be at least 8 characters 🙄", success: false });
         }
 
         // Bcrypting password
@@ -35,7 +35,7 @@ const addDoctor = async (req, res) => {
 
         // Validate file upload
         if (!imageFile) {
-            return res.status(400).json({ message: "Please upload an image", success: false });
+            return res.status(400).json({ message: "Please upload an image 🙄", success: false });
         }
 
         // Upload image to Cloudinary
@@ -47,7 +47,7 @@ const addDoctor = async (req, res) => {
         try {
             parsedAddress = JSON.parse(address);
         } catch (e) {
-            return res.status(400).json({ message: "Invalid address format", success: false });
+            return res.status(400).json({ message: "Invalid address format 🙄", success: false });
         }
 
         // Create doctor data object
@@ -69,28 +69,28 @@ const addDoctor = async (req, res) => {
         const newDoctor = new doctorModal(doctorData);
         await newDoctor.save();
 
-        res.status(201).json({ message: "Doctor added successfully", success: true });
+        res.status(201).json({ message: "Doctor added successfully 😊", success: true });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ success: false, message: "Internal server error" });
+        res.status(500).json({ success: false, message: "Internal server error. 😵‍💫" });
     }
 };
 
-const loginAdmin = async (req, res) => {
+const loginAdmin = async (req, res) => { 
     try {
         const { email, password } = req.body;
         if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
             const token = jwt.sign(email + password, process.env.JWT_SECRET)
-            res.status(200).json({ success: true, message: "Admin logged in successfully", token })
+            res.status(200).json({ success: true, message: "Admin logged in successfully. 😊", token })
 
         }
         else {
-            return res.status(401).json({ message: "Invalid email or password", success: false });
+            return res.status(401).json({ message: "Invalid email or password. 🙄", success: false });
         }
 
     } catch (error) {
         console.log(error)
-        res.status(401).json({ success: false, message: "Some client side problem" })
+        res.status(401).json({ success: false, message: "Some client side problem. 🙄" })
     }
 }
 const allDoctors = async (req, res) => {
@@ -101,7 +101,7 @@ const allDoctors = async (req, res) => {
 
     } catch (error) {
         console.error("Error:", error.message); // Log error for debugging
-        return res.status(500).json({ msg: "Server error", success: false });
+        return res.status(500).json({ msg: "Server error 😵‍💫", success: false });
 
     }
     
