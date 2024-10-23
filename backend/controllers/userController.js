@@ -54,4 +54,15 @@ const userlogin = async (req, res) => {
 
     }
 }
-export { registerUser  , userlogin}
+
+const getProfile = async (req,res) =>{
+    try {
+        const {userId} = req.body;
+        const userData = await userModal.findById(userId).select("-password")
+        res.json({success:true , userData})
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({ success: false, message: "Somethig went wrong" })
+    }
+}
+export { registerUser  , userlogin , getProfile}
