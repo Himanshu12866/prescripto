@@ -3,6 +3,7 @@ import validator from "validator";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
 import userModal from "../models/userModal.js";
+import { v2 as cloudinary } from "cloudinary"
 const registerUser = async (req, res) => {
     try {
         const { name, email, password } = req.body;
@@ -45,7 +46,7 @@ const userlogin = async (req, res) => {
             const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
             res.json({ success: true, token })
         }
-        else{
+        else {
             return res.status(400).json({ message: "Invalid email or password" })
         }
     } catch (error) {
@@ -55,14 +56,36 @@ const userlogin = async (req, res) => {
     }
 }
 
-const getProfile = async (req,res) =>{
+const getProfile = async (req, res) => {
     try {
-        const {userId} = req.body;
+        const { userId } = req.body;
         const userData = await userModal.findById(userId).select("-password")
-        res.json({success:true , userData})
+        res.json({ success: true, userData })
     } catch (error) {
         console.log(error)
         res.status(400).json({ success: false, message: "Somethig went wrong" })
     }
 }
-export { registerUser  , userlogin , getProfile}
+
+const updateProfile = async (req, res) => {
+    try {
+        const { userId, name, gender, address, dob, phone } = req.body;
+        const imageFile = req.file
+
+        if (!name || !gender || !dob || !phone) {
+            return res.status(400).json({ message: "Please fill all the fields", success: false })
+        }
+        await userModal.findByIdAndUpdate(userId, { name, gender, dob, phone, address: JSON.parse(address) })
+        if (imageFile) {
+            const image = await cloudinary.uploader.upload(imageFile.path, { resource_type: "image" })
+            const imageURL = image.secure_url
+            await userModal.findByIdAndUpdate(userId, { image: imageURL })
+        }
+        res.json({ success: true, message: "Profile updated successfully" })
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({ success: false, message: "Somethig went wrong" })
+    }
+
+}
+export { registerUser, userlogin, getProfile, updateProfile }
