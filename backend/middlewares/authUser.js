@@ -11,7 +11,7 @@ const authUser = async (req, res, next) => {
             return res.status(401).json({ msg: "No token, authorization denied", success: false });
         }
         const token_decoded = jwt.verify(token, process.env.JWT_SECRET)
-        req.body.userId === token_decoded.id
+        req.body.userId = token_decoded.id
         // Proceed to the next middleware
         next();
     } catch (error) {
