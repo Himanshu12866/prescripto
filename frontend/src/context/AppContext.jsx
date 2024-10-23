@@ -1,42 +1,50 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
-
-export const AppContext = createContext()
-import axios from "axios"
+import axios from "axios";
 import { toast } from "react-toastify";
 
+export const AppContext = createContext();
 
 const AppContextProvider = (props) => {
     const backendURL = import.meta.env.VITE_BACKEND_URL;
     const [doctors, setDoctors] = useState([]);
-    const [token, setToken] = useState('')
+    const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : false);
 
     const getDrData = async () => {
         try {
-            const { data } = await axios.get(backendURL + "/api/doctor/list")
+            const { data } = await axios.get(backendURL + "/api/doctor/list", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
             if (data) {
-                setDoctors(data.doctors)
-                toast.success(data.success)
+                setDoctors(data.doctors);
+                toast.success("User data loaded successfully");
             }
         } catch (error) {
-            console.log(error)
-            toast.error(error.message)
+            console.error(error.response ? error.response.data : error.message);
+            toast.error(error.response ? error.response.data.message : error.message);
         }
-    }
+    };
+
     const values = {
-        doctors, token, setToken, backendURL
-    }
+        doctors,
+        token,
+        setToken,
+        backendURL,
+    };
+
     useEffect(() => {
-        getDrData()
-    }, [])
+        if (token) {
+            getDrData();
+        }
+    }, [token, backendURL]);
 
     return (
         <AppContext.Provider value={values}>
-            {
-                props.children
-            }
+            {props.children}
         </AppContext.Provider>
-    )
-}
+    );
+};
 
-export default AppContextProvider
+export default AppContextProvider;

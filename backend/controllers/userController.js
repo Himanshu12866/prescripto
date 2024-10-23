@@ -36,7 +36,6 @@ const registerUser = async (req, res) => {
 const userlogin = async (req, res) => {
     try {
         const { email, password } = req.body
-
         const user = await userModal.findOne({ email })
         if (!user) {
             return res.status(400).json({ message: "Invalid email or password" })
