@@ -1,20 +1,10 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
-import { assets } from '../assets/assets'
+import React, { useContext, useState } from 'react'
+
+import { AppContext } from '../context/AppContext'
 
 const MyProfile = () => {
-    const [userData, setUserData] = useState({
-        name: 'Himanshu',
-        email: 'himanshu@gmail.com',
-        phone: '1234567890',
-        image: assets.profile_pic,
-        address: {
-            line1: "Satna",
-            line2: "Hyd"
-        },
-        gender: "Male",
-        dob: "2002-10-10"
-    })
+    const { userData, setUserData } = useContext(AppContext)
     const [isEdit, setIsEdit] = useState(false)
     return (
         <div className='max-w-lg flex flex-col gap-2 text-sm mb-52'>
