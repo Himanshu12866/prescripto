@@ -28,7 +28,7 @@ const AppContextProvider = (props) => {
     }
     useEffect(() => {
         getDrData()
-    }, [token])
+    }, [])
 
     return (
         <AppContext.Provider value={values}>
