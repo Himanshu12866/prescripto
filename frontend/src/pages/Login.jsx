@@ -26,7 +26,7 @@ const Login = () => {
                 if (data.success) { // Typo fixed here
                     localStorage.setItem("token", data.token);
                     setToken(data.token);
-                    toast.success("Account created successfully");
+                    toast.success("Account created successfully 🙄");
                 } else {
                     toast.error(data.message);
                 }
@@ -36,14 +36,14 @@ const Login = () => {
                 if (data.success) { // Typo fixed here
                     localStorage.setItem("token", data.token);
                     setToken(data.token);
-                    toast.success("Login successful");
+                    toast.success("Login successful 😊");
                 } else {
                     toast.error(data.message);
                 }
             }
         } catch (error) {
             console.log(error);
-            toast.error("An error occurred. Please try again.");
+            toast.error("An error occurred. Please try again. 😵‍💫");
         }
     };
     useEffect(() => {

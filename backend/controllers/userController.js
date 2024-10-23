@@ -136,4 +136,4 @@ const bookAppointment = async (req, res) => {
 
     }
 }
-export { registerUser, userlogin, getProfile, updateProfile }
+export { registerUser, userlogin, getProfile, updateProfile  , bookAppointment}
