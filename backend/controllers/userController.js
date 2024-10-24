@@ -140,15 +140,26 @@ const bookAppointment = async (req, res) => {
 }
 
 
+// const listAppointment = async (req, res) => {
+//     try {
+//         const { userId } = req.body;
+//         const appointmentData = await appointmentModel.find({ userId })
+//         res.json({ success: true, appointmentData })
+//     } catch (error) {
+//         console.log(error)
+//         res.status(400).json({ success: false, message: "Something went wrong 😢" })
+
+//     }
+// }
 const listAppointment = async (req, res) => {
     try {
-        const { userId } = req.body;
-        const appointmentData = await appointmentModel.find({ userId })
-        res.json({ success: true, appointmentData })
+        const {userId} = req.body
+      const appointments = await appointmentModel.find({ userId });
+      res.status(200).json({ success: true, appointments });
     } catch (error) {
-        console.log(error)
-        res.status(400).json({ success: false, message: "Something went wrong 😢" })
-
+      console.error(error);
+      res.status(500).json({ success: false, message: "Failed to fetch appointments" });
     }
-}
+  };
+  
 export { registerUser, userlogin, getProfile, updateProfile, bookAppointment, listAppointment }

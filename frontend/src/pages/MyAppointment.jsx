@@ -12,10 +12,11 @@ const MyAppointment = () => {
   const appointmentInfo = async () => {
     try {
       const { data } = await axios.get(backendURL + "/api/user/appointments", { headers: { token } })
+      console.log(data.appointments)
       if (data.success) {
-        setAppData(data.appointments)
+        setAppData(data.appointments.reverse())
+        console.log(data.appointments)
         toast.success("Appoinment Data Loaded Successfully")
-        console.log(appData)
       }
     } catch (error) {
       toast.error("Something Went Wrong")
