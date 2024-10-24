@@ -21,7 +21,6 @@ const doctorList = async (req,res) => {
     try {
         const doctors = await doctorModal.find({}).select(["-password", "-email"])
         res.json({ succes: true, doctors })
-
     } catch (error) {
         console.error(error);
         res.json({ success: false, message: error.message })

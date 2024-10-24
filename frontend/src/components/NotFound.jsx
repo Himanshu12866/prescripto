@@ -5,8 +5,8 @@ import { toast } from "react-toastify"
 
 const NotFound = () => {
     useEffect(() => {
-        toast.dark("404 , Sorry  Not Found ! 😢 ")
-    },[])
+        toast.dark("404 , Sorry  Not Found ! ")
+    })
   return (
     <div className="flex justify-center items-center">
     <div>

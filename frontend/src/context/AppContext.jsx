@@ -21,7 +21,7 @@ const AppContextProvider = (props) => {
             });
             if (data) {
                 setDoctors(data.doctors);
-               
+                toast.success("User data loaded successfully");
             }
         } catch (error) {
             console.error(error.response ? error.response.data : error.message);
@@ -53,9 +53,9 @@ const AppContextProvider = (props) => {
     };
 
     useEffect(() => {
-        if (token) {
+      
             getDrData();
-        }
+        
     }, []);
     useEffect(() => {
         if (token) {

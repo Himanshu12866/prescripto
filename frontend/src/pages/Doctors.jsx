@@ -22,7 +22,7 @@ const Doctors = () => {
     }, [doctors, speciality])
     return (
         <div>
-            <p className='text-gray-600'>Browse Doctors theme the speciality</p>
+            <p className=' fornt-medium w-full text-xl border-primary text-center border-b-4 py-4 '>Browse Doctors theme the speciality</p>
             <div className='flex flex-col sm:flex-row items-start gap-5 mt-5'>
                 <button className={`${search ? "bg-primary text-white":""} border rounded-lg md:hidden text-black px-2 py-2 transition-all duration-300`} onClick={() => setSearch(prev => !prev)} >Filter Doctors</button>
                 <div className={ `${search ? "flex" : "hidden sm:flex"} flex-col gap-4 text-sm text-gray-600`}>
