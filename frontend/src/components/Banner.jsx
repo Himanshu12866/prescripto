@@ -16,11 +16,11 @@ const Banner = () => {
                     <p className='mt-4'> With 100+ Trusted Doctors</p>
                 </div>
                 {
-                    token ? (<button onClick={() => { navigate("/doctors") }} className='bg-white rounded-full text-black text-sm sm:text-base px-8 py-3 mt-2 hover:scale-105 transition-all duration-300' >
+                    token ? (<button className='bg-white rounded-full text-black text-sm sm:text-base px-8 py-3 mt-2 hover:scale-105 transition-all duration-300' >
                        Book Appointment
                     </button>
                     ) :
-                        (<button onClick={() => { navigate("/login") }} className='bg-white rounded-full text-black text-sm sm:text-base px-8 py-3 mt-2 hover:scale-105 transition-all duration-300' >
+                        (<button  className='bg-white rounded-full text-black text-sm sm:text-base px-8 py-3 mt-2 hover:scale-105 transition-all duration-300' >
                             Create Account
                         </button>
                         )
