@@ -126,10 +126,10 @@ const bookAppointment = async (req, res) => {
             slotTime,
             date: Date.now()
         }
-      
+
         const newAppointment = new appointmentModel(appointmentData)
         await newAppointment.save()
-        await doctorModal.findByIdAndUpdate(docId, {slot_booked})
+        await doctorModal.findByIdAndUpdate(docId, { slot_booked })
         res.status(200).json({ message: "Appointment booked 😊", success: true })
 
     } catch (error) {
@@ -138,4 +138,17 @@ const bookAppointment = async (req, res) => {
 
     }
 }
-export { registerUser, userlogin, getProfile, updateProfile  , bookAppointment}
+
+
+const listAppointment = async (req, res) => {
+    try {
+        const { userId } = req.body;
+        const appointmentData = await appointmentModel.find({ userId })
+        res.json({ success: true, appointmentData })
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({ success: false, message: "Something went wrong 😢" })
+
+    }
+}
+export { registerUser, userlogin, getProfile, updateProfile, bookAppointment, listAppointment }
