@@ -24,32 +24,78 @@ const Appointment = () => {
     setDocinfo(docInf)
 
   }
+  // const bookAppointment = async () => {
+  //   if (!token) {
+  //     toast.warn("Login to Book appointment 🤬")
+  //     navigate('/login')
+  //   }
+  //   try {
+  //     const date = docSlot[slotIndex][0].dateTime;
+  //     let day = date.getDate()
+  //     let month = date.getMonth() + 1;
+  //     let year = date.getFullYear()
+  //     const slotDate = day + ' -' + month + " _" + year
+  //     console.log(slotDate)
+  //     const { data } = await axios.post(backendURL + '/api/user/book-appointment' + { docId, slotDate, slotTime }, { headers: { token } })
+  //     if (data.success) {
+  //       toast.success("Appointment booked successfully")
+  //       getDrData()
+  //       navigate("/my-appointment")
+  //     }
+  //     else {
+  //       toast.error("Failed to book appointment")
+  //     }
+  //   }
+  //   catch (error) {
+  //     toast.error("Some thing went wrong")
+
+  //   }
+  // }
   const bookAppointment = async () => {
     if (!token) {
-      toast.warn("Login to Book appointment 🤬")
-      navigate('/login')
+      toast.warn("Login to book an appointment 🤬");
+      navigate("/login");
+      return;
     }
+  
     try {
-      const date = docSlot[slotIndex][0].dateTime;
-      let day = date.getDay()
-      let month = date.getMonth() + 1;
-      let year = date.getFullYear()
-      const slotDate = day + ' -' + month + " _" + year
-      console.log(slotDate)
-      const { data } = await axios.post(backendURL + '/api/user/book-appointment' + { docId, slotDate, slotTime }, { headers: { token } })
-      if (data.success) {
-        toast.success("Appointment booked successfully")
-        getDrData()
-        navigate("/my-appointment")
+      // Get the date of the selected slot
+      const selectedSlot = docSlot[slotIndex][0].dateTime;
+      const day = selectedSlot.getDate();
+      const month = selectedSlot.getMonth() + 1;
+      const year = selectedSlot.getFullYear();
+      const slotDate = `${year}-${month < 10 ? `0${month}` : month}-${day < 10 ? `0${day}` : day}`;
+  
+      // Log to check the date and slot time
+      console.log({ slotDate, slotTime });
+  
+      // Ensure slotTime is selected before booking
+      if (!slotTime) {
+        toast.warn("Please select a time slot before booking!");
+        return;
       }
-      else {
-        toast.error("Failed to book appointment")
+  
+      // API request to book an appointment
+      const { data } = await axios.post(
+        backendURL + '/api/user/book-appointment',
+        { docId, slotDate, slotTime },
+        { headers: { Authorization: `Bearer ${token}` } } // Add "Bearer" if using JWT
+      );
+      
+  
+      if (data.success) {
+        toast.success("Appointment booked successfully!");
+        getDrData(); // Update doctor data if needed
+        navigate("/my-appointment"); // Redirect to appointments page
+      } else {
+        toast.error("Failed to book appointment");
       }
     } catch (error) {
-      toast.error("Some thing error")
-
+      console.error("Booking error:", error);
+      toast.error("Something went wrong while booking.");
     }
-  }
+  };
+  
 
   const getTime = async () => {
 

@@ -45,11 +45,12 @@ const AppContextProvider = (props) => {
     }
     const values = {
         doctors,
+         getDrData,
         token,
         setToken,
         backendURL,
         userData, setUserData,
-        userProfile, getDrData
+        userProfile
     };
 
     useEffect(() => {
