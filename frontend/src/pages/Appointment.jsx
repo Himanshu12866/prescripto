@@ -24,56 +24,40 @@ const Appointment = () => {
     setDocinfo(docInf)
 
   }
+  // const bookAppointment = async () => {
+  //   if (!token) {
+  //     toast.warn("Login to Book appointment 🤬")
+  //     navigate('/login')
+  //   }
+  //   try {
+  //     const date = docSlot[slotIndex][0].dateTime;
+  //     let day = date.getDate()
+  //     let month = date.getMonth() + 1;
+  //     let year = date.getFullYear()
+  //     const slotDate = day + ' -' + month + " _" + year
+  //     console.log(slotDate)
+  //     const { data } = await axios.post(backendURL + '/api/user/book-appointment' + { docId, slotDate, slotTime }, { headers: { token } })
+  //     if (data.success) {
+  //       toast.success("Appointment booked successfully")
+  //       getDrData()
+  //       navigate("/my-appointment")
+  //     }
+  //     else {
+  //       toast.error("Failed to book appointment")
+  //     }
+  //   }
+  //   catch (error) {
+  //     toast.error("Some thing went wrong")
 
-
-
-
-  const getTime = async () => {
-    setDocSlot([]);
-
-    let today = new Date();
-
-    for (let i = 0; i < 7; i++) {
-      let currentDate = new Date(today);
-      currentDate.setDate(currentDate.getDate() + i);
-
-      let endDate = new Date(today);
-      endDate.setDate(endDate.getDate() + i);
-      endDate.setHours(21, 0, 0, 0);
-
-      if (today.getDate() === currentDate.getDate()) {
-        if (currentDate.getHours() >= 10) {
-          currentDate.setHours(currentDate.getHours() + 1);
-        } else {
-          currentDate.setHours(10);
-        }
-        currentDate.setMinutes(currentDate.getMinutes() >= 30 ? 30 : 0);
-      } else {
-        currentDate.setHours(10);
-        currentDate.setMinutes(0);
-      }
-
-      let timeSlots = [];
-      while (currentDate < endDate) {
-        let formattedTime = currentDate.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-          timeSlots.push({
-            time: formattedTime,
-            dateTime: new Date(currentDate),
-          });
-      
-
-        currentDate.setMinutes(currentDate.getMinutes() + 30);
-      }
-      setDocSlot((prev) => [...prev, timeSlots]);
-    }
-  };
+  //   }
+  // }
   const bookAppointment = async () => {
     if (!token) {
       toast.warn("Login to book an appointment 🤬");
       navigate("/login");
       return;
     }
-
+  
     try {
       // Get the date of the selected slot
       const selectedSlot = docSlot[slotIndex][0].dateTime;
@@ -81,24 +65,24 @@ const Appointment = () => {
       const month = selectedSlot.getMonth() + 1;
       const year = selectedSlot.getFullYear();
       const slotDate = `${year}-${month < 10 ? `0${month}` : month}-${day < 10 ? `0${day}` : day}`;
-
+  
       // Log to check the date and slot time
       console.log({ slotDate, slotTime });
-
+  
       // Ensure slotTime is selected before booking
       if (!slotTime) {
         toast.warn("Please select a time slot before booking!");
         return;
       }
-
+  
       // API request to book an appointment
       const { data } = await axios.post(
         backendURL + '/api/user/book-appointment',
         { docId, slotDate, slotTime },
-        { headers: { token } }
+        { headers: { token } } 
       );
-
-
+      
+  
       if (data.success) {
         toast.success("Appointment booked successfully!");
         getDrData(); // Update doctor data if needed
@@ -111,7 +95,50 @@ const Appointment = () => {
       toast.error("Slot Already Booked Please Select Another Slot");
     }
   };
+  
 
+  const getTime = async () => {
+
+    setDocSlot([])
+
+    let today = new Date()
+
+    for (let i = 0; i < 7; i++) {
+      let currentDate = new Date(today)
+      currentDate.setDate(currentDate.getDate() + i)
+
+      let endDate = new Date(today)
+      endDate.setDate(endDate.getDate() + i)
+      endDate.setHours(21, 0, 0, 0)
+
+      if (today.getDate() === currentDate.getDate()) {
+        if (currentDate.getHours() >= 10) {
+          currentDate.setHours(currentDate.getHours() + 1)
+        }
+        else {
+          currentDate.setHours(10)
+        }
+        currentDate.setMinutes(currentDate.getMinutes() >= 30 ? 30 : 0)
+      }
+      else {
+        currentDate.setHours(10)
+        currentDate.setMinutes(0)
+
+      }
+
+      let timeSlots = []
+      while (currentDate < endDate) {
+        let formattedTime = currentDate.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+      
+        timeSlots.push({
+          time: formattedTime,
+          dateTime: new Date(currentDate)
+        })
+        currentDate.setMinutes(currentDate.getMinutes() + 30)
+      }
+      setDocSlot(prev => ([...prev, timeSlots]))
+    }
+  }
 
 
   useEffect(() => {

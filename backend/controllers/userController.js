@@ -95,7 +95,7 @@ const bookAppointment = async (req, res) => {
     try {
         const { userId, docId, slotDate, slotTime } = req.body;
         const docData = await doctorModal.findById(docId).select("-password")
-        console.log(docData)
+   
         if (!docData.available) {
             return res.status(400).json({ message: "Doctor is not available 😑", success: false })
         }
