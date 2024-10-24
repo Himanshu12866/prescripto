@@ -79,7 +79,7 @@ const Appointment = () => {
       const { data } = await axios.post(
         backendURL + '/api/user/book-appointment',
         { docId, slotDate, slotTime },
-        { headers: { Authorization: `Bearer ${token}` } } // Add "Bearer" if using JWT
+        { headers: { token } } 
       );
       
   

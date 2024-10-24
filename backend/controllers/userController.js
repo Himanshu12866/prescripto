@@ -126,6 +126,7 @@ const bookAppointment = async (req, res) => {
             slotTime,
             date: Date.now()
         }
+      
         const newAppointment = new appointmentModel(appointmentData)
         await newAppointment.save()
         await doctorModal.findByIdAndUpdate(docId, {slot_booked})
