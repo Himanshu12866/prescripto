@@ -4,7 +4,7 @@ import React from 'react'
 const MyAppointment = () => {
   return (
     <div>
-<h1>booked</h1>
+      <h1>booked</h1>
     </div>
   )
 }
