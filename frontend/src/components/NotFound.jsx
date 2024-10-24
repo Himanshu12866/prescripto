@@ -1,9 +1,19 @@
+import { useEffect } from "react"
+import { toast } from "react-toastify"
 
 
 
 const NotFound = () => {
+    useEffect(() => {
+        toast.dark("Sorry 😢 , Not Found !")
+    })
   return (
-    <div>NotFound</div>
+    <div className="flex justify-center items-center">
+    <div>
+        <img src='alert-file.avif' /> 
+    </div>
+
+    </div>
   )
 }
 
