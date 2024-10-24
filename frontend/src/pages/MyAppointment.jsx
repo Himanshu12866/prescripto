@@ -30,14 +30,14 @@ const MyAppointment = () => {
   return (
     <div>
       <h1 className='border-b-4 text-2xl font-medium py-2 px-2'>Your Appointements</h1>
-      <div className='flex flex-col w-full '>
+      <div className='flex flex-col w-[80%]l '>
         {
           appData.map((item, index) =>
-            <div key={index} className='flex sm:justify-between flex-col sm:flex-row m-1 bg-primary'>
-              <div className='w-52'>
+            <div key={index} className='flex sm:justify-between flex-col sm:flex-row m-1 border border-[red]'>
+              <div className='p-2 m-1 w-44 bg-[#e0e0e0]'>
                 <img src={item.docData.image} />
               </div>
-              <div>
+              <div className='w-full'>
                 <p>{item.docData.name}</p>
                 <p>{item.docData.speciality}</p>
                 <p>Address :</p>
