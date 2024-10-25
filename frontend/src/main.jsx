@@ -4,6 +4,7 @@ import App from './App.jsx'
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import AppContextProvider from './context/AppContext.jsx';
+import "../node_modules/bootstrap-icons/font/bootstrap-icons.css"
 
 
 createRoot(document.getElementById('root')).render(
