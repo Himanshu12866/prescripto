@@ -95,7 +95,7 @@ const bookAppointment = async (req, res) => {
     try {
         const { userId, docId, slotDate, slotTime } = req.body;
         const docData = await doctorModal.findById(docId).select("-password")
-   
+
         if (!docData.available) {
             return res.status(400).json({ message: "Doctor is not available 😑", success: false })
         }
@@ -153,13 +153,33 @@ const bookAppointment = async (req, res) => {
 // }
 const listAppointment = async (req, res) => {
     try {
-        const {userId} = req.body
-      const appointments = await appointmentModel.find({ userId });
-      res.status(200).json({ success: true, appointments });
+        const { userId } = req.body
+        const appointments = await appointmentModel.find({ userId });
+        res.status(200).json({ success: true, appointments });
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ success: false, message: "Failed to fetch appointments. 😢" });
+        console.error(error);
+        res.status(500).json({ success: false, message: "Failed to fetch appointments. 😢" });
     }
-  };
-  
-export { registerUser, userlogin, getProfile, updateProfile, bookAppointment, listAppointment }
+};
+
+
+const cancelAppointment = async (req, res) => {
+    try {
+        const { userId, appointmentId } = req.body;
+        const appointmentData = await appointmentModel.findById(appointmentId)
+        if (!appointmentData.userId !== userId) {
+            return res.json({ success: false, message: "Unathorized Action" })
+        }
+        await appointmentModel.findByIdAndUpdate(appointmentId, { cancelled: true })
+
+        const { docId, slotDate, slotTime } = appointmentData
+        const docData = await doctorModal.findById(docId)
+        let slot_booked = docData.slot_booked;
+        slot_booked[slotDate] = slot_booked[slotDate].filter(e => e !== slotTime)
+        await doctorModal.findById(docId, { slot_booked })
+        res.status(200).json({ message: "Appointment cancelled 😊", success: true })
+    } catch (error) {
+
+    }
+}
+export { registerUser, userlogin, getProfile, updateProfile, bookAppointment, listAppointment , cancelAppointment }
