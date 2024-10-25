@@ -34,22 +34,22 @@ const MyAppointment = () => {
         {
           appData.map((item, index) =>
             <div key={index} className='flex sm:justify-between flex-col sm:flex-row m-1 border border-[red]'>
-              <div className='p-2 m-1 w-44 bg-[#e0e0e0]'>
-                <img src={item.docData.image} />
+              <div className='p-2 m-1 sm:w-44   bg-[#e0e0e0]'>
+                <img className='sm:h-[180px] mix-blend-multiply' src={item.docData.image} />
               </div>
-              <div className='w-full text-xs p-2 '>
-                <p className='font-medium text-[20px] py-1'>{item.docData.name}</p>
-                <p className='text-[14px] font-medium '><span className=' font-normal'>Speciality :</span> {item.docData.speciality}</p>
-                <p className='font-medium text-[16px] py-1'>Address :</p>
-                <span className='text-[14px] font-medium '>{item.docData.address.line1} ,</span>
-                <span className='text-[14px] font-medium '>{item.docData.address.line2}</span>
-                <p className='font-medium text-[16px] py-1'>Appoinment:</p>
-                <p>Date :<span> {item.slotDate}</span></p>
-                <p>Time :<span> {item.slotTime}</span></p>
+              <div className='sm:w-[60%] text-xs p-2 '>
+                <p className='font-medium text-[20px] py-1 text-[#333366]'>{item.docData.name}</p>
+                <p className='text-[14px] font-medium text-[#006633] '><span className=' font-normal text-[#333366]'>Speciality :</span> {item.docData.speciality}</p>
+                <p className='font-medium text-[16px] py-1 text-[#333300]'>Address :</p>
+                <span className='text-[14px] font-medium text-[#30a29c] '>{item.docData.address.line1} ,</span>
+                <span className='text-[14px] font-medium text-[#30a29c]  '>{item.docData.address.line2}</span>
+                <p className='font-medium text-[16px] py-1 text-[red]'>Appoinment:</p>
+                <p className='text-sm font-medium text-[#621d59]'>Date :<span> {item.slotDate}</span></p>
+                <p className='text-sm font-medium text-[#621d59]'>Time :<span> {item.slotTime}</span></p>
               </div>
-              <div className='flex flex-col gap-3 justify-center'>
-                <button>Pay Online</button>
-                <button>Cancel Appointment</button>
+              <div className='flex flex-col gap-4 sm:w-[20%] mr-2 justify-center'>
+                <button className='bg-[pink] py-2'>Pay Online</button>
+                <button className='bg-[blue] py-2'>Cancel Appointment</button>
               </div>
             </div>
           )
