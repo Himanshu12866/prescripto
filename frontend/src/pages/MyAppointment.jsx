@@ -37,19 +37,19 @@ const MyAppointment = () => {
               <div className='p-2 m-1 w-44 bg-[#e0e0e0]'>
                 <img src={item.docData.image} />
               </div>
-              <div className='w-full'>
-                <p>{item.docData.name}</p>
-                <p>{item.docData.speciality}</p>
-                <p>Address :</p>
-                <p>{item.docData.address.line1}</p>
-                <p>{item.docData.address.line2}</p>
-                <p>Appoinment:</p>
+              <div className='w-full text-xs p-2 '>
+                <p className='font-medium text-[20px] py-1'>{item.docData.name}</p>
+                <p className='text-[14px] font-medium '><span className=' font-normal'>Speciality :</span> {item.docData.speciality}</p>
+                <p className='font-medium text-[16px] py-1'>Address :</p>
+                <span className='text-[14px] font-medium '>{item.docData.address.line1} ,</span>
+                <span className='text-[14px] font-medium '>{item.docData.address.line2}</span>
+                <p className='font-medium text-[16px] py-1'>Appoinment:</p>
                 <p>Date :<span> {item.slotDate}</span></p>
                 <p>Time :<span> {item.slotTime}</span></p>
               </div>
               <div className='flex flex-col gap-3 justify-center'>
-              <button>Pay Online</button>
-              <button>Cancel Appointment</button>
+                <button>Pay Online</button>
+                <button>Cancel Appointment</button>
               </div>
             </div>
           )
