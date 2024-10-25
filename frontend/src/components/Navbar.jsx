@@ -16,8 +16,8 @@ const Navbar = () => {
     return (
         <div className='flex item-center justify-between border-b py-4 mb-5 border-b-grey-400 text-sm'>
 
-            <img onClick={() => { navigate("/"); scrollTo(0, 0) }} className='w-44 cursor-pointer' src={assets.logo} alt='' />
-            <ul className='hidden md:flex item-start gap-5 front-medium'>
+            <img onClick={() => { navigate("/"); scrollTo(0, 0) }} className='w-52 cursor-pointer h-[60px]'  src={assets.logo} alt='' />
+            <ul className='hidden md:flex item-start gap-5 front-medium pt-4'>
                 <NavLink to="/">
                     <li className='my-1'>Home</li>
                     <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden' />
