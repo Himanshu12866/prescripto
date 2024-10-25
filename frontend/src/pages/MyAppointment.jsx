@@ -6,12 +6,12 @@ import { toast } from 'react-toastify'
 
 const MyAppointment = () => {
 
-  const { backendURL, token } = useContext(AppContext)
+  const { backendURL, token , getDrData } = useContext(AppContext)
   const [appData, setAppData] = useState([])
-  const month = [  " ","Jan", "Fer", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  const month = [" ", "Jan", "Fer", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
   const SlotFormat = (slotDate) => {
     const formattedTime = slotDate.split("-");
-  return formattedTime[0] + " "+ month[Number(formattedTime[1])] + " " + formattedTime[2]
+    return formattedTime[0] + " " + month[Number(formattedTime[1])] + " " + formattedTime[2]
   }
 
   const appointmentInfo = async () => {
@@ -20,18 +20,55 @@ const MyAppointment = () => {
       console.log(data.appointments)
       if (data.success) {
         setAppData(data.appointments.reverse())
-        
+
         toast.success("Appoinment Data Loaded Successfully. 😊")
       }
     } catch (error) {
       toast.error("Something Went Wrong 😵‍💫")
     }
   }
+
+  // const cancelAppointment = async (appointmentId) => {
+  //   try {
+  //     console.log(appointmentId)
+  //     const { data } = await axios.post(backendURL + '/api/user/cancel-appointment' + { appointmentId }, { headers: { token } })
+  //     if (data.success) {
+  //       toast.success("Appointment Cancelled")
+  //       appointmentInfo()
+  //     }
+  //     else {
+  //       toast.error("Failed to Cancel Appointment")
+  //     }
+  //   } catch (error) {
+  //     toast.error("Something Went Wrong 😵‍💫")
+  //   }
+
+
+  // }
+  const cancelAppointment = async (appointmentId) => {
+    try {
+
+      const { data } = await axios.post(`${backendURL}/api/user/cancel-appointment`,
+        { appointmentId },
+        { headers: { token } }
+      );
+      if (data.success) {
+        toast.success("Appointment Cancelled 😊");
+        appointmentInfo();
+        getDrData();
+      } else {
+        toast.error("Failed to Cancel Appointment");
+      }
+    } catch (error) {
+      toast.error("Something Went Wrong 😵‍💫");
+    }
+  };
+
   useEffect(() => {
     if (token) {
       appointmentInfo();
     }
-   
+
   }, [token])
   return (
     <div>
@@ -52,10 +89,12 @@ const MyAppointment = () => {
                 <p className='font-medium text-[16px] py-2 text-[red] bi bi-calendar3'>&nbsp; Appoinment:</p>
                 <p className='text-sm font-medium text-[#621d59]'>Date :<span> {SlotFormat(item.slotDate)}</span></p>
                 <p className='text-sm font-medium text-[#621d59] '>Time :<span> {item.slotTime}</span></p>
+
               </div>
               <div className='flex flex-col gap-6 sm:w-[20%] mr-2 justify-center'>
-                <button className=' py-2 hover:bg-[black] hover:text-white transition-all duration-200 border'>Pay Online</button>
-                <button className='py-2 hover:bg-[#ff5f5f] hover:text-white transition-all duration-200 border'>Cancel Appointment</button>
+                {!item.cancelled && <button className=' py-2 hover:bg-[black] hover:text-white transition-all duration-200 border'>Pay Online</button>}
+                {!item.cancelled && <button onClick={() => cancelAppointment(item._id)} className='py-2 hover:bg-[#ff5f5f] hover:text-white transition-all duration-200 border'>Cancel Appointment</button>}
+                {item.cancelled &&  <button disabled className='py-2 bg-[#4a45458f] text-white border'>Appointment Cancelled</button>}
               </div>
             </div>
           )
