@@ -12,7 +12,7 @@ const SpecialityMenu = () => {
                 {
                     specialityData.map((item, index) =>
                         <Link onClick={() => scrollTo(0, 0)} className='flex flex-col items-center text-xs flex-shrink-0 hover:translate-y-[-10px] transition-all duration-500' to={`doctors/${item.speciality}`} key={index}>
-                            <img className='w-16 sm:w-24 mb-2' src={item.image}></img>
+                            <img className='w-[100px] h-[100px] rounded-full sm:w-24 mb-2' src={item.image}></img>
                             <p>
                                 {
                                     item.speciality

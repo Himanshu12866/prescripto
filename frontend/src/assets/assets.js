@@ -36,6 +36,7 @@ import General_physician from './General_physician.svg'
 import Gynecologist from './Gynecologist.svg'
 import Neurologist from './Neurologist.svg'
 import Pediatricians from './Pediatricians.svg'
+import eye from "./eye.jpg"
 
 
 export const assets = {
@@ -83,6 +84,10 @@ export const specialityData = [
         speciality: 'Gastroenterologist',
         image: Gastroenterologist
     },
+    {
+        speciality: 'Eye Surgen',
+        image: eye
+    }
 ]
 
 export const doctors = [
