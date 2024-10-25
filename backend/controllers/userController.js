@@ -6,6 +6,7 @@ import userModal from "../models/userModal.js";
 import { v2 as cloudinary } from "cloudinary"
 import doctorModal from "../models/doctorModal.js";
 import appointmentModel from "../models/appointment.js";
+import razorpay from "razorpay"
 const registerUser = async (req, res) => {
     try {
         const { name, email, password } = req.body;
@@ -207,11 +208,39 @@ const cancelAppointment = async (req, res) => {
         }
 
         await doctorModal.findByIdAndUpdate(docId, { $set: { slot_booked } });
-        
+
         res.status(200).json({ message: "Appointment cancelled 😊", success: true });
     } catch (error) {
         res.status(500).json({ success: false, message: "Server Error", error: error.message });
     }
 };
 
-export { registerUser, userlogin, getProfile, updateProfile, bookAppointment, listAppointment , cancelAppointment }
+// Handle online payment
+const RazorPayinstance = new razorpay({
+    key_id: process.env.RAZOR_PAY_KEY,
+    key_secret: process.env.RAZOR_PAY_SECRET_KEY,
+});
+const payment = async (req, body) => {
+    try {
+        const { appointmentId } = req.body;
+        const appointmentData = await appointmentModel.findById(appointmentId);
+        if (!appointmentData || appointmentDat.cancelled) {
+            return res.json({ success: false, message: "Appoinement Cancelled or not Found" })
+        }
+        const options = {
+            amount: appointmentData.amount * 100,
+            currency: "INR",
+            receipt: `${appointmentData.userId}_${appointmentData.appointmentId}`
+        }
+
+        const order = await RazorPayinstance.orders.create(options)
+        res.json({ success: true, order: order })
+        
+    } catch (error) {
+        res.status(500).json({ success: false, message: "Server Error", error: error.message });
+
+    }
+
+}
+
+export { registerUser, userlogin, getProfile, updateProfile, bookAppointment, listAppointment, cancelAppointment , payment}

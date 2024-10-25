@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 
 const MyAppointment = () => {
 
-  const { backendURL, token , getDrData } = useContext(AppContext)
+  const { backendURL, token, getDrData } = useContext(AppContext)
   const [appData, setAppData] = useState([])
   const month = [" ", "Jan", "Fer", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
   const SlotFormat = (slotDate) => {
@@ -64,6 +64,17 @@ const MyAppointment = () => {
     }
   };
 
+
+  const appointmentPay = async (appointmentId) => {
+    try {
+      const { data } = await axios.post(backendURL + "/api/user/payment" + { appointmentId }, { headers: { token } })
+      if (data.success) {
+        console.log(data.success)
+      }
+    } catch (error) {
+      toast.error("Payment Failed")
+    }
+  }
   useEffect(() => {
     if (token) {
       appointmentInfo();
@@ -92,9 +103,9 @@ const MyAppointment = () => {
 
               </div>
               <div className='flex flex-col gap-6 sm:w-[20%] mr-2 justify-center'>
-                {!item.cancelled && <button className=' py-2 hover:bg-[black] hover:text-white transition-all duration-200 border'>Pay Online</button>}
+                {!item.cancelled && <button onClick={() => { appointmentPay(item._id) }} className=' py-2 hover:bg-[black] hover:text-white transition-all duration-200 border'>Pay Online</button>}
                 {!item.cancelled && <button onClick={() => cancelAppointment(item._id)} className='py-2 hover:bg-[#ff5f5f] hover:text-white transition-all duration-200 border'>Cancel Appointment</button>}
-                {item.cancelled &&  <button disabled className='py-2 bg-[#4a45458f] text-white border'>Appointment Cancelled</button>}
+                {item.cancelled && <button disabled className='py-2 bg-[#4a45458f] text-white border'>Appointment Cancelled</button>}
               </div>
             </div>
           )
