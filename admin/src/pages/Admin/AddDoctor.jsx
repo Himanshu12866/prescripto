@@ -128,6 +128,7 @@ const AddDoctor = () => {
                                 <option value="Neurologist">Neurologist</option>
                                 <option value="Gastroenterologist">Gastroenterologist</option>
                                 <option value="Eye Surgen">Eye Surgen</option>
+                                <option value="Dental">Dental</option>
                             </select>
                         </div>
                         <div>
