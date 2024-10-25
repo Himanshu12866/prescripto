@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import { v2 as cloudinary } from "cloudinary";
 import doctorModal from "../models/doctorModal.js";
 import jwt from "jsonwebtoken"
+import appointmentModel from "../models/appointment.js";
 const addDoctor = async (req, res) => {
     try {
         const { name, email, password, speciality, degree, experience, about, address, fees } = req.body;
@@ -106,4 +107,15 @@ const allDoctors = async (req, res) => {
     }
     
 }
-export { addDoctor, loginAdmin , allDoctors}
+const appoinmentAdmin = async(req,res) => {
+    try {
+        const appoinments = await appointmentModel.find({})
+        res.json({success:true,appoinments})
+
+        
+    } catch (error) {
+                console.error("Error:", error.message); // Log error for debugging
+        return res.status(500).json({ msg: "Server error 😵‍💫", success: false });
+    }
+}
+export { addDoctor, loginAdmin , allDoctors, appoinmentAdmin}
