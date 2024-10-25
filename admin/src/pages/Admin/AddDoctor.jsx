@@ -44,7 +44,7 @@ const AddDoctor = () => {
 
             const { data } = await axios.post(backendURL + '/api/admin/add-doctor', formData, { headers: { aToken } })
             if (data.success) {
-              toast.success(data.success)
+              toast.success("Doctor added successfully 😊")
              
               setName("");
               setSpeciality("General physician");
