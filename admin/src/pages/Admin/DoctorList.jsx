@@ -25,8 +25,8 @@ const DoctorList = () => {
       <div className="flex flex-row flex-wrap p-2">
         {
           doctors.map((item, index) =>
-            <div className=" w-full sm:w-52 border m-2 h-auto rounded" key={index}>
-              <img src={item.image} className="hover:bg-[blue] bg-[#fef2f2] transition-all duration-200 cursor-pointer" />
+            <div className=" w-full sm:w-52 border m-2 h-auto rounded hover:shadow-lg transition-all duration-200 shadow-gray-900" key={index}>
+              <img src={item.image} className=" bg-[#fef2f2] h-[200px] w-full cursor-pointer" />
               <div className="flex flex-col m-1">
                 <p className="font-medium text-xl">{item.name}</p>
                 <p>{item.speciality}</p>

@@ -8,6 +8,11 @@ const MyAppointment = () => {
 
   const { backendURL, token } = useContext(AppContext)
   const [appData, setAppData] = useState([])
+  const month = [  " ","Jan", "Fer", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  const SlotFormat = (slotDate) => {
+    const formattedTime = slotDate.split("-");
+  return formattedTime[0] + " "+ month[Number(formattedTime[1])] + " " + formattedTime[2]
+  }
 
   const appointmentInfo = async () => {
     try {
@@ -15,7 +20,7 @@ const MyAppointment = () => {
       console.log(data.appointments)
       if (data.success) {
         setAppData(data.appointments.reverse())
-        console.log(data.appointments)
+        
         toast.success("Appoinment Data Loaded Successfully. 😊")
       }
     } catch (error) {
@@ -24,8 +29,9 @@ const MyAppointment = () => {
   }
   useEffect(() => {
     if (token) {
-      appointmentInfo()
+      appointmentInfo();
     }
+   
   }, [token])
   return (
     <div>
@@ -44,7 +50,7 @@ const MyAppointment = () => {
                 <span className='text-[14px] font-medium text-[#30a29c] '>{item.docData.address.line1} ,</span>
                 <span className='text-[14px] font-medium text-[#30a29c]  '>{item.docData.address.line2}</span>
                 <p className='font-medium text-[16px] py-2 text-[red] bi bi-calendar3'>&nbsp; Appoinment:</p>
-                <p className='text-sm font-medium text-[#621d59]'>Date :<span> {item.slotDate}</span></p>
+                <p className='text-sm font-medium text-[#621d59]'>Date :<span> {SlotFormat(item.slotDate)}</span></p>
                 <p className='text-sm font-medium text-[#621d59] '>Time :<span> {item.slotTime}</span></p>
               </div>
               <div className='flex flex-col gap-6 sm:w-[20%] mr-2 justify-center'>
