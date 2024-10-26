@@ -4,11 +4,11 @@ import { useContext, useEffect } from "react"
 import { AdminContext } from "../../context/AdminContext"
 
 const Dashboard = () => {
-  const { adminDash, aToken, getAdminDash } = useContext(AdminContext)
+  const { aToken, getAdminDash } = useContext(AdminContext)
   useEffect(() => {
     if (aToken) {
       getAdminDash()
-      console.log(adminDash)
+      // console.log(adminDash)
     }
   }, [aToken])
 
