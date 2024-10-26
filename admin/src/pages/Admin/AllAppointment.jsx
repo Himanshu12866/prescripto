@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 
 
 const AllAppointment = () => {
-  const { appointments, aToken, getAllAppointment } = useContext(AdminContext);
+  const { appointments, aToken, getAllAppointment, cancelAppointmentAdmin } = useContext(AdminContext);
   // const { SlotFormat } = useContext(AppContext)
 
 
@@ -51,9 +51,11 @@ const AllAppointment = () => {
             </div>
             <p className="font-medium">&#8377; {item.docData?.fees}</p>
             <p>
-              <Button variant="outlined" color="error" disableElevation>
+              {item.cancelled ? <Button variant="outlined" color="error" disableElevation>
+                Cancelled
+              </Button> : <Button onClick={() => cancelAppointmentAdmin(item._id)} variant="outlined" color="error" disableElevation>
                 Cancel
-              </Button>
+              </Button>}
             </p>
           </div>
 

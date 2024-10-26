@@ -118,4 +118,33 @@ const appoinmentAdmin = async (req, res) => {
         return res.status(500).json({ msg: "Server error 😵‍💫", success: false });
     }
 }
-export { addDoctor, loginAdmin, allDoctors, appoinmentAdmin }
+const cancelAppointmentAdmin = async (req, res) => {
+    try {
+        const {  appointmentId } = req.body;
+        const appointmentData = await appointmentModel.findById(appointmentId);
+        if (!appointmentData) {
+            return res.status(404).json({ success: false, message: "Appointment not found" });
+        }
+     
+
+        await appointmentModel.findByIdAndUpdate(appointmentId, { cancelled: true });
+
+        const { docId, slotDate, slotTime } = appointmentData;
+        const docData = await doctorModal.findById(docId);
+        if (!docData) {
+            return res.status(404).json({ success: false, message: "Doctor not found" });
+        }
+
+        let slot_booked = docData.slot_booked;
+        if (slot_booked[slotDate]) {
+            slot_booked[slotDate] = slot_booked[slotDate].filter(e => e !== slotTime);
+        }
+
+        await doctorModal.findByIdAndUpdate(docId, { $set: { slot_booked } });
+
+        res.status(200).json({ message: "Appointment cancelled 😊", success: true });
+    } catch (error) {
+        res.status(500).json({ success: false, message: "Server Error", error: error.message });
+    }
+};
+export { addDoctor, loginAdmin, allDoctors, appoinmentAdmin , cancelAppointmentAdmin }

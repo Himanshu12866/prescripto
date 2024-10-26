@@ -58,9 +58,25 @@ const AdminContextProvider = (props) => {
             toast.error(error)
         }
     }
+    // eslint-disable-next-line no-unused-vars
+    const cancelAppointmentAdmin = async (appointmentId) => {
+        try {
+            const { data } = await axios.post(backendURL + '/api/admin/cancelAppointmentAdmin' , {appointmentId} , {headers:{aToken}})
+            if (data.success) {
+                toast.success(data.message)
+                getAllAppointment()
+            }
+            else {
+                toast.error(data.message)
+            }
+        } catch (error) {
+            toast.error(error)
+
+        }
+    }
     const value = {
         aToken, setAToken, backendURL, doctors, getAllDoctors,
-        changeAvailability, appointments, setAppointment, getAllAppointment
+        changeAvailability, appointments, setAppointment, getAllAppointment, cancelAppointmentAdmin
     }
     return (
         <AdminContext.Provider value={value}>
