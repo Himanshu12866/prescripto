@@ -109,8 +109,8 @@ const allDoctors = async (req, res) => {
 }
 const appoinmentAdmin = async (req, res) => {
     try {
-        const appoinments = await appointmentModel.find({})
-        return res.json({ success: true, appoinments })
+        const appointments = await appointmentModel.find({})
+         res.json({ success: true, appointments })
 
 
     } catch (error) {

@@ -8,8 +8,8 @@ const AllAppointment = () => {
   const {appointments,  aToken, getAllAppointment } = useContext(AdminContext)
   useEffect(() => {
     if (aToken) {
-      console.log(appointments)
       getAllAppointment()
+      console.log(appointments)
     }
     else{
       console.log("no token")
