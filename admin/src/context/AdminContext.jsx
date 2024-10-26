@@ -11,6 +11,7 @@ const AdminContextProvider = (props) => {
     const [aToken, setAToken] = useState(localStorage.getItem('AdminToken') ? localStorage.getItem("AdminToken") : "")
     const backendURL = import.meta.env.VITE_BACKEND_URL
     const [appointments, setAppointment] = useState([{}])
+    const [adminDash, setAdminDash] = useState({})
 
     const getAllDoctors = async () => {
         try {
@@ -61,7 +62,7 @@ const AdminContextProvider = (props) => {
     // eslint-disable-next-line no-unused-vars
     const cancelAppointmentAdmin = async (appointmentId) => {
         try {
-            const { data } = await axios.post(backendURL + '/api/admin/cancelAppointmentAdmin' , {appointmentId} , {headers:{aToken}})
+            const { data } = await axios.post(backendURL + '/api/admin/cancelAppointmentAdmin', { appointmentId }, { headers: { aToken } })
             if (data.success) {
                 toast.success(data.message)
                 getAllAppointment()
@@ -74,9 +75,38 @@ const AdminContextProvider = (props) => {
 
         }
     }
+
+    const getAdminDash = async () => {
+        try {
+            const { data } = await axios.get("http://localhost:4000/api/admin/dashAdmin")
+            if (data.success) {
+                setAdminDash(data.Dashdata)
+                console.log(adminDash)
+                toast.success("Data Loaded Successfully")
+            }
+            else {
+                toast.error(data.message)
+            }
+        } catch (error) {
+            toast.error("Some Server Issue 😵‍💫.")
+            console.log(error)
+
+        }
+    }
     const value = {
-        aToken, setAToken, backendURL, doctors, getAllDoctors,
-        changeAvailability, appointments, setAppointment, getAllAppointment, cancelAppointmentAdmin
+        aToken,
+        setAToken,
+        backendURL,
+        doctors,
+        getAllDoctors,
+        changeAvailability,
+        appointments,
+        setAppointment,
+        getAllAppointment,
+        cancelAppointmentAdmin,
+        getAdminDash,
+        adminDash,
+        setAdminDash
     }
     return (
         <AdminContext.Provider value={value}>

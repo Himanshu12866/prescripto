@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import { v2 as cloudinary } from "cloudinary";
 import doctorModal from "../models/doctorModal.js";
 import jwt from "jsonwebtoken"
+import userModal from "../models/userModal.js";
 import appointmentModel from "../models/appointment.js";
 const addDoctor = async (req, res) => {
     try {
@@ -110,7 +111,7 @@ const allDoctors = async (req, res) => {
 const appoinmentAdmin = async (req, res) => {
     try {
         const appointments = await appointmentModel.find({})
-         res.json({ success: true, appointments })
+        res.json({ success: true, appointments })
 
 
     } catch (error) {
@@ -120,12 +121,12 @@ const appoinmentAdmin = async (req, res) => {
 }
 const cancelAppointmentAdmin = async (req, res) => {
     try {
-        const {  appointmentId } = req.body;
+        const { appointmentId } = req.body;
         const appointmentData = await appointmentModel.findById(appointmentId);
         if (!appointmentData) {
             return res.status(404).json({ success: false, message: "Appointment not found" });
         }
-     
+
 
         await appointmentModel.findByIdAndUpdate(appointmentId, { cancelled: true });
 
@@ -147,4 +148,26 @@ const cancelAppointmentAdmin = async (req, res) => {
         res.status(500).json({ success: false, message: "Server Error", error: error.message });
     }
 };
-export { addDoctor, loginAdmin, allDoctors, appoinmentAdmin , cancelAppointmentAdmin }
+
+const adminDash = async (req, res) => {
+    try {
+        const doctors = await doctorModal.find({})
+        const appointments = await appointmentModel.find({})
+        const patients = await userModal.find({})
+        const Dashdata = {
+            doctors: doctors.length,
+            appointments: appointments.length,
+            patients: patients.length,
+            appointmentsLatest: appointments.reverse().splice(0, 5)
+
+        }
+        res.status(200).json({ success: true, Dashdata })
+
+    } catch (error) {
+        console.error("Error:", error.message);
+        // Log error for debugging
+        res.status(500).json({ success: false, message: "Server Error" })
+
+    }
+}
+export { addDoctor, loginAdmin, allDoctors, appoinmentAdmin, cancelAppointmentAdmin, adminDash }
