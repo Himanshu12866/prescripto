@@ -77,7 +77,7 @@ const addDoctor = async (req, res) => {
     }
 };
 
-const loginAdmin = async (req, res) => { 
+const loginAdmin = async (req, res) => {
     try {
         const { email, password } = req.body;
         if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
@@ -105,17 +105,17 @@ const allDoctors = async (req, res) => {
         return res.status(500).json({ msg: "Server error 😵‍💫", success: false });
 
     }
-    
+
 }
-const appoinmentAdmin = async(req,res) => {
+const appoinmentAdmin = async (req, res) => {
     try {
         const appoinments = await appointmentModel.find({})
-        res.json({success:true,appoinments})
+        return res.json({ success: true, appoinments })
 
-        
+
     } catch (error) {
-                console.error("Error:", error.message); // Log error for debugging
+        console.error("Error:", error.message); // Log error for debugging
         return res.status(500).json({ msg: "Server error 😵‍💫", success: false });
     }
 }
-export { addDoctor, loginAdmin , allDoctors, appoinmentAdmin}
+export { addDoctor, loginAdmin, allDoctors, appoinmentAdmin }

@@ -7,8 +7,8 @@ import { useEffect } from "react"
 const AllAppointment = () => {
   const {appointments,  aToken, getAllAppointment } = useContext(AdminContext)
   useEffect(() => {
-    console.log(appointments)
     if (aToken) {
+      console.log(appointments)
       getAllAppointment()
     }
     else{
