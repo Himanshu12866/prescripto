@@ -11,8 +11,8 @@ const AdminContextProvider = (props) => {
     const [aToken, setAToken] = useState(localStorage.getItem('AdminToken') ? localStorage.getItem("AdminToken") : "")
     const backendURL = import.meta.env.VITE_BACKEND_URL
     const [appointments, setAppointment] = useState([{}])
-    const [adminDash, setAdminDash] = useState(null)
-    // const [adminDash, setAdminDash] = useState({ });
+    const [adminDash, setAdminDash] = useState(false)
+    
 
 
     const getAllDoctors = async () => {
@@ -81,9 +81,9 @@ const AdminContextProvider = (props) => {
         try {
             const { data } = await axios.get(backendURL + "/api/admin/dashAdmin", { headers: { aToken } })
          console.log(data)
-            setAdminDash(data.Dashdata)
-            console.log(adminDash)
-            if (data.success) {
+         console.log(adminDash)
+         setAdminDash(data.Dashdata)
+         if (data.success) {
                 // setAdminDash({...data.Dashdata})
                 console.log(adminDash)
                 toast.success("Data Loaded Successfully")

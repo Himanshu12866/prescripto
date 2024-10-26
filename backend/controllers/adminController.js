@@ -165,7 +165,7 @@ const adminDash = async (req, res) => {
 
     } catch (error) {
         console.error("Error:", error.message);
-        // Log error for debugging
+
         res.status(500).json({ success: false, message: "Server Error" })
 
     }
