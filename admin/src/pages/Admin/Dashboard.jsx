@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // import React from 'react'
 
 import { useContext, useEffect, useState } from "react"
@@ -26,9 +27,6 @@ const Dashboard = () => {
       <div>
         {
           <div className="flex flex-col sm:flex-row gap-1 sm:justify-around m-3 w-[90%] sm:w-[80%]">
-            {/* <Button className="py-2" style={{ padding: "15px", paddingLeft: "40px", paddingRight: "40px" }} variant="contained" color=""><span>Doctors : {adminDash.doctors}</span></Button> */}
-            {/* <img src={assets.docgrp} /> */}
-
             <Card style={{ width: "230px", height: "240px" }}>
               <CardMedia
                 component="img"
@@ -41,10 +39,10 @@ const Dashboard = () => {
                 </Typography>
               </CardContent>
             </Card>
-            <Card style={{ width: "230px", height: "240px" , textAlign:"center"}}>
+            <Card style={{ width: "230px", height: "240px", textAlign: "center" }}>
               <CardMedia
                 component="img"
-            style={{height:"180px" , width:"100%", translate:"12px"}}
+                style={{ height: "180px", width: "100%", translate: "12px" }}
                 image={assets.cal}
                 alt="green "
               />
@@ -54,19 +52,18 @@ const Dashboard = () => {
                 </Typography>
               </CardContent>
             </Card>
-        <Card style={{ width: "230px", height: "240px" , textAlign:"center"}}>
-          <CardMedia 
-            component="img"
-            style={{height:"180px" , width:"100%" , paddingTop:"10px"}}
-            image={assets.pat}
-          />
-          <CardContent>
-            <Typography style={{ textAlign: "center" }} variant="h6">
-              <h1>Patients : <span>{adminDash.patients}</span></h1>
-            </Typography>
-          </CardContent>
-        </Card>
-
+            <Card style={{ width: "230px", height: "240px", textAlign: "center" }}>
+              <CardMedia
+                component="img"
+                style={{ height: "180px", width: "100%", paddingTop: "10px" }}
+                image={assets.pat}
+              />
+              <CardContent>
+                <Typography style={{ textAlign: "center" }} variant="h6">
+                  <h1>Patients : <span>{adminDash.patients}</span></h1>
+                </Typography>
+              </CardContent>
+            </Card>
           </div>
         }
       </div>
