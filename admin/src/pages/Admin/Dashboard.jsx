@@ -1,17 +1,22 @@
 // import React from 'react'
 
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import { AdminContext } from "../../context/AdminContext"
 import Button from "@mui/material/Button"
+import { assets } from "../../assets/assets"
+import { Card } from "@mui/material"
+import { CardContent } from "@mui/material"
+import { Typography } from "@mui/material"
+import { CardMedia } from "@mui/material"
 
 const Dashboard = () => {
   const { adminDash, aToken, getAdminDash } = useContext(AdminContext)
-  // const [info, setInfo] = useState([])
+  const [info, setInfo] = useState([{}])
   useEffect(() => {
     if (aToken) {
       getAdminDash()
-      // setInfo.push(adminDash.appointmentsLatest)
-      // console.log(info)
+      setInfo(adminDash.appointmentsLatest)
+      console.log(info)
     }
   }, [aToken])
 
@@ -21,15 +26,33 @@ const Dashboard = () => {
       <div>
         {
           <div className="flex flex-col sm:flex-row gap-2 sm:justify-around m-3 w-[90%] sm:w-[80%]">
-            <Button className="py-2" style={{ padding: "15px", paddingLeft: "40px", paddingRight: "40px" }} variant="contained" color=""><span>Doctors : {adminDash.doctors}</span></Button>
+            {/* <Button className="py-2" style={{ padding: "15px", paddingLeft: "40px", paddingRight: "40px" }} variant="contained" color=""><span>Doctors : {adminDash.doctors}</span></Button> */}
+            {/* <img src={assets.docgrp} /> */}
+
+            <Card style={{width:"200px" , height:"220px"}}>
+              <CardMedia
+              
+                component="img"
+             
+          
+                image={assets.docgrp}
+                alt="green iguana"
+              />
+              <CardContent>
+                <Typography  style={{textAlign:"center"}} variant="h6">
+                  <h1>Doctors : <span>{adminDash.doctors}</span></h1>
+                </Typography>
+              </CardContent>
+
+            </Card>
             <Button className="py-2" style={{ padding: "15px", paddingLeft: "40px", paddingRight: "40px" }} variant="contained" color=""><span>Appointments : {adminDash.appointments}</span></Button>
             <Button className="py-2" style={{ padding: "15px", paddingLeft: "40px", paddingRight: "40px" }} variant="contained" color=""><span>Patients : {adminDash.patients}</span></Button>
             {/* <p>{adminDash.appointmentsLatest[0]}</p> */}
 
           </div>
         }
-</div>
-    
+      </div>
+
     </div>
   )
 }
