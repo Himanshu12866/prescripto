@@ -12,7 +12,7 @@ const AdminContextProvider = (props) => {
     const backendURL = import.meta.env.VITE_BACKEND_URL
     const [appointments, setAppointment] = useState([{}])
     const [adminDash, setAdminDash] = useState(false)
-    
+
 
 
     const getAllDoctors = async () => {
@@ -80,10 +80,10 @@ const AdminContextProvider = (props) => {
     const getAdminDash = async () => {
         try {
             const { data } = await axios.get(backendURL + "/api/admin/dashAdmin", { headers: { aToken } })
-         console.log(data)
-         console.log(adminDash)
-         setAdminDash(data.Dashdata)
-         if (data.success) {
+            console.log(data)
+            console.log(adminDash)
+            setAdminDash(data.Dashdata)
+            if (data.success) {
                 // setAdminDash({...data.Dashdata})
                 console.log(adminDash)
                 toast.success("Data Loaded Successfully")
