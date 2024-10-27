@@ -17,6 +17,8 @@ import stripe_logo from "./stripe_logo.png";
 import razorpay_logo from "./razorpay_logo.png";
 import image_upload from "./image_upload.jpg";
 import docgrp from "./doct-grp.webp";
+import pat from "./pat.png"
+import cal from './cal.png'
 import apt from "./apt.png"
 import doc1 from "./doc1.png";
 import doc2 from "./doc2.png";
@@ -40,6 +42,7 @@ import Gynecologist from "./Gynecologist.svg";
 import Neurologist from "./Neurologist.svg";
 import Pediatricians from "./Pediatricians.svg";
 
+
 export const assets = {
   appointment_img,
   header_img,
@@ -60,7 +63,8 @@ export const assets = {
   razorpay_logo,
   image_upload,
   docgrp,
-  apt
+  apt,
+  cal,pat
 };
 
 export const specialityData = [
