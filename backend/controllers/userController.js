@@ -220,7 +220,7 @@ const RazorPayinstance = new razorpay({
     key_id: process.env.RAZOR_PAY_KEY,
     key_secret: process.env.RAZOR_PAY_SECRET_KEY,
 });
-const payment = async (req, body) => {
+const payment = async (req, res) => {
     try {
         const { appointmentId } = req.body;
         const appointmentData = await appointmentModel.findById(appointmentId);

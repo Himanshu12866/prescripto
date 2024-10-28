@@ -162,7 +162,7 @@ const adminDash = async (req, res) => {
 
         }
         res.status(200).json({ success: true, Dashdata })
-        console.log(Dashdata.appointmentsLatest)
+        
 
     } catch (error) {
         console.error("Error:", error.message);
