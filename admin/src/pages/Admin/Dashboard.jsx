@@ -24,14 +24,21 @@ const Dashboard = () => {
     if (aToken) {
       getAdminDash();
       console.log(adminDash);
-      setInfo(adminDash.appointmentsLatest);
       console.log(info);
     }
   }, [aToken]);
 
+
+  // useEffect(() => {
+  //   setInfo(adminDash.appointmentsLatest);
+  //   console.log(info);
+  // }, [info]);
   useEffect(() => {
-    console.log(info);
-  }, [info]);
+    if (adminDash && adminDash.appointmentsLatest) {
+      setInfo(adminDash.appointmentsLatest);
+    }
+  }, [adminDash]);
+
 
   return (
     <div className="w-full p-1">
@@ -43,7 +50,7 @@ const Dashboard = () => {
       >
         Dashboard
       </Button>
-      <div>
+      <div className="p-1 overflow-x-auto h-[80vh]">
         <div className="flex flex-col sm:flex-row gap-1 sm:justify-around m-3 w-[90%] sm:w-[80%]">
           <Card style={{ width: "230px", height: "240px" }}>
             <CardMedia component="img" image={assets.docgrp} alt="Doctors" />
@@ -86,30 +93,42 @@ const Dashboard = () => {
         </div>
 
         <TableContainer component={Paper}>
-        
+
           <Table>
             <TableHead>
-              <TableRow>
-                <TableCell>S.No</TableCell>
-                <TableCell>Doctor</TableCell>
-                <TableCell>Date & Time</TableCell>
-                <TableCell>Patient Name</TableCell>
-                <TableCell>Patient Email</TableCell>
-                <TableCell>Status</TableCell>
+              <TableRow className="font-medium text-xl text-white bg-[#22625d] ">
+                <TableCell style={{ textAlign: "left", color: "white", fontWeight: "bold", fontSize: "18px" }}>S.No</TableCell>
+                <TableCell style={{ textAlign: "left", color: "white", fontWeight: "bold", fontSize: "18px" }}>Doctor</TableCell>
+                <TableCell style={{ textAlign: "left", color: "white", fontWeight: "bold", fontSize: "18px" }}>Date & Time</TableCell>
+                <TableCell style={{ textAlign: "left", color: "white", fontWeight: "bold", fontSize: "18px" }}>Patient Name</TableCell>
+                <TableCell style={{ textAlign: "left", color: "white", fontWeight: "bold", fontSize: "18px" }}>Patient Email</TableCell>
+                <TableCell style={{ textAlign: "left", color: "white", fontWeight: "bold", fontSize: "18px" }}>Status</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {/* {info.map((item, index) => (
-                <TableRow key={index}>
-                  <TableCell>{index + 1}</TableCell>
-                  <TableCell>{item.docName.name}</TableCell>
-                  <TableCell>{item.slotDate} & {item.slotTime}</TableCell>
-                  <TableCell>{item.userData.name}</TableCell>
-                  <TableCell>{item.userData.email}</TableCell>
-                  <TableCell>{item.cancelled}</TableCell>
+              {info && info.length > 0 ? (
+                info.map((item, index) => (
+                  <TableRow key={index}>
+                    <TableCell style={{ textAlign: "left", fontSize: "15px" }}>{index + 1}</TableCell>
+                    <TableCell style={{ textAlign: "left", fontSize: "15px" }}>{item.docData?.name || "N/A"}</TableCell>
+                    <TableCell style={{ textAlign: "left", fontSize: "15px" }}>{item.slotDate} & {item.slotTime}</TableCell>
+                    <TableCell style={{ textAlign: "left", fontSize: "15px" }}>{item.userData?.name || "N/A"}</TableCell>
+                    <TableCell style={{ textAlign: "left", fontSize: "15px" }}>{item.userData?.email || "N/A"}</TableCell>
+                    <p
+                      className={`rounded-lg m-1 text-center py-3 ${item.cancelled ? "bg-[#c13c3c] text-[#ffffff]" : "bg-[green] text-[white]"}`}
+                    >
+                      {item.cancelled ? "Cancelled" : "Confirmed"}
+                    </p>
+
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell colSpan={6}>No appointments found</TableCell>
                 </TableRow>
-              ))} */}
+              )}
             </TableBody>
+
           </Table>
         </TableContainer>
       </div>

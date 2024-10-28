@@ -83,7 +83,7 @@ const AdminContextProvider = (props) => {
            
             setAdminDash(data.Dashdata)
             if (data.success) {
-                setAdminDash({...data.Dashdata})
+                // setAdminDash({...data.Dashdata})
                 console.log(adminDash)
                 toast.success("Data Loaded Successfully")
             }
