@@ -12,7 +12,7 @@ const DoctorList = () => {
 
     if (aToken) {
       getAllDoctors()
-      console.log(doctors)
+      // console.log(doctors)
     }
 
   }, [aToken])

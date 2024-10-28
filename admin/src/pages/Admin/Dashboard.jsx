@@ -16,6 +16,7 @@ const Dashboard = () => {
   useEffect(() => {
     if (aToken) {
       getAdminDash()
+      console.log(adminDash)
       // setInfo(adminDash.appointmentsLatest)
       // console.log(info)
     }

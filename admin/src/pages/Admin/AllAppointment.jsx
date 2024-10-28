@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useEffect } from "react";
 import { AdminContext } from "../../context/AdminContext";
 import Button from '@mui/material/Button';
+import { toast } from "react-toastify";
 // import { AppContext } from "../../context/appContext";
 
 
@@ -15,9 +16,9 @@ const AllAppointment = () => {
   useEffect(() => {
     if (aToken) {
       getAllAppointment();
-      console.log(appointments);
+      // console.log(appointments);
     } else {
-      console.log("no token");
+    toast.warning("Sorry No Token found. 😒")
     }
   }, [aToken]);
 
