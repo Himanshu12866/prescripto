@@ -80,8 +80,7 @@ const AdminContextProvider = (props) => {
     const getAdminDash = async () => {
         try {
             const { data } = await axios.get(backendURL + "/api/admin/dashAdmin", { headers: { aToken } })
-            console.log(data)
-            console.log(adminDash)
+           
             setAdminDash(data.Dashdata)
             if (data.success) {
                 // setAdminDash({...data.Dashdata})

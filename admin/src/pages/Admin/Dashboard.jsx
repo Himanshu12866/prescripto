@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // import React from 'react'
 
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect } from "react"
 import { AdminContext } from "../../context/AdminContext"
 import Button from "@mui/material/Button"
 import { assets } from "../../assets/assets"
@@ -12,12 +12,12 @@ import { CardMedia } from "@mui/material"
 
 const Dashboard = () => {
   const { adminDash, aToken, getAdminDash } = useContext(AdminContext)
-  const [info, setInfo] = useState([{}])
+
   useEffect(() => {
     if (aToken) {
       getAdminDash()
-      setInfo(adminDash.appointmentsLatest)
-      console.log(info)
+      // setInfo(adminDash.appointmentsLatest)
+      // console.log(info)
     }
   }, [aToken])
 
@@ -66,6 +66,9 @@ const Dashboard = () => {
             </Card>
           </div>
         }
+        <div>
+       
+        </div>
       </div>
 
     </div>
