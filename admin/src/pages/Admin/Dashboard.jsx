@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // import React from 'react'
 
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState} from "react"
 import { AdminContext } from "../../context/AdminContext"
 import Button from "@mui/material/Button"
 import { assets } from "../../assets/assets"
@@ -12,15 +12,19 @@ import { CardMedia } from "@mui/material"
 
 const Dashboard = () => {
   const { adminDash, aToken, getAdminDash } = useContext(AdminContext)
+  const [ info , setInfo] = useState([])
 
   useEffect(() => {
     if (aToken) {
       getAdminDash()
       console.log(adminDash)
-      // setInfo(adminDash.appointmentsLatest)
+      setInfo(adminDash.appointmentsLatest)
       // console.log(info)
     }
   }, [aToken])
+  useEffect(() => {
+    console.log(info)
+  })
 
   return (
     <div className="w-full p-1">
@@ -68,7 +72,9 @@ const Dashboard = () => {
           </div>
         }
         <div>
-       
+       {/* {
+        info.map((item,key) => <div key={key}> {item.userId}</div>)
+       } */}
         </div>
       </div>
 

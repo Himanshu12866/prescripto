@@ -60,7 +60,7 @@ const AdminContextProvider = (props) => {
             toast.error(error)
         }
     }
-    // eslint-disable-next-line no-unused-vars
+     
     const cancelAppointmentAdmin = async (appointmentId) => {
         try {
             const { data } = await axios.post(backendURL + '/api/admin/cancelAppointmentAdmin', { appointmentId }, { headers: { aToken } })
@@ -83,7 +83,7 @@ const AdminContextProvider = (props) => {
            
             setAdminDash(data.Dashdata)
             if (data.success) {
-                // setAdminDash({...data.Dashdata})
+                setAdminDash({...data.Dashdata})
                 console.log(adminDash)
                 toast.success("Data Loaded Successfully")
             }
