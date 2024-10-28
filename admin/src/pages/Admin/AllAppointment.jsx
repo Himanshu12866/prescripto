@@ -3,17 +3,7 @@ import { useEffect } from "react";
 import { AdminContext } from "../../context/AdminContext";
 import Button from '@mui/material/Button';
 import { toast } from "react-toastify";
-import { Table, TableContainer } from "@mui/material";
-import {
 
-  TableCell,
-
-  TableHead,
-  TableRow,
-
-  Paper,
-  TableBody,
-} from "@mui/material";
 // import { AppContext } from "../../context/appContext";
 
 
@@ -75,7 +65,7 @@ const AllAppointment = () => {
       ))}
 
       {/* <div className="sm:hidden">
-        <div className="flex flex-row justify-between border py-2 text-white bg-[#7b807b]">
+        <div className="flex flex-row  gap-20 border py-2 text-white bg-[#7b807b]">
           <p className="text-xs">S.No</p>
           <p className="text-xs">Name</p>
           <p className="text-xs">Date/Time</p>
@@ -86,7 +76,7 @@ const AllAppointment = () => {
         {
           appointments.map((item, index) => <Card key={index}>
             <CardContent >
-              <Typography variant="p" component="div" className="flex flex-row justify-between text-xs">
+              <Typography variant="p" component="div" className="flex flex-row  gap-20 text-xs">
                 <p className="text-[10px]">{index + 1} .</p>
                 <p className="text-[10px]">{item.userData?.name}</p>
                 <div className="flex flex-col text-center text-[10px]">
@@ -107,45 +97,76 @@ const AllAppointment = () => {
         }
       </div> */}
 
+      {/* <table className="sm:hidden w-full border" >
+        <thead>
+          <tr className="flex flex-row  gap-20">
+            <th>S.No</th>
+            <th>Doctor</th>
+            <th>Patient</th>
+            <th>Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            appointments.map((item, index) =>
+              <tr key={index} className="flex flex-row  gap-20">
+                <td className="text-xs">{index + 1}</td>
+                <td className="text-xs">{item.docData?.name}</td>
+                <div className="flex flex-col">
+                  <td className="text-xs">{item.slotDate}</td>
+                  <td className="text-xs">{item.slotTime}</td>
+                </div>
+                <td className="text-xs">{item.userData?.name}</td>
+                <td className="text-xs">{`${item.cancelled ? "Cancelled" : "Confirmed"}`}</td>
+              </tr>
+            )
+          }
+        </tbody>
+      </table> */}
+
+      <div className="mr-1 sm:hidden">
+        {
+          appointments.map((item, index) =>
+            <div className="w-full bg-[#756e6e] h-auto text-[white] text-center p-2 m-1 " key={index}>
+              <div className="flex flex-row gap-32 text-left">
+                <p>Sr.No :</p>
+                <p className="text-center" >{index + 1}</p>
+              </div>
+              <hr></hr>
+              <div className="flex flex-row gap-12 text-left">
+                <p className="font-medium">Doctor:</p>
+                <p className="text-center w-full">{item.docData?.name}</p>
+              </div>
+              <hr></hr>
+              <div className="flex flex-row  gap-10">
+                <p>Patient:</p>
+                <p className="text-center w-full">{item.userData?.name}</p>
+              </div>
+              <hr></hr>
+           
+              <hr></hr>
+              <div className="flex flex-row  gap-16">
+                <p>Date:</p>
+                <p className="text-center w-full">{item.slotDate}</p>
+              </div>
+              <hr></hr>
+              <div className="flex flex-row  gap-12">
+                <p>Time:</p>
+                <p className="text-center w-full">{item.slotTime}</p>
+              </div>
+              <hr></hr>
+              <div className="flex flex-row  gap-10">
+                <p>Status:</p>
+                <p className="text-center w-full">{`${item.cancelled ? "Cancelled" : "Confirmed"}`}</p>
+              </div>
+            </div>
+
+          )
+        }
+      </div>
 
 
-      <TableContainer component={Paper} className="sm:hidden overflow-hidded">
-
-        <Table className="overfolw-x-scroll">
-          <TableHead>
-            <TableRow className="font-medium py-0 text-white bg-[#22625d] ">
-              <TableCell style={{ textAlign: "left", color: "white", fontWeight: "bold", fontSize: "12px" }}>S.No</TableCell>
-              <TableCell style={{ textAlign: "left", color: "white", fontWeight: "bold", fontSize: "12px" }}>Doctor</TableCell>
-              <TableCell style={{ textAlign: "left", color: "white", fontWeight: "bold", fontSize: "12px" }}>Date & Time</TableCell>
-              <TableCell style={{ textAlign: "left", color: "white", fontWeight: "bold", fontSize: "12px" }}>Patient Name</TableCell>
-              <TableCell style={{ textAlign: "left", color: "white", fontWeight: "bold", fontSize: "12px" }}>Patient Email</TableCell>
-              <TableCell style={{ textAlign: "left", color: "white", fontWeight: "bold", fontSize: "12px" }}>Status</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {
-              appointments.map((item, index) => (
-                <TableRow key={index}>
-                  <TableCell style={{ textAlign: "left", fontSize: "12px" }}>{index + 1}</TableCell>
-                  <TableCell style={{ textAlign: "left", fontSize: "12px" }}>{item.docData?.name}</TableCell>
-                  <div className="flex flex-col">
-                    <TableCell style={{ textAlign: "left", fontSize: "12px" }}>{item.slotDate}</TableCell>
-                    <TableCell style={{ textAlign: "left", fontSize: "12px" }}>{item.slotTime}</TableCell>
-                  </div>
-                  <TableCell style={{ textAlign: "left", fontSize: "12px" }}>{item.userData?.name}</TableCell>
-                  <TableCell style={{ textAlign: "left", fontSize: "12px" }}>{item.userData?.email}</TableCell>
-                  <p
-                    className={`rounded-lg m-1 text-center py-3 ${item.cancelled ? "bg-[#c13c3c] text-[#ffffff]" : "bg-[green] text-[white]"}`}
-                  >
-                    {item.cancelled ? "Cancelled" : "Confirmed"}
-                  </p>
-                </TableRow>
-              ))
-            }
-          </TableBody>
-
-        </Table>
-      </TableContainer>
     </div>
   );
 }
