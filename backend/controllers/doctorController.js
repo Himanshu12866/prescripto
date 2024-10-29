@@ -1,6 +1,7 @@
 import doctorModal from "../models/doctorModal.js";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
+import appointmentModel from "../models/appointment.js";
 
 
 const checkAvailablity = async (req, res) => {
@@ -53,4 +54,16 @@ const logInDoctor = async (req, res) => {
 
     }
 }
-export { checkAvailablity, doctorList, logInDoctor }
+
+const docAppointments = async (req, res) => {
+    try {
+        const { docId } = req.body
+        const appointments = await appointmentModel.find({ docId })
+        res.json({ success: true, appointments })
+
+    } catch (error) {
+        console.error(error);
+        res.json({ success: false, message: error.message })
+    }
+}
+export { checkAvailablity, doctorList, logInDoctor , docAppointments}
