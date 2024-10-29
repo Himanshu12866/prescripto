@@ -58,12 +58,12 @@ const logInDoctor = async (req, res) => {
 const docAppointments = async (req, res) => {
     try {
         const { docId } = req.body
-        const appointments = await appointmentModel.find({ docId })
+        const appointments = await appointmentModel.find({ docId: docId })
         res.json({ success: true, appointments })
-
+        console.log(appointments)
     } catch (error) {
         console.error(error);
         res.json({ success: false, message: error.message })
     }
 }
-export { checkAvailablity, doctorList, logInDoctor , docAppointments}
+export { checkAvailablity, doctorList, logInDoctor, docAppointments }

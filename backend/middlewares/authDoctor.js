@@ -3,11 +3,11 @@ import jwt from "jsonwebtoken";
 
 const authDoc = async (req, res, next) => {
     try {
-        const { docToken } = req.headers
-        if (!docToken) {
+        const { doctoken } = req.headers
+        if (!doctoken) {
             return res.status(401).json({ msg: "No token, authorization denied 😵‍💫", success: false });
         }
-        const token_decoded = jwt.verify(docToken, process.env.JWT_SECRET)
+        const token_decoded = jwt.verify(doctoken, process.env.JWT_SECRET)
         req.body.docId = token_decoded.id
         // Proceed to the next middleware
         next();

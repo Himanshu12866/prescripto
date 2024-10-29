@@ -3,12 +3,16 @@ import { DoctorContext } from "../../context/doctorContext"
 
 
 const DocAppoint = () => {
-  const { docToken, docAppoint, getDocAppoint } = useContext(DoctorContext)
+  const { docToken, DocAppoint, getDocAppoint } = useContext(DoctorContext)
+
   useEffect(() => {
+
     getDocAppoint()
+
   }, [docToken])
+  
   useEffect(() => {
-    console.log(docAppoint)
+    console.log(DocAppoint)
   })
   return (
     <div>DocAppoint</div>
