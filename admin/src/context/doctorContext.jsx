@@ -6,7 +6,7 @@ import { createContext, useState } from "react";
 export const DoctorContext = createContext()
 const DoctorContextProvider = (props) => {
     const backendURL = import.meta.env.VITE_BACKEND_URL
-    const [docToken, setDocToken] = useState(' ')
+    const [docToken, setDocToken] = useState(localStorage.getItem('DoctorToken') ? localStorage.getItem("DoctorToken") : "")
     const value = {
         docToken, setDocToken,
         backendURL

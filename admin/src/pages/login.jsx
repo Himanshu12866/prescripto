@@ -6,6 +6,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { AdminContext } from '../context/AdminContext';
 import axios from "axios"
 import { toast } from "react-toastify"
+import { DoctorContext } from '../context/doctorContext';
 const Login = () => {
 
     const [state, setState] = useState('Admin');
@@ -15,6 +16,7 @@ const Login = () => {
     const [password, setPassword] = useState("")
 
     const { setAToken, backendURL } = useContext(AdminContext)
+    const {docToken ,  setDocToken } = useContext(DoctorContext)
 
     function onChange(value) {
 
@@ -28,6 +30,15 @@ const Login = () => {
                 if (data.success) {
                     localStorage.setItem("AdminToken", data.token)
                     setAToken(data.token)
+                    toast.success("Login Success")
+                }
+            }
+            else {
+                const { data } = await axios.post(backendURL + '/api/doctor/doctorlogin' + { email, password })
+                if (data.success) {
+                    localStorage.setItem("DoctorToken", data.token)
+                    setDocToken(data.token)
+                    console.log(docToken)
                     toast.success("Login Success")
                 }
             }

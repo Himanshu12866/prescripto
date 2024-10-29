@@ -36,21 +36,21 @@ const logInDoctor = async (req, res) => {
         const { email, password } = req.body
         const doctor = await doctorModal.findOne({ email })
         if (!doctor) {
-            return res.json({succes:false , message:"Doctor Not Found"})
+            return res.json({ succes: false, message: "Doctor Not Found" })
         }
         const isMatch = await bcrypt.compare(password, doctor.password)
-        
-if(isMatch){
-    const token = jwt.sign({id:doctor._id} , process.env.JWT_SECRET )
-    res.status(200).json({success:true , token})
-}
-else{
-    res.json({succes:false , message:"Invalid Email or Password "})
-}
+
+        if (isMatch) {
+            const token = jwt.sign({ id: doctor._id }, process.env.JWT_SECRET)
+            res.status(200).json({ success: true, token })
+        }
+        else {
+            res.json({ succes: false, message: "Invalid Email or Password " })
+        }
     } catch (error) {
         console.error(error);
         res.json({ success: false, message: error.message })
 
     }
 }
-export { checkAvailablity, doctorList , logInDoctor }
+export { checkAvailablity, doctorList, logInDoctor }
