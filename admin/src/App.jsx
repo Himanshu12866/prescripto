@@ -11,10 +11,12 @@ import AddDoctor from './pages/Admin/AddDoctor';
 import Dashboard from './pages/Admin/Dashboard';
 import AllAppointment from './pages/Admin/AllAppointment';
 import DoctorList from './pages/Admin/DoctorList';
+import { DoctorContext } from './context/doctorContext';
 
 const App = () => {
   const { aToken } = useContext(AdminContext)
-  return aToken ? (
+  const { docToken } = useContext(DoctorContext)
+  return aToken || docToken ? (
 
     <div>
       <ToastContainer />
