@@ -131,4 +131,25 @@ const doctorDash = async (req, res) => {
 
     }
 }
+
+const getDocProfile = async (req,res) => {
+    try {
+        const {docId} = req.body
+        const docData = await doctorModal.findById(docId).select("-password")
+        return res.status(200).json({success:true,docData})
+
+    } catch (error) {
+        
+    }
+}
+const updateDocProfile = async (req,res) =>{
+    try {
+        const {docId , fees, address , available} = req.body
+        await doctorModal.findByIdAndUpdate(docId , {fees , address , available})
+        return res.status(200).json({success:true,docData})
+
+    } catch (error) {
+        
+    }
+}
 export { checkAvailablity, doctorList, logInDoctor, docAppointments, approveAppoint, cancelAppoint, doctorDash }
