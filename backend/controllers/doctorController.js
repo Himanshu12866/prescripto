@@ -106,11 +106,29 @@ const doctorDash = async (req, res) => {
         const { docId } = req.body
         const appointments = await appointmentModel.find({ docId })
         let earnings = 0
-        appointments.map()
+        appointments.map(item => {
+            if (item.isCompleted) {
+                earnings += item.amount
+            }
+        })
+        let patient = []
+        appointments.map(item => {
+            if (!patient.includes(item.userID)) {
+                patient.push(item.userID)
+            }
+        })
+        let dashData = {
+            appointments: appointments.length,
+            earnings,
+            patient,
+            latestAppointments: appointments.reverse().splice(0, 5)
+
+        }
+        return res.status(200).json({ success: true, dashData })
     } catch (error) {
         console.error(error);
         res.json({ success: false, message: error.message })
 
     }
 }
-export { checkAvailablity, doctorList, logInDoctor, docAppointments, approveAppoint, cancelAppoint }
+export { checkAvailablity, doctorList, logInDoctor, docAppointments, approveAppoint, cancelAppoint, doctorDash }
