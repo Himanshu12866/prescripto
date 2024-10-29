@@ -13,6 +13,7 @@ import { CardMedia } from "@mui/material";
 
 
 
+
 const DocDash = () => {
   const { dashData, getDashData, docToken } = useContext(DoctorContext)
   const [info, setInfo] = useState([])
@@ -122,17 +123,14 @@ const DocDash = () => {
       <div className="mr-1 sm:hidden">
         {
           info.map((item, index) =>
-            <div className="w-full bg-[#756e6e] h-auto text-[white] text-center p-2 m-1 " key={index}>
+            <div className="w-full bg-[#d4d3d3be] h-auto text-[#000000] text-center p-2 m-1 " key={index}>
               <div className="flex flex-row gap-32 text-left">
                 <p>Sr.No :</p>
                 <p className="text-center" >{index + 1}</p>
               </div>
               <hr></hr>
-              <div className="flex flex-row gap-12 text-left">
-                <p className="font-medium">Doctor:</p>
-                <p className="text-center w-full">{item.docData?.name}</p>
-              </div>
-              <hr></hr>
+             
+         
               <div className="flex flex-row  gap-10">
                 <p>Patient:</p>
                 <p className="text-center w-full">{item.userData?.name}</p>
@@ -152,7 +150,7 @@ const DocDash = () => {
               <hr></hr>
               <div className="flex flex-row  gap-10">
                 <p>Status:</p>
-                <p className="text-center w-full">{`${item.cancelled ? "Cancelled" : "Confirmed"}`}</p>
+                <p className="text-center w-full">{`${item.isCompleted ? "Cancelled" : "Confirmed"}`}</p>
               </div>
             </div>
 
