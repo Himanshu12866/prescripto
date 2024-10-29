@@ -12,6 +12,7 @@ const DoctorContextProvider = (props) => {
     const [docToken, setDocToken] = useState(localStorage.getItem('DoctorToken') ? localStorage.getItem("DoctorToken") : "")
     const [DocAppoint, setDocAppoint] = useState([])
     const [dashData, setDashData] = useState(false)
+    const [profile, setProfile] = useState(false)
     const getDocAppoint = async () => {
         try {
             const { data } = await axios.get(backendURL + '/api/doctor/getappointment', { headers: { docToken } })
@@ -58,7 +59,7 @@ const DoctorContextProvider = (props) => {
     }
     const getDashData = async () => {
         try {
-            const { data } = await axios.get(backendURL + "/api/doctor/docdash" , {headers:{docToken}})
+            const { data } = await axios.get(backendURL + "/api/doctor/docdash", { headers: { docToken } })
             if (data.success) {
                 setDashData(data.dashData)
                 console.log(data.dashData)
@@ -72,11 +73,26 @@ const DoctorContextProvider = (props) => {
             console.log(error)
         }
     }
+    const getProfile = async () => {
+        try {
+            const { data } = await axios.get(backendURL + "/api/doctor/getprofile", { headers: { docToken } })
+            if (data.success) {
+                setProfile(data)
+            }
+            else {
+                toast.error(data.message)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 
 
     const value = {
         docToken, setDocToken,
-        backendURL, DocAppoint, setDocAppoint, getDocAppoint, acceptAppointment, rejectAppointment, dashData , setDashData, getDashData
+        backendURL, DocAppoint, setDocAppoint, getDocAppoint, acceptAppointment,
+        rejectAppointment, dashData, setDashData, getDashData, profile, setProfile, getProfile
     }
     return (
         <DoctorContext.Provider value={value}>

@@ -146,10 +146,10 @@ const updateDocProfile = async (req,res) =>{
     try {
         const {docId , fees, address , available} = req.body
         await doctorModal.findByIdAndUpdate(docId , {fees , address , available})
-        return res.status(200).json({success:true,docData})
+        return res.status(200).json({success:true,message:"Prifile Updated"})
 
     } catch (error) {
         
     }
 }
-export { checkAvailablity, doctorList, logInDoctor, docAppointments, approveAppoint, cancelAppoint, doctorDash }
+export { checkAvailablity, doctorList, logInDoctor, docAppointments, approveAppoint, cancelAppoint, doctorDash, getDocProfile , updateDocProfile }
