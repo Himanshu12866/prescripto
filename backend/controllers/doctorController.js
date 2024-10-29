@@ -60,7 +60,6 @@ const docAppointments = async (req, res) => {
         const { docId } = req.body
         const appointments = await appointmentModel.find({ docId: docId })
         res.json({ success: true, appointments })
-        console.log(appointments)
     } catch (error) {
         console.error(error);
         res.json({ success: false, message: error.message })

@@ -24,16 +24,16 @@ const DocAppoint = () => {
         <TableContainer>
           <Table style={{ marginTop: "10px" }}>
             <TableHead style={{ backgroundColor: "#ebe5e5" }} >
-              <TableCell style={{ color: "black", fontWeight: "bolder" , textAlign:"center" }}>Sr.No</TableCell>
-              <TableCell style={{ color: "black", fontWeight: "bolder" , textAlign:"center" }}>Patient Name</TableCell>
-              <TableCell style={{ color: "black", fontWeight: "bolder" , textAlign:"center" }}>Patient &apos; Email</TableCell>
-              <TableCell style={{ color: "black", fontWeight: "bolder" , textAlign:"center" }}>Date & Time</TableCell>
-              <TableCell style={{ color: "black", fontWeight: "bolder" , textAlign:"center" }}>Status</TableCell>
-              <TableCell style={{ color: "black", fontWeight: "bolder" , textAlign:"center" }}>Phone No.</TableCell>
-              <TableCell style={{ color: "black", fontWeight: "bolder" , textAlign:"center" }}>Payment</TableCell>
-              <TableCell style={{ color: "black", fontWeight: "bolder" , textAlign:"center" }}>Amount</TableCell>
-              <TableCell style={{ color: "black", fontWeight: "bolder" , textAlign:"center" }}>Approve</TableCell>
-              <TableCell style={{ color: "black", fontWeight: "bolder" , textAlign:"center" }}>Cancel</TableCell>
+              <TableCell style={{ color: "black", fontWeight: "bolder", textAlign: "center" }}>Sr.No</TableCell>
+              <TableCell style={{ color: "black", fontWeight: "bolder", textAlign: "center" }}>Patient Name</TableCell>
+              <TableCell style={{ color: "black", fontWeight: "bolder", textAlign: "center" }}>Patient &apos; Email</TableCell>
+              <TableCell style={{ color: "black", fontWeight: "bolder", textAlign: "center" }}>Date & Time</TableCell>
+              <TableCell style={{ color: "black", fontWeight: "bolder", textAlign: "center" }}>Status</TableCell>
+              <TableCell style={{ color: "black", fontWeight: "bolder", textAlign: "center" }}>Phone No.</TableCell>
+              <TableCell style={{ color: "black", fontWeight: "bolder", textAlign: "center" }}>Payment</TableCell>
+              <TableCell style={{ color: "black", fontWeight: "bolder", textAlign: "center" }}>Amount</TableCell>
+              <TableCell style={{ color: "black", fontWeight: "bolder", textAlign: "center" }}>Approve</TableCell>
+              <TableCell style={{ color: "black", fontWeight: "bolder", textAlign: "center" }}>Cancel</TableCell>
             </TableHead>
             {
               DocAppoint.map((item, index) => (
@@ -46,9 +46,9 @@ const DocAppoint = () => {
                   <TableCell>{item.userData.phone}</TableCell>
                   <Button className="p-5" style={{ backgroundColor: `${item.paymentStatus ? 'green' : 'red'}`, color: "white", textAlign: "center", marginTop: "5px" }} >{`${item.paymentStatus ? 'Paid' : 'Pending'}`}</Button>
                   <TableCell>&#8377; {item.amount}</TableCell>
-                  <Button variant="contained" style={{ marginTop: "5px" }}>Confirm</Button>    
-                  <TableCell style={{paddingTop:"2px"}}><Button style={{width:"100px" ,backgroundColor:"red" , marginTop:"2px", color:"white" , paddingLeft:"5px"}}>Cancel</Button></TableCell>           
-                 {/* <p> <Button variant="contained">Cancel</Button></p> */}
+                  <Button  variant="contained" style={{ marginTop: "5px" }}>Confirm</Button>
+                  <TableCell style={{ paddingTop: "2px" }}><Button  style={{ width: "100px", backgroundColor: "red", marginTop: "2px", color: "white", paddingLeft: "5px" }}>Cancel</Button></TableCell>
+                  {/* <p> <Button variant="contained">Cancel</Button></p> */}
                 </TableBody>
               ))
             }

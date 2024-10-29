@@ -25,7 +25,7 @@ const DoctorContextProvider = (props) => {
         }
     }
 
-    const acceptAppointment = async () => {
+    const acceptAppointment = async (appointmentId) => {
         try {
             const { data } = await axios.post(backendURL + '/api/doctor/approveappoint', { appointmentId })
             if (data.success) {
@@ -38,7 +38,7 @@ const DoctorContextProvider = (props) => {
             console.log(error)
         }
     }
-    const rejectAppointment = async () => {
+    const rejectAppointment = async (appointmentId) => {
         try {
             const { data } = await axios.post(backendURL + '/api/doctor/cancelappoint', { appointmentId })
             if (data.success) {
