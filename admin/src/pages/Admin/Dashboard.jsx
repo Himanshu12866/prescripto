@@ -92,7 +92,7 @@ const Dashboard = () => {
           <h1>Latest Appointments</h1>
         </div>
 
-        <TableContainer component={Paper}>
+        <TableContainer className="hidden sm:block" component={Paper}>
 
           <Table>
             <TableHead>
@@ -131,6 +131,46 @@ const Dashboard = () => {
 
           </Table>
         </TableContainer>
+        <div className="mr-1 sm:hidden">
+        {
+          info.map((item, index) =>
+            <div className="w-full bg-[#756e6e] h-auto text-[white] text-center p-2 m-1 " key={index}>
+              <div className="flex flex-row gap-32 text-left">
+                <p>Sr.No :</p>
+                <p className="text-center" >{index + 1}</p>
+              </div>
+              <hr></hr>
+              <div className="flex flex-row gap-12 text-left">
+                <p className="font-medium">Doctor:</p>
+                <p className="text-center w-full">{item.docData?.name}</p>
+              </div>
+              <hr></hr>
+              <div className="flex flex-row  gap-10">
+                <p>Patient:</p>
+                <p className="text-center w-full">{item.userData?.name}</p>
+              </div>
+              <hr></hr>
+           
+              <hr></hr>
+              <div className="flex flex-row  gap-16">
+                <p>Date:</p>
+                <p className="text-center w-full">{item.slotDate}</p>
+              </div>
+              <hr></hr>
+              <div className="flex flex-row  gap-12">
+                <p>Time:</p>
+                <p className="text-center w-full">{item.slotTime}</p>
+              </div>
+              <hr></hr>
+              <div className="flex flex-row  gap-10">
+                <p>Status:</p>
+                <p className="text-center w-full">{`${item.cancelled ? "Cancelled" : "Confirmed"}`}</p>
+              </div>
+            </div>
+
+          )
+        }
+      </div>
       </div>
     </div>
   );

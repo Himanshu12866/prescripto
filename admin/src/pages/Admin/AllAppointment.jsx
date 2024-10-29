@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext } from "react";
 import { useEffect } from "react";
 import { AdminContext } from "../../context/AdminContext";

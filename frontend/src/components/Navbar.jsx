@@ -14,7 +14,7 @@ const Navbar = () => {
     }
 
     return (
-        <div className='flex item-center justify-between border-b py-4 mb-5 border-b-grey-400 text-sm'>
+        <div className='flex item-center justify-between border-b sticky mt-0 py-4 mb-5 border-b-grey-400 text-sm'>
 
             <img onClick={() => { navigate("/"); scrollTo(0, 0) }} className='sm:w-52 cursor-pointer h-[60px]'  src={assets.logo} alt='' />
             <ul className='hidden md:flex item-start gap-5 front-medium pt-4'>
@@ -51,7 +51,7 @@ const Navbar = () => {
                         :
                         <button onClick={() => navigate("/login")} className='bg-primary rounded-full px-8 py-3 text-white hidden md:block'>Create Account</button>
                 }
-                <img className='md:hidden w-6' onClick={() => setshowMenu(true)} src={assets.menu_icon}></img>
+                <img className='md:hidden w-6 z-50' onClick={() => setshowMenu(true)} src={assets.menu_icon}></img>
                 <div className={`${showMenu ? "w-full fixed " : "h-0 w-0"} md:hidden right-0 top-0 bottom-0 mt-3 p-2 z-20 overflow-hidden bg-white transition-all`}>
                     <div className='flex items-center justify-between'>
                         <img className="w-36" src={assets.logo} />
