@@ -5,7 +5,7 @@ import { TableContainer, Table, TableHead, TableCell, TableBody, Button } from "
 
 
 const DocAppoint = () => {
-  const { docToken, DocAppoint, getDocAppoint } = useContext(DoctorContext)
+  const { docToken, DocAppoint, getDocAppoint, acceptAppointment, rejectAppointment } = useContext(DoctorContext)
 
   useEffect(() => {
 
@@ -33,7 +33,7 @@ const DocAppoint = () => {
               <TableCell style={{ color: "black", fontWeight: "bolder", textAlign: "center" }}>Payment</TableCell>
               <TableCell style={{ color: "black", fontWeight: "bolder", textAlign: "center" }}>Amount</TableCell>
               <TableCell style={{ color: "black", fontWeight: "bolder", textAlign: "center" }}>Approve</TableCell>
-              <TableCell style={{ color: "black", fontWeight: "bolder", textAlign: "center" }}>Cancel</TableCell>
+              {/* <TableCell style={{ color: "black", fontWeight: "bolder", textAlign: "center" }}>Cancel</TableCell> */}
             </TableHead>
             {
               DocAppoint.map((item, index) => (
@@ -42,13 +42,22 @@ const DocAppoint = () => {
                   <TableCell style={{ fontWeight: "bold" }}>{item.userData.name}</TableCell>
                   <TableCell>{item.userData.email}</TableCell>
                   <TableCell>{item.slotTime} || {item.slotDate}</TableCell>
-                  <Button style={{ backgroundColor: `${item.isCompleted ? 'green' : "red"}`, color: "white", textAlign: "center", marginTop: "5px" }}>{`${item.isCompleted ? 'Confirmed' : 'Pending'}`}</Button>
+                  <TableCell style={{ backgroundColor: `${item.isCompleted ? 'green' : "red"}`, color: "white", textAlign: "center", marginTop: "5px" }}>{`${item.isCompleted ? 'Confirmed' : 'Cancelled'}`}</TableCell>
                   <TableCell>{item.userData.phone}</TableCell>
                   <Button className="p-5" style={{ backgroundColor: `${item.paymentStatus ? 'green' : 'red'}`, color: "white", textAlign: "center", marginTop: "5px" }} >{`${item.paymentStatus ? 'Paid' : 'Pending'}`}</Button>
                   <TableCell>&#8377; {item.amount}</TableCell>
-                  <Button  variant="contained" style={{ marginTop: "5px" }}>Confirm</Button>
-                  <TableCell style={{ paddingTop: "2px" }}><Button  style={{ width: "100px", backgroundColor: "red", marginTop: "2px", color: "white", paddingLeft: "5px" }}>Cancel</Button></TableCell>
-                  {/* <p> <Button variant="contained">Cancel</Button></p> */}
+                  {
+                    item.isCompleted ?
+                      <p>Completed</p>
+                      :
+                      item.cancelled ?
+                        <p>Cancelled</p>
+                        :
+                        <div className="flex flex-row">
+                          <button onClick={() => { acceptAppointment(item._id) }} style={{ marginTop: "5px" }}>Confirm</button>
+                          <button onClick={() => { rejectAppointment(item._id) }} style={{ width: "100px", backgroundColor: "red", marginTop: "2px", color: "white", paddingLeft: "5px" }}>Cancel</button>
+                        </div>
+                  }                  {/* <p> <Button variant="contained">Cancel</Button></p> */}
                 </TableBody>
               ))
             }

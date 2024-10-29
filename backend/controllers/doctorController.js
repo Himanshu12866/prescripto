@@ -69,7 +69,8 @@ const docAppointments = async (req, res) => {
 const approveAppoint = async (req, res) => {
     try {
         const { docId, appointmentId } = req.body
-        const appointmentData = await appointmentModel.findById({ appointmentId })
+        const appointmentData = await appointmentModel.findById(appointmentId)
+     
         if (appointmentData && appointmentData.docId === docId) {
             await appointmentModel.findByIdAndUpdate(appointmentId, { isCompleted: true })
             return res.status(200).json({ success: true, message: "Appointment Approved" })
@@ -86,9 +87,9 @@ const approveAppoint = async (req, res) => {
 const cancelAppoint = async (req, res) => {
     try {
         const { docId, appointmentId } = req.body
-        const appointmentData = await appointmentModel.findById({ appointmentId })
+        const appointmentData = await appointmentModel.findById(appointmentId )
         if (appointmentData && appointmentData.docId === docId) {
-            await appointmentModel.findByIdAndUpdate(appointmentId, { cancelled: true })
+            await appointmentModel.findByIdAndUpdate(appointmentId, { isCompleted:false })
             return res.status(200).json({ success: true, message: "Appointment Cancelled" })
         }
         else {
