@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 
 import axios from "axios";
@@ -23,9 +24,37 @@ const DoctorContextProvider = (props) => {
             console.log(error)
         }
     }
+
+    const acceptAppointment = async () => {
+        try {
+            const { data } = await axios.post(backendURL + '/api/doctor/approveappoint', { appointmentId })
+            if (data.success) {
+                getDocAppoint()
+            }
+            else {
+                toast.error(data.error)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    const rejectAppointment = async () => {
+        try {
+            const { data } = await axios.post(backendURL + '/api/doctor/cancelappoint', { appointmentId })
+            if (data.success) {
+                getDocAppoint()
+            }
+            else {
+                toast.error(data.error)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
     const value = {
         docToken, setDocToken,
-        backendURL, DocAppoint, setDocAppoint, getDocAppoint
+        backendURL, DocAppoint, setDocAppoint, getDocAppoint, acceptAppointment, rejectAppointment
     }
     return (
         <DoctorContext.Provider value={value}>

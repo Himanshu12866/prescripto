@@ -67,12 +67,38 @@ const docAppointments = async (req, res) => {
     }
 }
 
-const approveAppoint = async (req,res) => {
+const approveAppoint = async (req, res) => {
     try {
-        
+        const { docId, appointmentId } = req.body
+        const appointmentData = await appointmentModel.findById({ appointmentId })
+        if (appointmentData && appointmentData.docId === docId) {
+            await appointmentModel.findByIdAndUpdate(appointmentId, { isCompleted: true })
+            return res.status(200).json({ success: true, message: "Appointment Approved" })
+        }
+        else {
+            return res.json({ success: false, message: "Invalid Appointment" })
+        }
+
     } catch (error) {
         console.error(error);
         res.json({ success: false, message: error.message })
     }
 }
-export { checkAvailablity, doctorList, logInDoctor, docAppointments }
+const cancelAppoint = async (req, res) => {
+    try {
+        const { docId, appointmentId } = req.body
+        const appointmentData = await appointmentModel.findById({ appointmentId })
+        if (appointmentData && appointmentData.docId === docId) {
+            await appointmentModel.findByIdAndUpdate(appointmentId, { cancelled: true })
+            return res.status(200).json({ success: true, message: "Appointment Cancelled" })
+        }
+        else {
+            return res.json({ success: false, message: "Invalid Appointment" })
+        }
+
+    } catch (error) {
+        console.error(error);
+        res.json({ success: false, message: error.message })
+    }
+}
+export { checkAvailablity, doctorList, logInDoctor, docAppointments, approveAppoint, cancelAppoint }
