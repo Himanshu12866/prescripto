@@ -28,11 +28,11 @@ const DocAppoint = () => {
               <TableCell style={{ color: "black", fontWeight: "bolder", textAlign: "center" }}>Patient Name</TableCell>
               <TableCell style={{ color: "black", fontWeight: "bolder", textAlign: "center" }}>Patient &apos; Email</TableCell>
               <TableCell style={{ color: "black", fontWeight: "bolder", textAlign: "center" }}>Date & Time</TableCell>
-              <TableCell style={{ color: "black", fontWeight: "bolder", textAlign: "center" }}>Status</TableCell>
+
               <TableCell style={{ color: "black", fontWeight: "bolder", textAlign: "center" }}>Phone No.</TableCell>
               <TableCell style={{ color: "black", fontWeight: "bolder", textAlign: "center" }}>Payment</TableCell>
               <TableCell style={{ color: "black", fontWeight: "bolder", textAlign: "center" }}>Amount</TableCell>
-              <TableCell style={{ color: "black", fontWeight: "bolder", textAlign: "center" }}>Approve</TableCell>
+              <TableCell style={{ color: "black", fontWeight: "bolder", textAlign: "center" }}>Actions</TableCell>
               {/* <TableCell style={{ color: "black", fontWeight: "bolder", textAlign: "center" }}>Cancel</TableCell> */}
             </TableHead>
             {
@@ -42,7 +42,6 @@ const DocAppoint = () => {
                   <TableCell style={{ fontWeight: "bold" }}>{item.userData.name}</TableCell>
                   <TableCell>{item.userData.email}</TableCell>
                   <TableCell>{item.slotTime} || {item.slotDate}</TableCell>
-                  <TableCell style={{ backgroundColor: `${item.isCompleted ? 'green' : "red"}`, color: "white", textAlign: "center", marginTop: "5px" }}>{`${item.isCompleted ? 'Confirmed' : 'Cancelled'}`}</TableCell>
                   <TableCell>{item.userData.phone}</TableCell>
                   <Button className="p-5" style={{ backgroundColor: `${item.paymentStatus ? 'green' : 'red'}`, color: "white", textAlign: "center", marginTop: "5px" }} >{`${item.paymentStatus ? 'Paid' : 'Pending'}`}</Button>
                   <TableCell>&#8377; {item.amount}</TableCell>
@@ -53,11 +52,12 @@ const DocAppoint = () => {
                       item.cancelled ?
                         <p>Cancelled</p>
                         :
-                        <div className="flex flex-row">
-                          <button onClick={() => { acceptAppointment(item._id) }} style={{ marginTop: "5px" }}>Confirm</button>
-                          <button onClick={() => { rejectAppointment(item._id) }} style={{ width: "100px", backgroundColor: "red", marginTop: "2px", color: "white", paddingLeft: "5px" }}>Cancel</button>
+                        <div className="flex flex-row gap-3">
+                          <button  onClick={() => { acceptAppointment(item._id) }} style={{ marginTop: "5px"  , borderRadius:"50%" ,fontSize:"20px" }}>Confirem</button>
+                          <button onClick={() => { rejectAppointment(item._id) }} style={{ marginTop: "5px" , border:"3px solid green" , borderRadius:"50%" , width:"30px" , height:"30px" ,fontSize:"20px" }} ><span className="bi bi-x"></span></button>
                         </div>
-                  }                  {/* <p> <Button variant="contained">Cancel</Button></p> */}
+                        
+                  }               {/* <p> <Button variant="contained">Cancel</Button></p> */}
                 </TableBody>
               ))
             }

@@ -30,7 +30,9 @@ const DoctorContextProvider = (props) => {
             const { data } = await axios.post(backendURL + '/api/doctor/approveappoint', { appointmentId }, { headers: { docToken } })
             if (data.success) {
                 getDocAppoint()
+                toast.success("Appointment Approved")
             }
+
             else {
                 toast.error(data.error)
             }
@@ -43,6 +45,7 @@ const DoctorContextProvider = (props) => {
             const { data } = await axios.post(backendURL + '/api/doctor/cancelappoint', { appointmentId }, { headers: { docToken } })
             if (data.success) {
                 getDocAppoint()
+                toast.success("Appointment Cancelled")
             }
             else {
                 toast.error(data.error)
@@ -52,6 +55,7 @@ const DoctorContextProvider = (props) => {
         }
 
     }
+    
     const value = {
         docToken, setDocToken,
         backendURL, DocAppoint, setDocAppoint, getDocAppoint, acceptAppointment, rejectAppointment
