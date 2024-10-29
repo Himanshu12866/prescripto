@@ -113,8 +113,8 @@ const doctorDash = async (req, res) => {
         })
         let patient = []
         appointments.map(item => {
-            if (!patient.includes(item.userID)) {
-                patient.push(item.userID)
+            if (!patient.includes(item.userId)) {
+                patient.push(item.userId)
             }
         })
         let dashData = {
