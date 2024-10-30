@@ -6,6 +6,11 @@ import { TableContainer, Table, TableHead, TableCell, TableBody, Button } from "
 
 const DocAppoint = () => {
   const { docToken, DocAppoint, getDocAppoint, acceptAppointment, rejectAppointment } = useContext(DoctorContext)
+  const month = [" ", "Jan", "Fer", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  const SlotFormat = (slotDate) => {
+    const formattedTime = slotDate.split("-");
+    return formattedTime[0] + " " + month[Number(formattedTime[1])] + " " + formattedTime[2]
+  }
 
   useEffect(() => {
 
@@ -41,7 +46,7 @@ const DocAppoint = () => {
                   <TableCell className="font-medium">{index + 1}.</TableCell>
                   <TableCell style={{ fontWeight: "bold" }}>{item.userData.name}</TableCell>
                   <TableCell>{item.userData.email}</TableCell>
-                  <TableCell>{item.slotTime} || {item.slotDate}</TableCell>
+                  <TableCell className="bi bi-calendar3">&nbsp;{SlotFormat(item.slotDate)} <span className="bi bi-clock-fill"></span> {item.slotTime}</TableCell>
                   <TableCell>{item.userData.phone}</TableCell>
                   <Button className="p-5" style={{ backgroundColor: `${item.paymentStatus ? 'green' : 'red'}`, color: "white", textAlign: "center", marginTop: "5px" }} >{`${item.paymentStatus ? 'Paid' : 'Pending'}`}</Button>
                   <TableCell>&#8377; {item.amount}</TableCell>
@@ -53,10 +58,10 @@ const DocAppoint = () => {
                         <p>Cancelled</p>
                         :
                         <div className="flex flex-row gap-3">
-                          <button  onClick={() => { acceptAppointment(item._id) }} style={{ marginTop: "5px"  , borderRadius:"50%" ,fontSize:"20px" }}>Confirem</button>
-                          <button onClick={() => { rejectAppointment(item._id) }} style={{ marginTop: "5px" , border:"3px solid green" , borderRadius:"50%" , width:"30px" , height:"30px" ,fontSize:"20px" }} ><span className="bi bi-x"></span></button>
+                          <button onClick={() => { acceptAppointment(item._id) }} style={{ marginTop: "5px", borderRadius: "50%", fontSize: "20px" }}>Confirem</button>
+                          <button onClick={() => { rejectAppointment(item._id) }} style={{ marginTop: "5px", border: "3px solid green", borderRadius: "50%", width: "30px", height: "30px", fontSize: "20px" }} ><span className="bi bi-x"></span></button>
                         </div>
-                        
+
                   }               {/* <p> <Button variant="contained">Cancel</Button></p> */}
                 </TableBody>
               ))

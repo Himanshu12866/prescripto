@@ -24,7 +24,11 @@ const DocDash = () => {
 
     }
   }, [docToken])
-
+  const month = [" ", "Jan", "Fer", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  const SlotFormat = (slotDate) => {
+    const formattedTime = slotDate.split("-");
+    return formattedTime[0] + " " + month[Number(formattedTime[1])] + " " + formattedTime[2]
+  }
   useEffect(() => {
     if (dashData && dashData.latestAppointments) {
       setInfo(dashData.latestAppointments);
@@ -99,9 +103,10 @@ const DocDash = () => {
                   <TableRow key={index}>
                     <TableCell style={{ textAlign: "left", fontSize: "15px" }}>{index + 1}</TableCell>
                     <TableCell style={{ textAlign: "left", fontSize: "15px" }}>{item.docData?.name || "N/A"}</TableCell>
-                    <TableCell style={{ textAlign: "left", fontSize: "15px" }}>{item.slotDate} & {item.slotTime}</TableCell>
+                    <TableCell style={{ textAlign: "left", fontSize: "15px" }}>{SlotFormat(item.slotDate)} & {item.slotTime}</TableCell>
                     <TableCell style={{ textAlign: "left", fontSize: "15px" }}>{item.userData?.name || "N/A"}</TableCell>
                     <TableCell style={{ textAlign: "left", fontSize: "15px" }}>{item.userData?.email || "N/A"}</TableCell>
+            
                     <p
                       className={`rounded-lg m-1 text-center py-3 ${item.isCompleted ? "bg-[#c13c3c] text-[#ffffff]" : "bg-[green] text-[white]"}`}
                     >
@@ -129,14 +134,14 @@ const DocDash = () => {
                 <p className="text-center" >{index + 1}</p>
               </div>
               <hr></hr>
-             
-         
+
+
               <div className="flex flex-row  gap-10">
                 <p>Patient:</p>
                 <p className="text-center w-full">{item.userData?.name}</p>
               </div>
               <hr></hr>
-           
+
               <hr></hr>
               <div className="flex flex-row  gap-16">
                 <p>Date:</p>
