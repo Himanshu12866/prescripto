@@ -38,6 +38,7 @@ const DocDash = () => {
   }, [docToken])
   useEffect(() => {
     console.log(info)
+    
   })
 
   return (

@@ -46,7 +46,7 @@ const SideNav = () => {
                             <p className="hidden sm:block">Appointments</p>
                         </NavLink>
                         <NavLink to={"/docprofile"} className={(({ isActive }) => `flex items-center py-3.5 gap-5 px-5 md:px-9 md:min-w-72 cursor-pointer ${isActive ? 'bg-[#bf4545] border-r-4 font-medium border-[#000000] text-white' : ''}`)}>
-                            <span className=" bi bi-person-plus"></span>
+                            <span className=" bi bi-person"></span>
                             <p className="hidden sm:block">Doctor Profile</p>
                         </NavLink>
 

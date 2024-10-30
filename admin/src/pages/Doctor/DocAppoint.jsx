@@ -70,14 +70,14 @@ const DocAppoint = () => {
           </Table>
         </TableContainer>
 
-        <div className="sm:hidden block mt-3">
+        <div className="sm:hidden w-72 block mt-3">
 
           <Button variant="outlined" color="success" className="w-full my-4">Patients Details </Button>
           {
             DocAppoint.map((item, index) =>
-              <Card key={index} className="mt-5" >
+              <Card key={index} className="my-5 border border-[green] p-1" >
 
-                <div className="flex flex-row justify-around">
+                <div className="flex flex-row border-b-2 border-[black] justify-around">
                   <Typography>Sr.No</Typography>
                   <Typography>{index + 1}</Typography>
                 </div>

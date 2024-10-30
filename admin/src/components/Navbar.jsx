@@ -33,7 +33,7 @@ const Navbar = () => {
         </p>
       </div>
       {(aToken || docToken) ? (
-        <Button onClick={LogOut} variant="outlined" color="error" className="bg-gray-100 translate-y-7  text-black font-medium px-4 sm:px-4 py-1 shadow-sm rounded-full">Log Out</Button>
+        <Button onClick={LogOut} variant="outlined" color="error" className="bg-gray-100 translate-y-7 sm:translate-y-0  text-black font-medium px-4 sm:px-4 py-1 shadow-sm rounded-full">Log Out</Button>
       ) : (
         <Button className="bg-gray-100 text-black font-medium px-4 py-1 shadow-sm rounded-full">Log In</Button>
       )}
