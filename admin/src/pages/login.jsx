@@ -41,6 +41,9 @@ const Login = () => {
                     console.log(docToken)
                     toast.success("Login Success")
                 }
+                else{
+                    toast.error("Invalid Email Or Passowrd")
+                }
             }
 
         } catch (error) {
