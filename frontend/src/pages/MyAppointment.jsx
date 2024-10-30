@@ -103,9 +103,11 @@ const MyAppointment = () => {
 
               </div>
               <div className='flex flex-col gap-6 sm:w-[20%] mr-2 justify-center'>
-                {!item.cancelled && <button onClick={() => { appointmentPay(item._id) }} className=' py-2 hover:bg-[black] hover:text-white transition-all duration-200 border'>Pay Online</button>}
-                {!item.cancelled && <button onClick={() => cancelAppointment(item._id)} className='py-2 hover:bg-[#ff5f5f] hover:text-white transition-all duration-200 border'>Cancel Appointment</button>}
-                {item.cancelled && <button disabled className='py-2 bg-[#4a45458f] text-white border'>Appointment Cancelled</button>}
+                {!item.cancelled && item.payment && !item.isCompleted && <button>Paid</button>}
+                {!item.cancelled && !item.payment && !item.isCompleted && <button onClick={() => { appointmentPay(item._id) }} className=' py-2 hover:bg-[black] hover:text-white transition-all duration-200 border'>Pay Online</button>}
+                {!item.cancelled && !item.isCompleted && <button onClick={() => cancelAppointment(item._id)} className='py-2 hover:bg-[#ff5f5f] hover:text-white transition-all duration-200 border'>Cancel Appointment</button>}
+                {item.cancelled && !item.isCompleted && <button disabled className='py-2 bg-[#4a45458f] text-white border'>Appointment Cancelled</button>}
+                {item.isCompleted && <button className="p-1 border bg-[green] text-white py-2"> Completed</button>}
               </div>
             </div>
           )
