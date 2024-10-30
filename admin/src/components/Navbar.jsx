@@ -24,16 +24,16 @@ const Navbar = () => {
 
   return (
     <div className="flex items-center justify-between border sticky border-gray-300 sm:px-10 py-3 px-4 w-full">
-      <div className="flex items-center text-xs gap-3">
-        <img className="w-36 sm:w-40 cursor-pointer" src={assets.logo} />
+      <div className="flex sm:items-center flex-col sm:flex-row text-xs gap-3">
+        <img className="w-36 sm:w-40 cursor-pointer translate-x-28 sm:translate-x-0" src={assets.logo} />
         <p className="font-medium text-sm rounded-md flex justify-between gap-1 items-center text-black shadow-sm px-4 py-1">
-        <Avatar color="danger" size="sm" style={{backgroundColor:"red"}} />
+          <Avatar color="danger" size="sm" style={{ backgroundColor: "red" }} />
 
-          {aToken ?<span className="border rounded-2xl bg-[#e83b3b] text-white px-5 py-1">Admin</span> : <span className="border rounded-2xl bg-[#e3e1e1] px-5 py-1">Doctor</span>}
+          {aToken ? <span className="border rounded-2xl bg-[#e83b3b] text-white px-5 py-1">Admin</span> : <span className="border rounded-2xl bg-[#e3e1e1] px-5 py-1">Doctor</span>}
         </p>
       </div>
       {(aToken || docToken) ? (
-        <Button variant="outlined" color="error" onClick={LogOut} className="bg-gray-100 text-black font-medium px-4 py-1 shadow-sm rounded-full">Log Out</Button>
+        <Button onClick={LogOut} variant="outlined" color="error" className="bg-gray-100 translate-y-7  text-black font-medium px-4 sm:px-4 py-1 shadow-sm rounded-full">Log Out</Button>
       ) : (
         <Button className="bg-gray-100 text-black font-medium px-4 py-1 shadow-sm rounded-full">Log In</Button>
       )}
