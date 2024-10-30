@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect } from "react"
 import { DoctorContext } from "../../context/doctorContext"
 import { TableContainer, Table, TableHead, TableCell, TableBody, Button } from "@mui/material"

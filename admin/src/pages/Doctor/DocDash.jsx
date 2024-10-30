@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect, useState } from "react"
 import { DoctorContext } from "../../context/doctorContext"
 import { Button } from "@mui/material"

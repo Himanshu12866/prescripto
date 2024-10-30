@@ -42,6 +42,7 @@ const DocProfile = () => {
         console.log(profile)
 
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [docToken])
     return (
         <div className="w-full p-1">
