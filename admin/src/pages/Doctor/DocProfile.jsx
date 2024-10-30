@@ -10,22 +10,22 @@ const DocProfile = () => {
     const [edit, setEdit] = useState(false)
 
     const updataDocProfile = async () => {
+
         try {
             const updatedprofileData = {
-                name: setProfile.name,
-
-                fees: setProfile.fees,
-                experience: setProfile.experience,
-                about: setProfile.about,
-                degree: setProfile.degree,
-                available: setProfile.available,
-                address: setProfile.address
-
-            }
-            const { data } = await axios.post(backendURL + '/api/doctor/updateprofile', { updatedprofileData }, { headers: { docToken } })
+                name: profile.name,
+                fees: profile.fees,
+                experience: profile.experience,
+                about: profile.about,
+                degree: profile.degree,
+                available: profile.available,
+                address: profile.address
+            };
+            const { data } = await axios.post(backendURL + '/api/doctor/updateprofile', updatedprofileData, { headers: { docToken } })
             if (data.success) {
                 setEdit(false)
-                toast.success("Profile Updated Successfully")
+                toast.success(data.message)
+                getProfile()
             }
             else {
                 toast.error("Failed to Update Profile")
@@ -40,7 +40,7 @@ const DocProfile = () => {
     useEffect(() => {
         getProfile()
         console.log(profile)
-        console.log(profile.available)
+
 
     }, [docToken])
     return (
@@ -81,7 +81,7 @@ const DocProfile = () => {
                                 edit ? <FormGroup className="w-72">
                                     <FormControlLabel control={<Checkbox checked={profile.available ? true : false} onChange={() => { setProfile(prev => ({ ...prev, available: !prev.available })) }} />} label="Available" />
                                 </FormGroup> : <FormGroup className="w-72">
-                                    <FormControlLabel className="px-8" control={<Checkbox checked={profile.available?true:false} />}  label="Available" />
+                                    <FormControlLabel className="px-8" control={<Checkbox checked={profile.available ? true : false} />} label="Available" />
                                 </FormGroup>
                             }
                         </div>

@@ -9,7 +9,7 @@ doctorRouter.get('/getappointment', authDoc, docAppointments)
 doctorRouter.post('/approveappoint', authDoc, approveAppoint)
 doctorRouter.post('/cancelappoint', authDoc, cancelAppoint)
 doctorRouter.get('/docdash', authDoc, doctorDash)
-doctorRouter.post('/updateprofile', authDoc, updateDocProfile)
 doctorRouter.get('/getprofile', authDoc, getDocProfile)
+doctorRouter.post('/updateprofile', authDoc, updateDocProfile)
 
 export default doctorRouter
