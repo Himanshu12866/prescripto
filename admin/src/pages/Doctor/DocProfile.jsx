@@ -4,7 +4,7 @@ import { Button, TextField, FormGroup, FormControlLabel, Checkbox, FormControl, 
 
 
 const DocProfile = () => {
-    const { docToken, profile, setProfile, getProfile } = useContext(DoctorContext)
+    const { docToken, profile, getProfile } = useContext(DoctorContext)
     const [edit, setEdit] = useState(false)
     const [age, setAge] = useState('');
 
@@ -20,20 +20,15 @@ const DocProfile = () => {
     return (
         <div className="w-full p-1">
             <Button className="w-full" variant="contained" color="success">Your Profile</Button>
-            {
-                edit ? (<input onChange={(e) => setProfile(prev => ({ ...prev, name: e.target.value }))} type="text" value={profile.name} />) : <h1>{profile.name}</h1>
-            }
-            <button onClick={() => { setEdit(true) }}>Edit</button>
-            <button onClick={() => { setEdit(false) }}>Cancel</button>
 
-            <div className="flex justify-start mx-10">
+            <div className="flex justify-start mx-10 mt-3">
                 <div>
                     {/* <img src={profile.image} /> */}
                 </div>
                 <div>
                     <div className="flex flex-col justify-between  ">
                         <div className="flex flex-row justify-between py-2 w-full">
-                            <InputLabel className="w-64">Name :</InputLabel>
+                            <p className="w-64 border-b-2">Name :</p>
 
                             {
                                 edit ? <TextField id="outlined-basic" label="Enter Name" className="w-72" variant="outlined" margin="none" /> : <p className="p-1 w-64 border-b-2" type="text">{profile.name}</p>
@@ -75,9 +70,9 @@ const DocProfile = () => {
                                         onChange={handleChange}
                                         label="Experience"
                                     >
-                                        <MenuItem value="">
+                                        {/* <MenuItem value="">
                                             <em>None</em>
-                                        </MenuItem>
+                                        </MenuItem> */}
                                         <MenuItem value="1 Year">1 Year</MenuItem>
                                         <MenuItem value="2 Year">2 Year</MenuItem>
                                         <MenuItem value="3 Year">3 Year</MenuItem>
@@ -103,20 +98,36 @@ const DocProfile = () => {
                         <div className="flex flex-row justify-between py-2 w-full">
                             <h1 className="w-52 border-b-2">Address :</h1>
 
-                            <div className="w-64">
-                                {/* <p className=" text-left">{profile.address.line1}</p>
-                            <p className=" text-left">{profile.address.line2}</p> */}
-                            </div>
+
+                            {
+                                edit ? <div className="flex flex-col gap-1">
+                                    <TextField id="outlined-basic" label="Enter Degree" className="w-72" variant="outlined" margin="none" />
+                                    <TextField id="outlined-basic" label="Enter Degree" className="w-72" variant="outlined" margin="none" />
+                                </div> : <div className="w-64">
+                                    {/* <p className=" text-left">{profile.address.line1}</p>
+                                    <p className=" text-left">{profile.address.line2}</p> */}
+                                </div>
+
+                            }
+
                         </div>
                         <div className="flex flex-row py-2 justify-between w-full">
-                            <h1 className="w-52 border-b-2">About :</h1>
+                            <h1 className="w-64 border-b-2">About :</h1>
 
-                            <p className="p-1  w-[600px] border-b-2" type="text">{profile.about}</p>
+                            {edit ? <TextField className="p-1  w-[600px] mx-5 border-b-2" label="About" /> : <p className="p-1  w-[600px] border-b-2" type="text">{profile.about}</p>}
                         </div>
 
 
                     </div>
                 </div>
+            </div>
+            <div>
+                {edit ? <div className="flex justify-center gap-2 w-[50%] p-3"> 
+                    <Button style={{padding:"10px"}} variant="contained" color="success" className="w-52">Save</Button>
+                    <Button style={{padding:"10px"}} className="w-52 " color="error" variant="contained" onClick={() => {
+                        setEdit(false);
+                    }}>Cancel</Button>
+                </div> : <Button  className="w-80" style={{padding:"10px"}} variant="contained" onClick={() => { setEdit(true); scrollTo(0,500) }}>Edit Details</Button>}
             </div>
         </div>
 
