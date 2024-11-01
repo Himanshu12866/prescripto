@@ -16,11 +16,11 @@ const Banner = () => {
                     <p className='mt-4'> With 100+ Trusted Doctors</p>
                 </div>
                 {
-                    token ? (<button style={{ backgroundColor: `${(theme === 'black') ? '#000000' : 'white'}`, color: `${(theme === 'black') ? 'white' : 'black'}` }} className=' rounded-full  text-sm sm:text-base px-8 py-3 mt-2 hover:scale-105 transition-all duration-300' >
+                    token ? (<button style={{ backgroundColor: `${(theme === '#0f1214') ? '#0f1214' : 'white'}`, color: `${(theme === '#0f1214') ? 'white' : 'black'}` }}className=' rounded-full  text-sm sm:text-base px-8 py-3 mt-2 hover:scale-105 transition-all duration-300' >
                         Book Appointment
                     </button>
                     ) :
-                        (<button style={{ backgroundColor: `${(theme === 'black') ? '#000' : 'white'}`, color: `${(theme === 'black') ? 'white' : 'black'}` }} className=' rounded-full text-sm sm:text-base px-8 py-3 mt-2 hover:scale-105 transition-all duration-300' >
+                        (<button style={{ backgroundColor: `${(theme === '#0f1214') ? '#0f1214' : 'white'}`, color: `${(theme === '#0f1214') ? 'white' : 'black'}` }} className=' rounded-full text-sm sm:text-base px-8 py-3 mt-2 hover:scale-105 transition-all duration-300' >
                             Create Account
                         </button>
                         )

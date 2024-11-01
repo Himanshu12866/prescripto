@@ -9,7 +9,7 @@ const Navbar = () => {
 
     const navigate = useNavigate()
     const [showMenu, setshowMenu] = useState(false)
-    const { token, setToken, userData, theme, isDarkMode,  textTheme, toggleDarkMode } = useContext(AppContext)
+    const { token, setToken, userData, theme, isDarkMode, textTheme, toggleDarkMode } = useContext(AppContext)
     function LogOut() {
         setToken()
         localStorage.removeItem("token")
@@ -47,7 +47,7 @@ const Navbar = () => {
                 {
                     (token) && userData ? <div className='flex items-center gap-2 group relative' >
                         <img src={userData.image} className='w-8 rounded-full' alt='' />
-                        <img src={assets.dropdown_icon}  className='w-2.5' alt='' />
+                        <img src={assets.dropdown_icon} className='w-2.5' alt='' />
                         <div className='absolute top-0 right-0 pt-14 text-base hidden group-hover:block text-grey font-medium text-gray-600' >
                             <div className='min-w-48 flex flex-col gap-4  rounded p-4' style={{ backgroundColor: `${(theme === '#0f1214') ? '#a19696' : 'white'}`, color: `${(theme === '#0f1214') ? 'white' : 'black'}` }}>
                                 <p onClick={() => navigate("/my-profile")} className='hover:text-black cursor-pointer'>My Profile</p>
@@ -59,13 +59,13 @@ const Navbar = () => {
                         :
                         <button onClick={() => navigate("/login")} className='bg-primary rounded-full px-8 py-3 text-white hidden md:block'>Create Account</button>
                 }
-                <p className='md:hidden w-6 z-50 text-[25px] ' style={{zIndex:"1"}}   onClick={() => setshowMenu(true)} src={assets.menu_icon}>
+                <p className='md:hidden w-6 z-50 text-[25px] ' style={{ zIndex: "1" }} onClick={() => setshowMenu(true)} src={assets.menu_icon}>
                     <span className='bi bi-list-nested'></span>
                 </p>
-                <div style={{ backgroundColor: `${(theme === 'black') ? 'black' : 'white'}`, color: `${(theme === 'black') ? 'white' : 'black'}` }} className={`${showMenu ? "w-full fixed " : "h-0 w-0"} md:hidden right-0 top-0 bottom-0 mt-3 p-2 z-20 overflow-hidden transition-all`}>
+                <div style={{ backgroundColor: `${(theme === '#0f1214') ? 'black' : 'white'}`, color: `${(theme === '#0f1214') ? 'white' : 'black'}` }} className={`${showMenu ? "w-full fixed " : "h-0 w-0"} md:hidden right-0 top-0 bottom-0 mt-3 p-2 z-20 overflow-hidden transition-all`}>
                     <div className='flex items-center justify-between'>
                         <img className="w-36" src={assets.logo} />
-                        <img style={{ backgroundColor: `${(theme === 'black') ? '#a19696' : 'white'}`, zIndex:"999",color: `${(theme === 'black') ? 'white' : 'black'}` }} className="w-7" onClick={() => setshowMenu(false)} src={assets.cross_icon} />
+                        <img style={{ backgroundColor: `${(theme === '#0f1214') ? '#a19696' : 'white'}`, zIndex: "999", color: `${(theme === '#0f1214') ? 'white' : 'black'}` }} className="w-7" onClick={() => setshowMenu(false)} src={assets.cross_icon} />
                     </div>
                     <ul className='flex flex-col items-center gap-2 mt-5 text-lg font-medium'>
                         <NavLink onClick={() => setshowMenu(false)} to="/"><p className='py-1 px-10 rounded-lg'>Home</p></NavLink>

@@ -50,7 +50,7 @@ const AppContextProvider = (props) => {
     }
     const toggleDarkMode = (checked) => {
         setDarkMode(checked);
-        if (theme === 'black') {
+        if (theme === '#0f1214') {
             setTheme('white')
             setTextTheme('black')
         }
