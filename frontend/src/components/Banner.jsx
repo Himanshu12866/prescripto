@@ -6,9 +6,9 @@ import { AppContext } from '../context/AppContext'
 
 const Banner = () => {
     const navigate = useNavigate()
-    const { token } = useContext(AppContext)
+    const { token, theme } = useContext(AppContext)
     return (
-        <div className='flex bg-primary rounded-lg px-6  sm:px-10 lg:px-14 md:px-10 xl:px-16'>
+        <div className='flex rounded-lg px-6   sm:px-10 lg:px-14 md:px-10 xl:px-16' style={{ backgroundColor: `${theme === 'white' ? '#5f6FFF' : '#950101'}` }}>
             {/* Left Side  */}
             <div className='flex-1 py-8 md:py-16 lg:py-24  lg:pl-5'>
                 <div className='text-xl sm:text-2xl py-2 md:text-3xl lg:text-5xl font-semibold text-white'>
@@ -16,11 +16,11 @@ const Banner = () => {
                     <p className='mt-4'> With 100+ Trusted Doctors</p>
                 </div>
                 {
-                    token ? (<button className='bg-white rounded-full text-black text-sm sm:text-base px-8 py-3 mt-2 hover:scale-105 transition-all duration-300' >
-                       Book Appointment
+                    token ? (<button style={{ backgroundColor: `${(theme === 'black') ? '#000000' : 'white'}`, color: `${(theme === 'black') ? 'white' : 'black'}` }} className=' rounded-full  text-sm sm:text-base px-8 py-3 mt-2 hover:scale-105 transition-all duration-300' >
+                        Book Appointment
                     </button>
                     ) :
-                        (<button  className='bg-white rounded-full text-black text-sm sm:text-base px-8 py-3 mt-2 hover:scale-105 transition-all duration-300' >
+                        (<button style={{ backgroundColor: `${(theme === 'black') ? '#000' : 'white'}`, color: `${(theme === 'black') ? 'white' : 'black'}` }} className=' rounded-full text-sm sm:text-base px-8 py-3 mt-2 hover:scale-105 transition-all duration-300' >
                             Create Account
                         </button>
                         )

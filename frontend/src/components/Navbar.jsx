@@ -9,7 +9,7 @@ const Navbar = () => {
 
     const navigate = useNavigate()
     const [showMenu, setshowMenu] = useState(false)
-    const { token, setToken, userData, theme, isDarkMode, setDarkMode, textTheme, toggleDarkMode } = useContext(AppContext)
+    const { token, setToken, userData, theme, isDarkMode,  textTheme, toggleDarkMode } = useContext(AppContext)
     function LogOut() {
         setToken()
         localStorage.removeItem("token")
@@ -49,7 +49,7 @@ const Navbar = () => {
                         <img src={userData.image} className='w-8 rounded-full' alt='' />
                         <img src={assets.dropdown_icon}  className='w-2.5' alt='' />
                         <div className='absolute top-0 right-0 pt-14 text-base hidden group-hover:block text-grey font-medium text-gray-600' >
-                            <div className='min-w-48 flex flex-col gap-4  rounded p-4' style={{ backgroundColor: `${(theme === 'black') ? '#a19696' : 'white'}`, color: `${(theme === 'black') ? 'white' : 'black'}` }}>
+                            <div className='min-w-48 flex flex-col gap-4  rounded p-4' style={{ backgroundColor: `${(theme === '#0f1214') ? '#a19696' : 'white'}`, color: `${(theme === '#0f1214') ? 'white' : 'black'}` }}>
                                 <p onClick={() => navigate("/my-profile")} className='hover:text-black cursor-pointer'>My Profile</p>
                                 <p onClick={() => navigate("my-appointment")} className='hover:text-black cursor-pointer'>My Appointment</p>
                                 <p onClick={LogOut} className='hover:text-black cursor-pointer'>Logout</p>

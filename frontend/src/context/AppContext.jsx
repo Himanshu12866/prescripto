@@ -55,7 +55,7 @@ const AppContextProvider = (props) => {
             setTextTheme('black')
         }
         else {
-            setTheme('black')
+            setTheme('#0f1214')
             setTextTheme('white')
         }
     };
@@ -67,7 +67,7 @@ const AppContextProvider = (props) => {
         setToken,
         backendURL,
         userData, setUserData,
-        userProfile, isDarkMode, setDarkMode, theme, setTheme, textTheme, setTextTheme, toggleDarkMode
+        userProfile, isDarkMode, setDarkMode, theme, setTheme, textTheme,  toggleDarkMode
 
     };
 
