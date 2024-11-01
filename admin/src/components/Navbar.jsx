@@ -8,7 +8,7 @@ import { Avatar, Button } from "@mui/material";
 const Navbar = () => {
   const navigate = useNavigate();
   const { aToken, setAToken } = useContext(AdminContext);
-  const { docToken, setDocToken } = useContext(DoctorContext);
+  const { docToken, setDocToken,  } = useContext(DoctorContext);
 
   function LogOut() {
     navigate("/");

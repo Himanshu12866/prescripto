@@ -2,6 +2,7 @@
 import React from 'react'
 import { assets } from '../assets/assets'
 
+import { LinearProgress ,Tooltip ,Button } from "@mui/material"
 const Footer = () => {
     return (
         <div className='md:mx-10'>
@@ -35,9 +36,13 @@ const Footer = () => {
                 </div>
             </div>
             <hr className='text-black font-bold'></hr>
-            <div style={{textAlign:"center"}} className='text-cener text-gray-600'>
-                <p>Copy Rights 2024 &Copy; All Right Reserved</p>
+            <div style={{ textAlign: "center" }} className='text-center my-1 mb-5  bg-[black]  text-white'>
+                {/* <p className='py-2 hover:bg-[#6a6767]  transition-all duration-200'>Designed By <a className='text-[#35ffc6] font-medium' href='https://github.com/himanshu12866'>UI Dev</a> </p> */}
+                <Tooltip title="GitHub" size="md" variant="contained">
+                    <Button variant="solid">Designed By &nbsp;<a className='text-[#35ffc6] font-medium' href='https://github.com/himanshu12866'>UI Dev</a></Button>
+                </Tooltip>
             </div>
+            <LinearProgress className='my-2 mb-5' />
         </div>
     )
 }

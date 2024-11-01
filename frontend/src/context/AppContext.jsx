@@ -9,6 +9,11 @@ export const AppContext = createContext();
 const AppContextProvider = (props) => {
     const backendURL = import.meta.env.VITE_BACKEND_URL;
     const [doctors, setDoctors] = useState([]);
+    const [isDarkMode, setDarkMode] = useState(false);
+    const [theme, setTheme] = useState('white')
+    const [textTheme, setTextTheme] = useState('black')
+
+
     const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : false);
     const [userData, setUserData] = useState(false)
 
@@ -43,20 +48,33 @@ const AppContextProvider = (props) => {
             toast.error(error.response ? error.response.data.message : error.message);
         }
     }
+    const toggleDarkMode = (checked) => {
+        setDarkMode(checked);
+        if (theme === 'black') {
+            setTheme('white')
+            setTextTheme('black')
+        }
+        else {
+            setTheme('black')
+            setTextTheme('white')
+        }
+    };
+
     const values = {
         doctors,
-         getDrData,
+        getDrData,
         token,
         setToken,
         backendURL,
         userData, setUserData,
-        userProfile
+        userProfile, isDarkMode, setDarkMode, theme, setTheme, textTheme, setTextTheme, toggleDarkMode
+
     };
 
     useEffect(() => {
-      
-            getDrData();
-        
+
+        getDrData();
+
     }, []);
     useEffect(() => {
         if (token) {
