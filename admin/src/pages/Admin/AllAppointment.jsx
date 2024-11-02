@@ -7,10 +7,6 @@ import { toast } from "react-toastify";
 
 const AllAppointment = () => {
   const { appointments, aToken, getAllAppointment, cancelAppointmentAdmin } = useContext(AdminContext);
-  // const { SlotFormat } = useContext(AppContext)
-
-
-
 
   useEffect(() => {
     if (aToken) {
