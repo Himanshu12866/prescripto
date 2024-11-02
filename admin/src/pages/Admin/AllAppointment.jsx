@@ -5,9 +5,6 @@ import { AdminContext } from "../../context/AdminContext";
 import Button from '@mui/material/Button';
 import { toast } from "react-toastify";
 
-// import { AppContext } from "../../context/appContext";
-
-
 const AllAppointment = () => {
   const { appointments, aToken, getAllAppointment, cancelAppointmentAdmin } = useContext(AdminContext);
   // const { SlotFormat } = useContext(AppContext)
