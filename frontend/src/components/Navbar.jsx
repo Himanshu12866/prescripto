@@ -18,7 +18,7 @@ const Navbar = () => {
     return (
         <div style={{ backgroundColor: `${theme}`, color: `${textTheme}` }} className='flex item-center justify-between border-b sticky mt-0 py-4 mb-5 border-b-grey-400 text-sm' >
 
-            <img onClick={() => { navigate("/"); scrollTo(0, 0) }} className='sm:w-52 cursor-pointer h-[60px]' src={assets.logo} alt='' />
+            <img onClick={() => { navigate("/"); scrollTo(0, 0) }} style={{ backgroundColor: `${theme === '#0f1214' ? 'white' : ''}` }} className='sm:w-52 cursor-pointer h-[60px]' src={`${theme === '#0f1214' ? assets.logo2 : assets.logo}`} alt='' />
             <ul className='hidden md:flex item-start gap-5 front-medium pt-4'>
                 <NavLink to="/">
                     <li className='my-1'>Home</li>
@@ -48,7 +48,7 @@ const Navbar = () => {
                     (token) && userData ? <div className='flex items-center gap-2 group relative' >
                         <img src={userData.image} className='w-8 rounded-full' alt='' />
                         <img src={assets.dropdown_icon} className='w-2.5' alt='' />
-                        <div  className='absolute top-0 right-0 pt-14 text-base hidden group-hover:block  text-grey font-medium text-gray-600' >
+                        <div className='absolute top-0 right-0 pt-14 text-base hidden group-hover:block  text-grey font-medium text-gray-600' >
                             <div className='min-w-48 flex flex-col gap-4  rounded p-4' style={{ backgroundColor: `${(theme === '#0f1214') ? '#0a5' : '#fde'}`, color: `${(theme === '#0f1214') ? 'white' : 'black'}` }}>
                                 <p onClick={() => navigate("/my-profile")} className={` cursor-pointer ${theme === '#0f1214' ? 'hover:text-[#0ef]' : ' hover:text-[gray]'}`}>My Profile</p>
                                 <p onClick={() => navigate("my-appointment")} className={` cursor-pointer ${theme === '#0f1214' ? 'hover:text-[#0ef]' : ' hover:text-[gray]'}`}>My Appointment</p>
@@ -62,10 +62,11 @@ const Navbar = () => {
                 <p className='md:hidden w-6 z-50 text-[25px] ' style={{ zIndex: "1" }} onClick={() => setshowMenu(true)} src={assets.menu_icon}>
                     <span className='bi bi-list-nested'></span>
                 </p>
-                <div style={{ backgroundColor: `${(theme === '#0f1214') ? 'black' : 'white'}`, color: `${(theme === '#0f1214') ? 'white' : 'black'}` }} className={`${showMenu ? "w-full fixed " : "h-0 w-0"} md:hidden right-0 top-0 bottom-0 mt-3 p-2 z-20 overflow-hidden transition-all`}>
+                <div style={{ backgroundColor: `${(theme === '#0f1214') ? '#0f1214' : 'white'}`, color: `${(theme === '#0f1214') ? 'white' : 'black'}` }} className={`${showMenu ? "w-full fixed " : "h-0 w-0"} md:hidden right-0 top-0 bottom-0 mt-3 p-2 z-20 overflow-hidden transition-all`}>
                     <div className='flex items-center justify-between'>
-                        <img className="w-36" src={assets.logo} />
-                        <img style={{ backgroundColor: `${(theme === '#0f1214') ? '#0ef' : 'white'}`, zIndex: "999", borderRadius:"50%",color: `${(theme === '#0f1214') ? 'white' : 'black'}` }} className="w-7" onClick={() => setshowMenu(false)} src={assets.cross_icon} />
+                    <img  style={{ backgroundColor: `${theme === '#0f1214' ? 'white' : ''}` }} className='sm:w-52 mb-2 cursor-pointer h-[60px]' src={`${theme === '#0f1214' ? assets.logo2 : assets.logo}`} alt='' />
+
+                        <img style={{ backgroundColor: `${(theme === '#0f1214') ? '#0ef' : 'white'}`, zIndex: "999", borderRadius: "50%", color: `${(theme === '#0f1214') ? 'white' : 'black'}` }} className="w-7" onClick={() => setshowMenu(false)} src={assets.cross_icon} />
                     </div>
                     <ul className='flex flex-col items-center gap-2 mt-5 text-lg font-medium'>
                         <NavLink onClick={() => setshowMenu(false)} to="/"><p className='py-1 px-10 rounded-lg'>Home</p></NavLink>

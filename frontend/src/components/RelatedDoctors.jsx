@@ -17,8 +17,8 @@ const RelatedDoctors = ({ speciality, docId }) => {
 
     return (
         <div className='flex flex-col items-center my-16 gap-4 text-black md:mx:10'>
-            <h1 className='text-3xl font-medium'>Related Doctors</h1>
-            <p className='sm:w1/3 text-sm text-center'>Browse Related Doctors</p>
+            <h1 style={{color:`${(theme === '#0f1214') ? '#0ef' : 'black'}`}} className='text-3xl font-medium'>Related Doctors</h1>
+            <p style={{color:`${(theme === '#0f1214') ? 'white' : 'black'}`}}  className='sm:w-1/3 text-md text-center'>Browse Related Doctors</p>
             <div className='w-full grid grid-cols-auto gap-4 pt5 gap-y-6 px-3 sm:px-0'>
                 {
                     relDoc.slice(0, 5).map((item, index) => <div onClick={() =>{ navigate(`/appointment/${item._id}`) ; scrollTo(0,0,0)} } style={{ backgroundColor: `${(theme === '#0f1214') ? '#950101' : '#D1C4E9'}`, color: `${(theme === '#0f1214') ? 'white' : 'black'}` }}  className=' w-fullborder border-blue-500 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500' key={index}>
