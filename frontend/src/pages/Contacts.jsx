@@ -25,7 +25,7 @@ const Contacts = () => {
           </div>
           <p style={{ color: `${(theme === '#0f1214' ? '#0ef' : 'gray')}` }} className='font-medium text-gray-700 text-xl'>CAREERS AT AROGYA</p>
           <p style={{ color: `${(theme === '#0f1214' ? 'white' : 'black')}` }} >Learn more about our teams and job openings.</p>
-          <button className={`text-center py-4 border border-gray-800  px-10 hover:bg-slate-900 hover:text-white transition-all duration-300`}> Explore Jobs</button>
+          <button className={`text-center py-4 border border-gray-800  px-10 ${theme === '#0f1214' ? 'bg-[#950144] text-[white]' : 'white'} hover:bg-slate-900 hover:text-white transition-all duration-300`}> Explore Jobs</button>
       </div>
     </div>
     </div >
