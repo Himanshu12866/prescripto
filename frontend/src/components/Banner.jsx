@@ -8,7 +8,7 @@ const Banner = () => {
     const navigate = useNavigate()
     const { token, theme } = useContext(AppContext)
     return (
-        <div className='flex rounded-lg px-6   sm:px-10 lg:px-14 md:px-10 xl:px-16' style={{ backgroundColor: `${theme === 'white' ? '#424242' : '#950101'}` }}>
+        <div className='flex rounded-lg px-6   sm:px-10 lg:px-14 md:px-10 xl:px-16' style={{ backgroundColor: `${theme === 'white' ? '#424242' : 'blue'}` }}>
             {/* Left Side  */}
             <div className='flex-1 py-8 md:py-16 lg:py-24  lg:pl-5'>
                 <div className='text-xl sm:text-2xl py-2 md:text-3xl lg:text-5xl font-semibold text-white'>

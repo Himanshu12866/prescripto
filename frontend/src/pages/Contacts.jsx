@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import { assets } from '../assets/assets'
 import { AppContext } from '../context/AppContext'
 const Contacts = () => {
-  const { theme, textTheme } = useContext(AppContext)
+  const { theme} = useContext(AppContext)
   return (
     <div>
       <div className="w-full text-center">

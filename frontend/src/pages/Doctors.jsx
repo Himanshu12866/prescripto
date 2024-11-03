@@ -57,7 +57,7 @@ const Doctors = () => {
                         filterDoc.map((item, index) => <div onClick={() => navigate(`/appointment/${item._id}`)} className='border border-blue-500 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500' key={index}>
 
 
-                            <img style={{ backgroundColor: `${(theme === '#0f1214') ? '#950100' : '#D1C4E9'}`, color: `${(theme === '#0f1214') ? 'white' : 'black'}` }} className='bg-blue-50 h-[200px]  w-full' src={item.image} alt='' />
+                            <img style={{ backgroundColor: `${(theme === '#0f1214') ? '#6161de' : '#D1C4E9'}`, color: `${(theme === '#0f1214') ? 'white' : 'black'}` }} className='bg-blue-50 h-[200px]  w-full' src={item.image} alt='' />
                             <div className='p-4'>
                                 <div className=' flex gap-2 text-sm text-center text-green-400 items-center'>
                                     <p className='w-2 h-2 bg-green-500 rounded-full'></p><p>Availabel</p>

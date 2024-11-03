@@ -157,9 +157,9 @@ const Appointment = () => {
     <div>{
       <div className='flex flex-col sm:flex-row gap-28 sm:gap-4'>
         <div>
-          <img style={{ backgroundColor: `${(theme === '#0f1214') ? '#950100' : '#D1C4E9'}` }} className=' w-full sm:max-w-72 rounded-lg' src={docInfo.image} alt='docimg' />
+          <img style={{ backgroundColor: `${(theme === '#0f1214') ? '#6161de' : '#D1C4E9'}` }} className=' w-full sm:max-w-72 rounded-lg' src={docInfo.image} alt='docimg' />
         </div>
-        <div style={{ backgroundColor: `${(theme === '#0f1214') ? '#212121' : 'white'}` }} className='flex-1 border border-gray-400 rounded-lg p-8 mx-2 sm:mx-0 py-4  mt-[-80px] sm:mt-0'>
+        <div style={{ backgroundColor: `${(theme === '#0f1214') ? '#151121' : 'white'}` }} className='flex-1 border border-gray-400 rounded-lg p-8 mx-2 sm:mx-0 py-4  mt-[-80px] sm:mt-0'>
           {/* Doctor Informations */}
           <p style={{ color: `${(theme === '#0f1214') ? 'white' : 'black'}` }} className='flex items-center  font-medium text-gray-900 text-2xl gap-2'>{docInfo.name} <img className="w-5" src={assets.verified_icon} /></p>
 
