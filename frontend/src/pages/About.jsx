@@ -5,20 +5,20 @@ import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 
 const About = () => {
-  const {theme , textTheme} = useContext(AppContext)
+  const { theme, textTheme } = useContext(AppContext)
   return (
 
     <div>
       <div className="w-full text-center">
-        <p className="text-2xl text-gray-400">
-          ABOUT <span className=" font-medium text-gray-800">US</span>
+        <p style={{ color: `${theme === '#0f1214' ? 'white' : 'gray'}` }} className="text-2xl font-medium text-gray-400">
+          ABOUT <span style={{ color: `${theme === '#0f1214' ? '#0ef' : 'blue'}` }} className=" font-medium ">US</span>
         </p>
       </div>
       <div className="my-10 flex flex-col md:flex-row gap-10">
 
         <img className="w-full md:max-w-[360px]" src={assets.about_image} />
 
-        <div className="flex flex-col justify-center gap-6 text-md ">
+        <div className="flex flex-col justify-center gap-6 text-md " style={{ color: `${theme === '#0f1214' ? 'white' : 'black'}` }}>
           <p>
             Welcome to Prescripto, your trusted partner in managing your
             healthcare needs conveniently and efficiently. At Prescripto, we
@@ -41,23 +41,23 @@ const About = () => {
           </p>
         </div>
       </div>
-      <div className="text-xl text-gray-600">
-        <p>WHY <span className="text-gray-900 font-semibold">CHOOSE US</span> </p>
+      <div style={{ color: `${theme === '#0f1214' ? 'white' : 'gray'}` }} className="text-xl text-gray-600">
+        <p>WHY <span style={{ color: `${theme === '#0f1214' ? '#0ef' : 'gray'}` }} className="text-gray-900 font-semibold">CHOOSE US</span> </p>
       </div>
       <div className="flex flex-col md:flex-row mb-20 mt-20 gap-2">
-        <div className="border px-16 py-12 flex flex-col gap-5 text-[-15px] md:px-10 hover:bg-primary  hover:text-white transition-all duration-300 text-gray-600">
+        <div className={`border px-16 py-12 flex flex-col gap-5 text-[-15px] md:px-10 ${theme === '#0f1214' ? 'bg-[#950100] text-[white]' : 'white'} hover:bg-primary  hover:text-white transition-all duration-300 text-gray-600`}>
           <b>EFFICIENCY:</b>
           <p>
             Streamlined appointment scheduling that fits into your busy lifestyle
           </p>
         </div>
-        <div className="border px-16 py-12 flex flex-col gap-5 text-[-15px] md:px-10 hover:bg-primary  hover:text-white transition-all duration-300 text-gray-600">
+        <div className={`border px-16 py-12 flex flex-col gap-5 text-[-15px] md:px-10 ${theme === '#0f1214' ? 'bg-[#950100] text-[white]' : 'white'} hover:bg-primary  hover:text-white transition-all duration-300 text-gray-600`}>
           <b>CONVENIENCE:</b>
           <p>
             Access to a network of trusted healthcare professionals in your area.
           </p>
         </div>
-        <div className="border px-16 py-12 flex flex-col gap-5 text-[-15px] md:px-10 hover:bg-primary  hover:text-white transition-all duration-300 text-gray-600">
+        <div className={`border px-16 py-12 flex flex-col gap-5 text-[-15px] md:px-10 ${theme === '#0f1214' ? 'bg-[#950100] text-[white]' : 'white'} hover:bg-primary  hover:text-white transition-all duration-300 text-gray-600`}>
           <b>
             PERSONALIZATION:
           </b>
