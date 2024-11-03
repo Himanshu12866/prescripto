@@ -7,7 +7,7 @@ const Header = () => {
     const { theme, textTheme } = useContext(AppContext)
     let navigate = useNavigate()
     return (
-        <div style={{ backgroundColor: `${(theme === '#0f1214') ? '#950100' : 'white'}`, color: `${(theme === '#0f1214') ? 'white' : 'black'}` }} className='flex flex-col md:flex-row flex-wrap  rounded-lg px-6 -z-50 md:px-10 lg:px-20'>
+        <div style={{ backgroundColor: `${(theme === '#0f1214') ? '#950100' : '#424242'}`, color: `${(theme === '#0f1214') ? 'white' : 'black'}` }} className='flex flex-col md:flex-row flex-wrap  rounded-lg px-6 -z-50 md:px-10 lg:px-20'>
             <div className='md:w-1/2 flex flex-col justify-center gap-4 py-10 m-auto md:py-[10vw] md:mb-[-30px] '>
                 <p className='text-3xl md:text-4xl lg:text-5xl text-white font-semibold leading-10' >Book Appointment <br /> WithTrusted Doctors</p>
                 <div className='flex flex-col md:flex-row gap-3 items-center text-white font-light text-sm'>
