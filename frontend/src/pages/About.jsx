@@ -1,9 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { assets } from "../assets/assets";
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
 
 const About = () => {
+  const {theme , textTheme} = useContext(AppContext)
   return (
+
     <div>
       <div className="w-full text-center">
         <p className="text-2xl text-gray-400">
