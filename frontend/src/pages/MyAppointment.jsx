@@ -94,31 +94,32 @@ const MyAppointment = () => {
               </div>
               <div className={`sm:w-[60%] text-xs p-2 `}>
                 <p className={`font-medium text-[20px] py-2 border-b-4 border-[#6e8d6e] text-[#333366] bi bi-person-heart ${theme === '#0f1214' ? 'text-[#e0ff56]' : ''}`}>
-                  &nbsp;{item.docData.name}
+                  &nbsp;{item.docData.name}&nbsp;
 
                   <span className={`${theme === '#0f1214' ? 'text-[#0ef]' : 'text-[blue]'} bi bi-check-circle-fill`}></span></p>
 
-                <p className={`text-[14px] font-medium text-[#006633] bi bi-magic py-1 `}>
+                <p className={`text-[14px] font-medium ${theme === '#0f1214' ? 'text-[#0ef]' : 'text-[#006633]'} bi bi-magic py-1 `}>
                   &nbsp;
-                  <span className=' font-medium text-[#333366]'>Speciality :</span>
+                  <span className={` font-medium ${theme === '#0f1214' ? 'text-[#8bfe3f]' : 'text-[#000366]'} `}>Speciality : </span>
                   {item.docData.speciality}</p>
-                <p className='font-medium text-[16px] py-1 text-[#333300]'>
+                <p className={`font-medium text-[16px] py-1  ${theme === '#0f1214' ? 'text-[#0ef]' : 'text-[#333300]'} `}>
 
-                  <span className='bi bi-house-heart'></span> Address :</p>
+                  <span className={`${theme === '#0f1214' ? 'text-[#8bfe3f]' : 'text-[#000366]'} bi bi-house-heart`}></span> Address :</p>
 
                 <span className='text-[14px] font-medium text-[#30a29c] '>{item.docData.address.line1} ,</span>
 
 
                 <span className='text-[14px] font-medium text-[#30a29c]  '>{item.docData.address.line2}</span>
-                <p className='font-medium text-[16px] py-2 text-[red] bi bi-calendar3'>&nbsp; Appoinment:</p>
-                <p className='text-sm font-medium text-[#621d59]'>Date :<span> {SlotFormat(item.slotDate)}</span></p>
-                <p className='text-sm font-medium text-[#621d59] '>Time :<span> {item.slotTime}</span></p>
+
+                <p className={`font-medium text-[16px] py-2 text-[red] bi bi-calendar3 ${theme === '#0f1214' ? 'text-[#0ef]' : 'text-[#f00]'}`}>&nbsp; Appoinment:</p>
+                <p className={`text-sm font-medium  ${theme === '#0f1214' ? 'text-[#8bfe3f]' : 'text-[#621d59]'} `}>Date :<span> {SlotFormat(item.slotDate)}</span></p>
+                <p className={`text-sm font-medium  ${theme === '#0f1214' ? 'text-[#8bfe3f]' : 'text-[#621d59]'}`}>Time :<span> {item.slotTime}</span></p>
 
               </div>
               <div className='flex flex-col gap-6 sm:w-[20%] mr-2 justify-center'>
                 {!item.cancelled && item.payment && !item.isCompleted && <button>Paid</button>}
-                {!item.cancelled && !item.payment && !item.isCompleted && <button onClick={() => { appointmentPay(item._id) }} className=' py-2 hover:bg-[black] hover:text-white transition-all duration-200 border'>Pay Online</button>}
-                {!item.cancelled && !item.isCompleted && <button onClick={() => cancelAppointment(item._id)} className='py-2 hover:bg-[#ff5f5f] hover:text-white transition-all duration-200 border'>Cancel Appointment</button>}
+                {!item.cancelled && !item.payment && !item.isCompleted && <button onClick={() => { appointmentPay(item._id) }} className={` py-2 hover:bg-[black] hover:text-white transition-all duration-200 border`}>Pay Online</button>}
+                {!item.cancelled && !item.isCompleted && <button onClick={() => cancelAppointment(item._id)} className={`py-2 hover:bg-[#ff5f5f] hover:text-white transition-all duration-200 border`}>Cancel Appointment</button>}
                 {item.cancelled && !item.isCompleted && <button disabled className='py-2 bg-[#4a45458f] text-white border'>Appointment Cancelled</button>}
                 {item.isCompleted && <button className="p-1 border bg-[green] text-white py-2"> Completed</button>}
               </div>
