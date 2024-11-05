@@ -16,7 +16,7 @@ const Navbar = () => {
     }
 
     return (
-        <div style={{ backgroundColor: `${theme}`, color: `${textTheme}` }} className='flex item-center justify-between border-b sticky mt-0 py-4 mb-5 border-b-grey-400 text-sm' >
+        <div style={{ backgroundColor: `${theme}`, color: `${textTheme}` }} className='flex item-center justify-between sticky mt-0 pt-4 mb-2 border-b-grey-400 text-sm' >
 
             <img onClick={() => { navigate("/"); scrollTo(0, 0) }} style={{ backgroundColor: `${theme === '#0f1214' ? 'white' : ''}` }} className='sm:w-52 cursor-pointer h-[60px]' src={`${theme === '#0f1214' ? assets.logo2 : assets.logo}`} alt='' />
             <ul className='hidden md:flex item-start gap-5 front-medium pt-4'>
