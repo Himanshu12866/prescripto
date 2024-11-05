@@ -14,7 +14,7 @@ const Login = () => {
     const [name, setName] = useState('');
 
     let navigate = useNavigate()
-    const { backendURL, token, setToken } = useContext(AppContext);
+    const { backendURL, token, setToken , theme } = useContext(AppContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // Prevent form submission and page reload
@@ -53,30 +53,30 @@ const Login = () => {
     }, [token])
 
     return (
-        <form onSubmit={handleSubmit} className='min-h-[80vh] flex items-center'>
-            <div className='flex flex-col items-start p-7 sm:min-w-96 min-w-[340px] m-auto gap-3 border text-sm rounded-xl text-zinc-600 shadow-lg'>
-                <p className='text-2xl font-semibold text-center w-full'>{state === "Sign Up" ? "Create Account" : "Login"}</p>
-                <p>Please {state === "Sign Up" ? "sign up" : "Login"} to book appointment</p>
+        <form onSubmit={handleSubmit} className='min-h-[80vh] flex items-center '>
+            <div className={`flex flex-col items-start p-7  sm:min-w-96 min-w-[340px] m-[-5px] sm:m-auto gap-3 border text-sm rounded-xl text-zinc-600 shadow-2xl ${theme==='#0f1214' ? 'shadow-indigo-500/50 ' : 'shadow-indigo-500/50 '}`}>
+                <p className={`text-2xl ${theme=== '#0f1214' ? 'text-[#0ef]' :'text-[#2b2c96]'} font-semibold text-center w-full`}>{state === "Sign Up" ? "Create Account" : "Login"}</p>
+                <p style={{color:`${theme==='#0f1214' ? 'white':"black"}`}}>Please {state === "Sign Up" ? "sign up" : "Login"} to book appointment</p>
                 {
                     state === "Sign Up" ? <div className='w-full'>
-                        <p>Full Name : </p>
-                        <input className='border rounded border-zinc-400 text-gray-600 w-full p-2 my-1' type='text' onChange={(e) => setName(e.target.value)} value={name} required />
+                        <p className='font-medium' style={{color:`${theme==="#0f1214" ? 'white':'black'}`}}>Name : </p>
+                        <input className='border rounded border-zinc-400 font-medium text-gray-600 w-full p-2 my-1' type='text' onChange={(e) => setName(e.target.value)} value={name} required />
                     </div> : null
                 }
                 <div className='w-full'>
-                    <p>Email : </p>
+                    <p className='font-medium' style={{color:`${theme==="#0f1214" ? 'white':'black'}`}}>Email : </p>
                     <input className='border rounded border-zinc-400 text-gray-600 w-full p-2 my-1' type='email' onChange={(e) => setEmail(e.target.value)} value={email} required />
                 </div>
                 <div className='w-full'>
-                    <p>Password : </p>
+                    <p className='font-medium' style={{color:`${theme==="#0f1214" ? 'white':'black'}`}}>Password : </p>
                     <input className='border rounded border-zinc-400 text-gray-600 w-full p-2 my-1' type='password' onChange={(e) => setPassword(e.target.value)} value={password} required />
                 </div>
                 <button type='submit' className={`w-full p-2 my-1  text-white font-medium rounded bg-primary`}>{state === "Sign Up" ? "Create Account" : "Login"}</button>
                 {
                     state === "Sign Up" ?
-                        <p>Already have an account?
+                        <p style={{color:`${theme==='#0f1214' ? 'white':"black"}`}}>Already have an account ?&nbsp;
                             <span className='text-primary cursor-pointer underline' onClick={() => setState("Login")}>Login Here </span></p> :
-                        <p>Create an account? <span className='text-primary cursor-pointer underline' onClick={() => setState("Sign Up")}> Create here</span></p>
+                        <p style={{color:`${theme==='#0f1214' ? 'white':"black"}`}}>Create an account ? <span className='text-primary cursor-pointer underline' onClick={() => setState("Sign Up")}> Create here</span></p>
                 }
             </div>
         </form>

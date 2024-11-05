@@ -64,7 +64,7 @@ const Navbar = () => {
                 </p>
                 <div style={{ backgroundColor: `${(theme === '#0f1214') ? '#0f1214' : 'white'}`, color: `${(theme === '#0f1214') ? 'white' : 'black'}` }} className={`${showMenu ? "w-full fixed " : "h-0 w-0"} md:hidden right-0 top-0 bottom-0 mt-3 p-2 z-20 overflow-hidden transition-all`}>
                     <div className='flex items-center justify-between'>
-                    <img  style={{ backgroundColor: `${theme === '#0f1214' ? 'white' : ''}` }} className='sm:w-52 mb-2 cursor-pointer h-[60px]' src={`${theme === '#0f1214' ? assets.logo2 : assets.logo}`} alt='' />
+                        <img style={{ backgroundColor: `${theme === '#0f1214' ? 'white' : ''}` }} className='sm:w-52 mb-2 cursor-pointer h-[60px]' src={`${theme === '#0f1214' ? assets.logo2 : assets.logo}`} alt='' />
 
                         <img style={{ backgroundColor: `${(theme === '#0f1214') ? '#0ef' : 'white'}`, zIndex: "999", borderRadius: "50%", color: `${(theme === '#0f1214') ? 'white' : 'black'}` }} className="w-7" onClick={() => setshowMenu(false)} src={assets.cross_icon} />
                     </div>
@@ -73,12 +73,15 @@ const Navbar = () => {
                         <NavLink onClick={() => setshowMenu(false)} to="/doctors"><p className='py-1 px-10 rounded-lg'>All Doctors</p></NavLink>
                         <NavLink onClick={() => setshowMenu(false)} to="/about"><p className='py-1 px-10 rounded-lg'>About</p></NavLink>
                         <NavLink onClick={() => setshowMenu(false)} to="/contact"><p className='py-1 px-10 rounded-lg'>Contact</p></NavLink>
-                        <DarkModeSwitch
-                            style={{ margin: '1rem' }}
-                            checked={isDarkMode}
-                            onChange={toggleDarkMode}
-                            size={40}
-                        />
+                        
+                            <DarkModeSwitch
+                                style={{ margin: '1rem' }}
+                                checked={isDarkMode}
+                                onChange={toggleDarkMode}
+                                // onClick={() =>  setshowMenu(false)}
+                                size={40}
+                            />
+                    
                     </ul>
                 </div>
             </div>
