@@ -7,7 +7,7 @@ import { toast } from 'react-toastify'
 
 const MyAppointment = () => {
 
-  const { backendURL, token, getDrData } = useContext(AppContext)
+  const { backendURL, token, getDrData, theme } = useContext(AppContext)
   const [appData, setAppData] = useState([])
   const month = [" ", "Jan", "Fer", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
   const SlotFormat = (slotDate) => {
@@ -84,7 +84,7 @@ const MyAppointment = () => {
   }, [token])
   return (
     <div>
-      <h1 className='text-2xl font-medium py-2 px-2'>Your Appointements</h1>
+      <h1 className={`text-2xl font-medium py-2 px-2 ${theme === '#0f1214' ? '#0ef' : 'black'}`}>Your Appointements</h1>
       <div className='flex flex-col w-[80%]l '>
         {
           appData.map((item, index) =>
