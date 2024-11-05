@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect, useState } from "react";
 import { AdminContext } from "../../context/AdminContext";
 import Button from "@mui/material/Button";
@@ -48,7 +49,7 @@ const Dashboard = () => {
         style={{ padding: "14px", letterSpacing: "2px", marginTop: "5px" }}
         className="text-center bg-[black] py-3  w-full"
       >
-        Dashboard
+        Dashboard Admin
       </Button>
       <div className="p-1 overflow-x-auto h-[80vh]">
         <div className="flex flex-col sm:flex-row gap-1 sm:justify-around m-3 w-[90%] sm:w-[80%]">

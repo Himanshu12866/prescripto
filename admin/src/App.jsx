@@ -21,7 +21,7 @@ const App = () => {
   const { docToken } = useContext(DoctorContext)
   return aToken || docToken ? (
 
-    <div>
+    <div className='bg-white'>
       <ToastContainer />
       <Navbar />
       <div className='flex flex-start'>
