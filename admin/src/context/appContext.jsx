@@ -6,13 +6,7 @@ export const AppContext = createContext()
 
 
 const AppContextProvider = (props) => {
-    // const Calage = (dob) => {
-    //     const today = new Date();
-    //     const bdate = new Date(dob);
-    //     let age = today.getFullYear() - bdate.getFullYear();
-    //     return age;
-
-    // }
+   
     const month = [" ", "Jan", "Fer", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     const SlotFormat = (slotDate) => {
       const formattedTime = slotDate.split("-");

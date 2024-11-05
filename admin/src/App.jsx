@@ -28,7 +28,7 @@ const App = () => {
         <SideNav />
         <Routes>
           {/* Admin Routes */}
-          <Route path="/" element={<></>} />
+          <Route path="/" element={docToken ? <DocDash /> : <Dashboard />} />
           <Route path="/add-doctor" element={<AddDoctor />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/all-appointment" element={<AllAppointment />} />
