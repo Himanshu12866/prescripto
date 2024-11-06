@@ -26,7 +26,7 @@ const Footer = () => {
                         <li>About Us</li>
                         <li>Delivery</li>
                         <li>Privacy Policy</li>
-                        <li className=''><Button variant='contained'color='error' ><a href='http://localhost:5174/'>Admin Login</a></Button></li>
+                        <li className=''><Button variant='contained'color='error' ><a href='https://drbookwebapp-admin.onrender.com/'>Admin Login</a></Button></li>
                     </ul>
                 </div>
 
