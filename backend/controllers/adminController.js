@@ -1,5 +1,5 @@
 import validator from "validator";
-import bcrypt from "bcryptjs";
+import bcryptjs from "bcryptjs";
 import { v2 as cloudinary } from "cloudinary";
 import doctorModal from "../models/doctorModal.js";
 import jwt from "jsonwebtoken"
@@ -32,8 +32,8 @@ const addDoctor = async (req, res) => {
         }
 
         // Bcrypting password
-        const salt = await bcrypt.genSalt(10);
-        const hashPassword = await bcrypt.hash(password, salt);
+        const salt = await bcryptjs.genSalt(10);
+        const hashPassword = await bcryptjs.hash(password, salt);
 
         // Validate file upload
         if (!imageFile) {
