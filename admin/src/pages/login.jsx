@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext } from 'react'
-import { assets } from '../assets/assets'
+
 import { useState } from 'react'
 import ReCAPTCHA from "react-google-recaptcha";
 import { AdminContext } from '../context/AdminContext';
@@ -32,9 +32,6 @@ const Login = () => {
                     setAToken(data.token)
                     toast.success("Login Success")
                 }
-                else{
-                    console.log(data.message)
-                }
             }
             else {
                 const { data } = await axios.post(backendURL + '/api/doctor/doctorlogin' , { email, password })
@@ -46,12 +43,11 @@ const Login = () => {
                 }
                 else{
                     toast.error("Invalid Email Or Passowrd")
-                    console.log(data.message)
                 }
             }
 
         } catch (error) {
-            // toast.error("Invalid Email or Password")
+            toast.error("Invalid Email or Password")
         }
     }
 
