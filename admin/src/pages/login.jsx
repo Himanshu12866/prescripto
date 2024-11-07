@@ -32,6 +32,9 @@ const Login = () => {
                     setAToken(data.token)
                     toast.success("Login Success")
                 }
+                else{
+                    toast.error("Invalid Credentials")
+                }
             }
             else {
                 const { data } = await axios.post(backendURL + '/api/doctor/doctorlogin' , { email, password })
