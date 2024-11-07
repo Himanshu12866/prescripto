@@ -22,8 +22,8 @@ const Login = () => {
 
         console.log("Captcha value:", value);
     }
-    const onSubmitHandler = async () => {
-       
+    const onSubmitHandler = async (event) => {
+        event.preventDefault()
         try {
             if (state === "Admin") {
                 const { data } = await axios.post(backendURL + '/api/admin/login', { email, password })
@@ -51,7 +51,7 @@ const Login = () => {
             }
 
         } catch (error) {
-            toast.error("Invalid Email or Password")
+            // toast.error("Invalid Email or Password")
         }
     }
 
