@@ -30,7 +30,7 @@ const Banner = () => {
 
             {/* Right Side  */}
             <div className='hidden md:block md:w-1/2 lg:w-[370px] relative'>
-                <img className='w-full absolute right-0 bottom-0 max-w-md' src={assets.appointment_img} />
+                <img className='w-full absolute right-0 bottom-0 max-w-md' alt='banner' src={assets.appointment_img} />
             </div>
         </div>
     )

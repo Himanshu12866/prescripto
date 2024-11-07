@@ -18,7 +18,7 @@ const Navbar = () => {
     return (
         <div style={{ backgroundColor: `${theme}`, color: `${textTheme}` }} className='flex item-center justify-between sticky mt-0 pt-4 mb-2 border-b-grey-400 text-sm' >
 
-            <img onClick={() => { navigate("/"); scrollTo(0, 0) }} style={{ backgroundColor: `${theme === '#0f1214' ? 'white' : ''}` }} className='sm:w-52 cursor-pointer h-[60px]' src={`${theme === '#0f1214' ? assets.logo2 : assets.logo}`} alt='' />
+            <img onClick={() => { navigate("/"); scrollTo(0, 0) }} style={{ backgroundColor: `${theme === '#0f1214' ? 'white' : ''}` }} className='sm:w-52 cursor-pointer h-[60px]' src={`${theme === '#0f1214' ? assets.logo2 : assets.logo}`} alt='someimage' />
             <ul className='hidden md:flex item-start gap-5 front-medium pt-4'>
                 <NavLink to="/">
                     <li className='my-1'>Home</li>
@@ -46,8 +46,8 @@ const Navbar = () => {
             <div className='flex items-center gap-1'>
                 {
                     (token) && userData ? <div className='flex items-center gap-2 group relative' >
-                        <img src={userData.image} className='w-8 rounded-full' alt='' />
-                        <img src={assets.dropdown_icon} className='w-2.5' alt='' />
+                        <img alt='someimage' src={userData.image} className='w-8 rounded-full' />
+                        <img alt='someimage' src={assets.dropdown_icon} className='w-2.5' />
                         <div className='absolute top-0 right-0 pt-14 text-base hidden group-hover:block  text-grey font-medium text-gray-600' >
                             <div className='min-w-48 flex flex-col gap-4  rounded p-4' style={{ backgroundColor: `${(theme === '#0f1214') ? '#0a5' : '#fde'}`, color: `${(theme === '#0f1214') ? 'white' : 'black'}` }}>
                                 <p onClick={() => navigate("/my-profile")} className={` cursor-pointer ${theme === '#0f1214' ? 'hover:text-[#0ef]' : ' hover:text-[gray]'}`}>My Profile</p>
@@ -73,15 +73,15 @@ const Navbar = () => {
                         <NavLink onClick={() => setshowMenu(false)} to="/doctors"><p className='py-1 px-10 rounded-lg'>All Doctors</p></NavLink>
                         <NavLink onClick={() => setshowMenu(false)} to="/about"><p className='py-1 px-10 rounded-lg'>About</p></NavLink>
                         <NavLink onClick={() => setshowMenu(false)} to="/contact"><p className='py-1 px-10 rounded-lg'>Contact</p></NavLink>
-                        
-                            <DarkModeSwitch
-                                style={{ margin: '1rem' }}
-                                checked={isDarkMode}
-                                onChange={toggleDarkMode}
-                                // onClick={() =>  setshowMenu(false)}
-                                size={40}
-                            />
-                    
+
+                        <DarkModeSwitch
+                            style={{ margin: '1rem' }}
+                            checked={isDarkMode}
+                            onChange={toggleDarkMode}
+                            // onClick={() =>  setshowMenu(false)}
+                            size={40}
+                        />
+
                     </ul>
                 </div>
             </div>

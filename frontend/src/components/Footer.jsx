@@ -12,7 +12,7 @@ const Footer = () => {
             <div className='flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-10 text-sm'>
                 {/* Left */}
                 <div>
-                    <img style={{ backgroundColor: `${theme === '#0f1214' ? 'white' : ''}` }} className='sm:w-52 mb-2 cursor-pointer h-[60px]' src={`${theme === '#0f1214' ? assets.logo2 : assets.logo}`} alt='' />
+                    <img style={{ backgroundColor: `${theme === '#0f1214' ? 'white' : ''}` }} className='sm:w-52 mb-2 cursor-pointer h-[60px]' src={`${theme === '#0f1214' ? assets.logo2 : assets.logo}`} alt='iamgename' />
 
                     <p style={{ backgroundColor: `${(theme === '#0f1214') ? '#0f1214' : 'white'}`, color: `${(theme === '#0f1214') ? 'white' : 'black'}` }} className='w-full md:w-2/3 text-gray-900 leading-6'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                 </div>
