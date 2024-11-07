@@ -16,7 +16,7 @@ const Login = () => {
     const [password, setPassword] = useState("")
 
     const { setAToken, backendURL } = useContext(AdminContext)
-    const {docToken ,  setDocToken } = useContext(DoctorContext)
+    const { docToken, setDocToken } = useContext(DoctorContext)
 
     function onChange(value) {
 
@@ -32,19 +32,20 @@ const Login = () => {
                     setAToken(data.token)
                     toast.success("Login Success")
                 }
-                else{
+                else {
+                    console.log(data)
                     toast.error("Invalid Credentials")
                 }
             }
             else {
-                const { data } = await axios.post(backendURL + '/api/doctor/doctorlogin' , { email, password })
+                const { data } = await axios.post(backendURL + '/api/doctor/doctorlogin', { email, password })
                 if (data.success) {
                     localStorage.setItem("DoctorToken", data.token)
                     setDocToken(data.token)
                     console.log(docToken)
                     toast.success("Login Success")
                 }
-                else{
+                else {
                     toast.error("Invalid Email Or Passowrd")
                 }
             }
