@@ -23,7 +23,7 @@ const Doctors = () => {
     }, [doctors, speciality])
     return (
         <div>
-            <p style={{ backgroundColor: `${(theme === '#0f1214') ? '#795548' : 'white'}`, color: `${(theme === '#0f1214') ? 'white' : 'black'}` }} className=' fornt-medium w-full text-xl border-primary text-center border-b-4 py-4 '>Browse Doctors theme the speciality</p>
+            <p style={{ backgroundColor: `${(theme === '#0f1214') ? '#795548' : 'white'}`, color: `${(theme === '#0f1214') ? 'white' : 'black'}` }} className=' fornt-medium w-full text-xl border-primary text-center border-b-4 py-4 '>Our Doctors</p>
             <div className='flex flex-col sm:flex-row items-start gap-5 mt-5'>
                 <button style={{ backgroundColor: `${(theme === '#0f1214') ? '#950100' : 'white'}`, color: `${(theme === '#0f1214') ? 'white' : 'black'}` }} className={`${search ? "bg-primary text-white" : ""} border rounded-lg md:hidden text-black px-2 py-2 transition-all duration-300`} onClick={() => setSearch(prev => !prev)} >Filter Doctors</button>
                 <div className={`${search ? "flex" : "hidden sm:flex"} flex-col gap-4 text-sm text-gray-600`}>
