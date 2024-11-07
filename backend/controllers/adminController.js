@@ -78,23 +78,60 @@ const addDoctor = async (req, res) => {
     }
 };
 
+// const loginAdmin = async (req, res) => {
+//     try {
+//         const { email, password } = req.body;
+//         if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
+//             const token = jwt.sign(email + password, process.env.JWT_SECRET)
+//             res.status(200).json({ success: true, message: "Admin logged in successfully. 😊", token })
+
+//         }
+//         else {
+//             return res.status(401).json({ message: "Invalid email or password. 🙄", success: false });
+//         }
+
+//     } catch (error) {
+//         console.log(error)
+//         res.status(401).json({ success: false, message: "Some client side problem. 🙄" })
+//     }
+// }
 const loginAdmin = async (req, res) => {
     try {
         const { email, password } = req.body;
-        if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
-            const token = jwt.sign(email + password, process.env.JWT_SECRET)
-            res.status(200).json({ success: true, message: "Admin logged in successfully. 😊", token })
 
-        }
-        else {
-            return res.status(401).json({ message: "Invalid email or password. 🙄", success: false });
+        // Log the environment variables to verify they are being read correctly
+        console.log("Expected Admin Email:", process.env.ADMIN_EMAIL);
+        console.log("Expected Admin Password:", process.env.ADMIN_PASSWORD ? "****" : "Not Set");
+
+        // Check if provided email and password match the environment variables
+        if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
+            // Create a JWT token with email as the payload
+            const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+            // Send response with token on successful login
+            res.status(200).json({
+                success: true,
+                message: "Admin logged in successfully. 😊",
+                token
+            });
+        } else {
+            // Log a message if credentials don't match
+            console.log("Admin login failed: Invalid email or password.");
+            return res.status(401).json({
+                message: "Invalid email or password. 🙄",
+                success: false
+            });
         }
 
     } catch (error) {
-        console.log(error)
-        res.status(401).json({ success: false, message: "Some client side problem. 🙄" })
+        // Log error details for troubleshooting
+        console.error("Admin login error:", error.message);
+        res.status(500).json({
+            success: false,
+            message: "Internal server error. 🙄"
+        });
     }
-}
+};
 const allDoctors = async (req, res) => {
     try {
         const doctors = await doctorModal.find({}).select("-password")
@@ -162,7 +199,7 @@ const adminDash = async (req, res) => {
 
         }
         res.status(200).json({ success: true, Dashdata })
-        
+
 
     } catch (error) {
         console.error("Error:", error.message);
