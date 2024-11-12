@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext } from 'react'
-
+import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import { useState } from 'react'
 import ReCAPTCHA from "react-google-recaptcha";
 import { AdminContext } from '../context/AdminContext';
 import axios from "axios"
 import { toast } from "react-toastify"
 import { DoctorContext } from '../context/doctorContext';
+import{ AppContext } from '../context/appContext'
 const Login = () => {
 
     const [state, setState] = useState('Admin');
@@ -17,6 +18,8 @@ const Login = () => {
 
     const { setAToken, backendURL } = useContext(AdminContext)
     const { docToken, setDocToken } = useContext(DoctorContext)
+    const { theme, toggleDarkMode, isDarkMode } = useContext(AppContext)
+
 
     function onChange(value) {
 
@@ -57,9 +60,15 @@ const Login = () => {
 
     return (
         <div>
-        <div>
-            <h1>Login</h1>
-        </div>
+            <div>
+                <h1>Login</h1>
+                <DarkModeSwitch
+                    style={{ margin: '1rem' }}
+                    checked={isDarkMode}
+                    onChange={toggleDarkMode}
+                    size={40}
+                />
+            </div>
 
 
             <form onSubmit={onSubmitHandler} className='min-h-[100vh]  flex items-center'>
