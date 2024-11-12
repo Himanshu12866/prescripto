@@ -21,11 +21,6 @@ const Login = () => {
     const { docToken, setDocToken } = useContext(DoctorContext)
     const { theme, toggleDarkMode, isDarkMode } = useContext(AppContext)
 
-
-    function onChange(value) {
-
-        console.log("Captcha value:", value);
-    }
     const onSubmitHandler = async (event) => {
         event.preventDefault()
         try {
