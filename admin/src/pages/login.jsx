@@ -2,7 +2,7 @@
 import React, { useContext } from 'react'
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import { useState } from 'react'
-import ReCAPTCHA from "react-google-recaptcha";
+// import ReCAPTCHA from "react-google-recaptcha";/
 import { AdminContext } from '../context/AdminContext';
 import axios from "axios"
 import { toast } from "react-toastify"
@@ -75,28 +75,24 @@ const Login = () => {
             </div>
 
 
-            <form onSubmit={onSubmitHandler} className='min-h-[100vh] mt-[-40px] flex items-center'>
-                <div className={`flex flex-col gap-3 items-start m-auto p-8  min-h-[330px] sm:min-w-80 sm:min-h-[340px] border shadow-lg rounded-xl text-[#958a8a]`}>
+            <form onSubmit={onSubmitHandler} className={`min-h-[100vh] mt-[-60px] flex items-center `}>
+                <div className={`flex flex-col gap-4 items-start sm:m-auto p-10 min-h-[330px] w-96 m-4 sm:min-w-96 sm:min-h-[340px] border ${theme==='#0f1214' ? 'shadow-indigo-500/50 ' : 'shadow-indigo-500/50 '} rounded-xl shadow-2xl text-[#958a8a]`}>
                     <p className={`text-center w-full font-semibold text-2xl ${theme === '#0f1214' ? 'text-[#fff]':'text-[black]' }`}><span className={`${theme === '#0f1214' ? 'text-[#0ef]':'text-[#4848f7]' }`}>{state}</span> Login</p>
-                    <div className='flex flex-col gap-2 w-full'>
-                        <p className='sm:text-xl text-black'>Email:</p>
-                        <input onChange={(e) => setEmail(e.target.value)} value={email} className='w-full border p-1  border-[#746060] shadow-' type='text' />
+                    <div className='flex flex-col gap-1 w-full'>
+                        <p className={`sm:text-xl  ${theme === '#0f1214' ? 'text-[#fff]':'text-[black]' }`}>Email:</p>
+                        <input onChange={(e) => setEmail(e.target.value)} value={email} className='border rounded border-zinc-400 text-gray-600 w-full p-1.5 my-1' type='text' />
                     </div>
-                    <div className='flex flex-col gap-2 my-2 w-full'>
-                        <p className='sm:text-xl text-black'>Password:</p>
-                        <input onChange={(e) => setPassword(e.target.value)} value={password} className='w-full border p-2 rounded  border-gray-500' type='password' />
+                    <div className='flex flex-col gap-1 my-2 w-full'>
+                        <p className={`sm:text-xl  ${theme === '#0f1214' ? 'text-[#fff]':'text-[black]' }`}>Password:</p>
+                        <input onChange={(e) => setPassword(e.target.value)} value={password} className='border rounded border-zinc-400 text-gray-600 w-full p-1.5 my-1' type='password' />
                     </div>
-                    <div>
-                        <ReCAPTCHA
-                            sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-                            onChange={onChange}
-                        />
-                    </div>
+              
                     <div className='w-full'>
                         <button className='text-center w-full p-2 bg-[#3aa4d5] text-white hover:bg-[#7c7c88] transition-all duration-400'>Login</button>
                     </div>
                     {
-                        state === "Admin" ? <p className='text-black text-sm font-medium'>Doctor Login? <span className='underline hover:text-[blue] cursor-pointer' onClick={() => setState("Doctor")}>Click here</span></p> : <p className='text-black text-sm font-medium'>Admin Login? <span className='underline hover:text-[blue] cursor-pointer' onClick={() => setState("Admin")}>Click here</span></p>
+                        state === "Admin" ? <p className={` text-sm font-medium ${theme === '#0f1214' ? 'text-[#fff]':'text-[#000]' }`}>Doctor Login? <span className='underline hover:text-[#5a5af5] cursor-pointer' onClick={() => setState("Doctor")}>Click here</span></p> : 
+                        <p className={`${theme === '#0f1214' ? 'text-[#fff]':'text-[#000]' } text-sm font-medium`}>Admin Login? <span className='underline hover:text-[#6666f2] cursor-pointer' onClick={() => setState("Admin")}>Click here</span></p>
                     }
                 </div>
             </form>
