@@ -8,6 +8,7 @@ import axios from "axios"
 import { toast } from "react-toastify"
 import { DoctorContext } from '../context/doctorContext';
 import{ AppContext } from '../context/appContext'
+import { assets } from '../assets/assets';
 const Login = () => {
 
     const [state, setState] = useState('Admin');
@@ -59,9 +60,12 @@ const Login = () => {
     }
 
     return (
-        <div>
-            <div>
-                <h1>Login</h1>
+        <div  style={{ backgroundColor: `${theme === '#0f1214' ? '#0f1214' : '#fff'}` }}>
+            <div className='flex justify-between mx-0 pt-3 sm:mx-32'>
+                <div>
+                <img  style={{ backgroundColor: `${theme === '#0f1214' ? 'white' : ''}` }} className='sm:w-52 cursor-pointer h-[60px]' src={`${theme === '#0f1214' ? assets.logo2 : assets.logo}`} alt='someimage' />
+
+                </div>
                 <DarkModeSwitch
                     style={{ margin: '1rem' }}
                     checked={isDarkMode}
@@ -71,16 +75,16 @@ const Login = () => {
             </div>
 
 
-            <form onSubmit={onSubmitHandler} className='min-h-[100vh]  flex items-center'>
-                <div className='flex flex-col gap-3 items-start m-auto p-8  min-h-[330px] sm:min-w-80 sm:min-h-[340px] border shadow-lg rounded-xl text-[#958a8a]'>
-                    <p className='text-center w-full font-medium text-2xl'><span className='text-[#6464c1]'>{state}</span> Login</p>
+            <form onSubmit={onSubmitHandler} className='min-h-[100vh] mt-[-40px] flex items-center'>
+                <div className={`flex flex-col gap-3 items-start m-auto p-8  min-h-[330px] sm:min-w-80 sm:min-h-[340px] border shadow-lg rounded-xl text-[#958a8a]`}>
+                    <p className={`text-center w-full font-semibold text-2xl ${theme === '#0f1214' ? 'text-[#fff]':'text-[black]' }`}><span className={`${theme === '#0f1214' ? 'text-[#0ef]':'text-[#4848f7]' }`}>{state}</span> Login</p>
                     <div className='flex flex-col gap-2 w-full'>
                         <p className='sm:text-xl text-black'>Email:</p>
                         <input onChange={(e) => setEmail(e.target.value)} value={email} className='w-full border p-1  border-[#746060] shadow-' type='text' />
                     </div>
                     <div className='flex flex-col gap-2 my-2 w-full'>
                         <p className='sm:text-xl text-black'>Password:</p>
-                        <input onChange={(e) => setPassword(e.target.value)} value={password} className='w-full border p-1  border-gray-500' type='password' />
+                        <input onChange={(e) => setPassword(e.target.value)} value={password} className='w-full border p-2 rounded  border-gray-500' type='password' />
                     </div>
                     <div>
                         <ReCAPTCHA

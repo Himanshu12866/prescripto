@@ -15,13 +15,16 @@ import { DoctorContext } from './context/doctorContext';
 import DocAppoint from './pages/Doctor/DocAppoint';
 import DocDash from './pages/Doctor/DocDash';
 import DocProfile from './pages/Doctor/DocProfile';
+import { AppContext } from './context/appContext';
+
 
 const App = () => {
+  const {theme} = useContext(AppContext)
   const { aToken } = useContext(AdminContext)
   const { docToken } = useContext(DoctorContext)
   return aToken || docToken ? (
 
-    <div className='bg-white'>
+    <div style={{backgroundColor: `${theme}`}}>
       <ToastContainer />
       <Navbar />
       <div className='flex flex-start'>
