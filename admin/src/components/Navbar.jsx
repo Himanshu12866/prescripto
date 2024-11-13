@@ -28,7 +28,7 @@ const Navbar = () => {
   return (
     <div className={`flex items-center justify-between border sticky border-gray-300 ${theme === '#0f1214' ? 'bg-[#0f1214]' : 'bg-[#fff]'} sm:px-10 py-3 px-4 w-full`}>
       <div className="flex sm:items-center flex-col sm:flex-row text-xs gap-3">
-        <img className={`w-36   cursor-pointer translate-x-28 sm:translate-x-0 ${theme === '#0f1214' ? 'w-36 mx-2' : 'sm:w-40'}`} src={`${theme === "#0f1214" ? assets.logo2 : assets.logo}`} />
+       <a href="http://localhost:5173/"><img  className={`w-36   cursor-pointer translate-x-28 sm:translate-x-0 ${theme === '#0f1214' ? 'w-36 mx-2' : 'sm:w-40'}`} src={`${theme === "#0f1214" ? assets.logo2 : assets.logo}`} /> </a>
         <p className="font-medium text-sm rounded-md flex justify-between gap-1 items-center text-black shadow-sm px-4 py-1">
           <Avatar color="danger" size="sm" style={{ backgroundColor: "red" }} />
 
