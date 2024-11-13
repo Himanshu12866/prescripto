@@ -4,14 +4,16 @@ import { useEffect } from "react";
 import { AdminContext } from "../../context/AdminContext";
 import Button from '@mui/material/Button';
 import { toast } from "react-toastify";
+import { AppContext } from "../../context/appContext";
 
 const AllAppointment = () => {
   const { appointments, aToken, getAllAppointment, cancelAppointmentAdmin } = useContext(AdminContext);
+  const { theme } = useContext(AppContext)
 
   useEffect(() => {
     if (aToken) {
       getAllAppointment();
-      // console.log(appointments);
+      console.log(theme);
     } else {
       toast.warning("Sorry No Token found. 😒")
     }
@@ -20,8 +22,14 @@ const AllAppointment = () => {
 
   return (
     <div className="w-full p-1">
-      <p className="px-5 py-3 font-medium w-full bg-black text-center text-white">All Appointment</p>
-      <div className="w-full">
+      <Button
+        variant="contained"
+        color="error"
+        style={{ padding: "14px", letterSpacing: "2px", marginTop: "5px" }}
+        className="text-center bg-[black] py-3  w-full"
+      >
+        All Appointments
+      </Button>      <div className="w-full">
         <div className="border py-2 px-2 mt-3 bg-[#042613b8] text-[#decddb] font-bold hidden sm:grid grid-cols-[0.5fr_3fr_1fr_4fr_3fr_1fr_2fr] grid-flow-col">
           <p>Sr.No</p>
           <p className="text-center">Patient</p>
@@ -138,7 +146,7 @@ const AllAppointment = () => {
                 <p className="text-center w-full">{item.userData?.name}</p>
               </div>
               <hr></hr>
-           
+
               <hr></hr>
               <div className="flex flex-row  gap-16">
                 <p>Date:</p>
