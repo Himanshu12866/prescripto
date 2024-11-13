@@ -34,7 +34,7 @@ const SideNav = () => {
                             <span className=" bi bi-people"></span>
                             <p className="hidden sm:block">All Doctors</p>
                         </NavLink>
-                        <DarkModeSwitch className="sm:hidden mx-4"
+                        <DarkModeSwitch className="sm:hidden mx-4 mt-4"
                             style={{ marginBottom: '0rem' }}
                             checked={isDarkMode}
                             onChange={toggleDarkMode}
@@ -58,7 +58,7 @@ const SideNav = () => {
                             <span className=" bi bi-person"></span>
                             <p className="hidden sm:block">Doctor Profile</p>
                         </NavLink>
-                        <DarkModeSwitch className="sm:hidden mx-4"
+                        <DarkModeSwitch className="sm:hidden mx-4 mt-4"
                             style={{ marginBottom: '0rem' }}
                             checked={isDarkMode}
                             onChange={toggleDarkMode}

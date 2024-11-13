@@ -100,28 +100,28 @@ const Dashboard = () => {
           <Table>
             <TableHead>
               <TableRow className="font-medium text-xl text-white bg-[#22625d] ">
-                <TableCell style={{ textAlign: "left", color: "white", fontWeight: "bold", fontSize: "18px" }}>S.No</TableCell>
-                <TableCell style={{ textAlign: "left", color: "white", fontWeight: "bold", fontSize: "18px" }}>Doctor</TableCell>
-                <TableCell style={{ textAlign: "left", color: "white", fontWeight: "bold", fontSize: "18px" }}>Date & Time</TableCell>
-                <TableCell style={{ textAlign: "left", color: "white", fontWeight: "bold", fontSize: "18px" }}>Patient Name</TableCell>
-                <TableCell style={{ textAlign: "left", color: "white", fontWeight: "bold", fontSize: "18px" }}>Patient Email</TableCell>
-                <TableCell style={{ textAlign: "left", color: "white", fontWeight: "bold", fontSize: "18px" }}>Status</TableCell>
+                <TableCell className={`  ${theme === '#0f1214' ? 'bg-[#023]' : 'bg-[#000]'}`} style={{ textAlign: "left", color: "white", fontWeight: "bold", fontSize: "18px" }}>S.No</TableCell>
+                <TableCell className={`  ${theme === '#0f1214' ? 'bg-[#023]' : 'bg-[#000]'}`} style={{ textAlign: "left", color: "white", fontWeight: "bold", fontSize: "18px" }}>Doctor</TableCell>
+                <TableCell className={`  ${theme === '#0f1214' ? 'bg-[#023]' : 'bg-[#000]'}`} style={{ textAlign: "left", color: "white", fontWeight: "bold", fontSize: "18px" }}>Date & Time</TableCell>
+                <TableCell className={`  ${theme === '#0f1214' ? 'bg-[#023]' : 'bg-[#000]'}`} style={{ textAlign: "left", color: "white", fontWeight: "bold", fontSize: "18px" }}>Patient Name</TableCell>
+                <TableCell className={`  ${theme === '#0f1214' ? 'bg-[#023]' : 'bg-[#000]'}`} style={{ textAlign: "left", color: "white", fontWeight: "bold", fontSize: "18px" }}>Patient Email</TableCell>
+                <TableCell className={`  ${theme === '#0f1214' ? 'bg-[#023]' : 'bg-[#000]'}`} style={{ textAlign: "left", color: "white", fontWeight: "bold", fontSize: "18px" }}>Status</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {info && info.length > 0 ? (
                 info.map((item, index) => (
                   <TableRow key={index}>
-                    <TableCell style={{ textAlign: "left", fontSize: "15px" }}>{index + 1}</TableCell>
-                    <TableCell style={{ textAlign: "left", fontSize: "15px" }}>{item.docData?.name || "N/A"}</TableCell>
-                    <TableCell style={{ textAlign: "left", fontSize: "15px" }}>{item.slotDate} & {item.slotTime}</TableCell>
-                    <TableCell style={{ textAlign: "left", fontSize: "15px" }}>{item.userData?.name || "N/A"}</TableCell>
-                    <TableCell style={{ textAlign: "left", fontSize: "15px" }}>{item.userData?.email || "N/A"}</TableCell>
-                    <p
-                      className={`rounded-lg m-1 text-center py-3 ${item.cancelled ? "bg-[#c13c3c] text-[#ffffff]" : "bg-[green] text-[white]"}`}
+                    <TableCell className={`  ${theme === '#0f1214' ? 'bg-[#923] text-white' : 'bg-[#fff] text-black'}`} style={{ textAlign: "left", fontSize: "15px", color: `${theme === '#0f1214' ? 'white' : "black"}` }}>{index + 1}</TableCell>
+                    <TableCell className={`  ${theme === '#0f1214' ? 'bg-[#923] text-white' : 'bg-[#fff] text-black'}`} style={{ textAlign: "left", fontSize: "15px", color: `${theme === '#0f1214' ? 'white' : "black"}` }}>{item.docData?.name || "N/A"}</TableCell>
+                    <TableCell className={`  ${theme === '#0f1214' ? 'bg-[#923] text-white' : 'bg-[#fff] text-black'}`} style={{ textAlign: "left", fontSize: "15px", color: `${theme === '#0f1214' ? 'white' : "black"}` }}>{item.slotDate} & {item.slotTime}</TableCell>
+                    <TableCell className={`  ${theme === '#0f1214' ? 'bg-[#923] text-white' : 'bg-[#fff] text-black'}`} style={{ textAlign: "left", fontSize: "15px", color: `${theme === '#0f1214' ? 'white' : "black"}` }}>{item.userData?.name || "N/A"}</TableCell>
+                    <TableCell className={`  ${theme === '#0f1214' ? 'bg-[#923] text-white' : 'bg-[#fff] text-black'}`} style={{ textAlign: "left", fontSize: "15px", color: `${theme === '#0f1214' ? 'white' : "black"}` }}>{item.userData?.email || "N/A"}</TableCell>
+                    <TableCell className={`  ${theme === '#0f1214' ? 'bg-[#923] text-white' : 'bg-[#fff] text-black'}`} style={{padding:"0px"}}>  <p
+                      className={`rounded-lg m-1 text-center p-3 ${item.cancelled ? "bg-[red] text-[#ffffff]" : "bg-[green] text-[white]"}`}
                     >
                       {item.cancelled ? "Cancelled" : "Confirmed"}
-                    </p>
+                    </p></TableCell>
 
                   </TableRow>
                 ))
