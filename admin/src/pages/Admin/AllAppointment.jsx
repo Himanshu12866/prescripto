@@ -30,7 +30,7 @@ const AllAppointment = () => {
       >
         All Appointments
       </Button>      <div className="w-full">
-        <div className="border py-2 px-2 mt-3 bg-[#042613b8] text-[#decddb] font-bold hidden sm:grid grid-cols-[0.5fr_3fr_1fr_4fr_3fr_1fr_2fr] grid-flow-col">
+        <div className={`border py-2 px-2 mt-3 ${theme=== '#0f1214' ? 'bg-[#023] ' : 'bg-[#000]'} text-white font-bold hidden sm:grid grid-cols-[0.5fr_3fr_1fr_4fr_3fr_1fr_2fr] grid-flow-col`}>
           <p>Sr.No</p>
           <p className="text-center">Patient</p>
           <p>Email</p>
@@ -40,8 +40,8 @@ const AllAppointment = () => {
           <p>Actions</p>
         </div>
       </div>
-      {appointments.map((item, index) => (
-        <div className="hidden sm:block" key={index}>
+      {appointments.reverse().map((item, index) => (
+        <div className={`${theme=== '#0f1214' ? 'bg-[#923] text-white' : 'bg-[#fff] text-black'} hidden sm:block`} key={index}>
           <div className="border py-2 px-2 mt-3 sm:grid grid-cols-[0.5fr_3fr_1fr_4fr_3fr_1fr_2fr] grid-flow-col">
             <p>{index + 1}</p>
             <p className="text-center font-medium">{item.userData?.name}</p>
@@ -50,14 +50,14 @@ const AllAppointment = () => {
               <span>{(item.slotDate) || "Na"}</span> &nbsp; <span>{item.slotTime || "Na"}</span>
             </p>
             <div className="flex flex-row gap-4" >
-              <img style={{ width: "40px", height: "35px", borderRadius: "50%" }} src={item.docData?.image} />
-              <p className="text-center font-semibold">{item.docData?.name}</p>
+              <img style={{ width: "35px", height: "35px", borderRadius: "50%" }} src={item.docData?.image} />
+              <p className="text-center text-sm font-semibold">{item.docData?.name}</p>
             </div>
             <p className="font-medium">&#8377; {item.docData?.fees}</p>
-            <p>
-              {item.cancelled ? <Button variant="outlined" color="error" disableElevation>
+            <p className="text-center">
+              {item.cancelled ? <Button style={{  color: `${theme === '#0f1214' ? '#023' : ""}` , backgroundColor:`${theme === '#0f1214' ? 'gray' : ""}` }} variant="contained" color="success" disabled>
                 Cancelled
-              </Button> : <Button onClick={() => cancelAppointmentAdmin(item._id)} variant="outlined" color="error" disableElevation>
+              </Button> : <Button onClick={() => cancelAppointmentAdmin(item._id)} variant="contained" color="success" disableElevation>
                 Cancel
               </Button>}
             </p>
@@ -129,7 +129,7 @@ const AllAppointment = () => {
 
       <div className="mr-1 sm:hidden">
         {
-          appointments.map((item, index) =>
+          appointments.reverse().map((item, index) =>
             <div className="w-full bg-[#756e6e] h-auto text-[white] text-center p-2 m-1 " key={index}>
               <div className="flex flex-row gap-32 text-left">
                 <p>Sr.No :</p>

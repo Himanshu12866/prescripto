@@ -7,6 +7,8 @@ import { AdminContext } from "../../context/AdminContext";
 
 import { toast } from 'react-toastify';
 import axios from "axios";
+import { Button } from "@mui/material";
+import { AppContext } from "../../context/appContext";
 
 const AddDoctor = () => {
 
@@ -21,8 +23,10 @@ const AddDoctor = () => {
     const [fees, setfees] = useState("");
     const [experience, setExperience] = useState("1 Year");
     const [degree, setDegree] = useState("");
+    const { theme } = useContext(AppContext)
     const { backendURL, aToken } = useContext(AdminContext)
- 
+
+
     const SubmitForm = async () => {
 
         try {
@@ -44,26 +48,26 @@ const AddDoctor = () => {
 
             const { data } = await axios.post(backendURL + '/api/admin/add-doctor', formData, { headers: { aToken } })
             if (data.success) {
-              toast.success("Doctor added successfully 😊")
-             
-              setName("");
-              setSpeciality("General physician");
-              setPassword("");
-              setEmail("");
-              setAddress1("");
-              setAddress2("");
-              setAbout("");
-              setfees("");
-              setExperience("1 Year");
-              setDegree("");
-              setImage(false);
+                toast.success("Doctor added successfully 😊")
+
+                setName("");
+                setSpeciality("General physician");
+                setPassword("");
+                setEmail("");
+                setAddress1("");
+                setAddress2("");
+                setAbout("");
+                setfees("");
+                setExperience("1 Year");
+                setDegree("");
+                setImage(false);
             }
             else {
-               toast.error(data.message)
+                toast.error(data.message)
             }
-       
-        } catch(error) {
-             toast.error(error.message)
+
+        } catch (error) {
+            toast.error(error.message)
         }
     }
 
@@ -71,8 +75,15 @@ const AddDoctor = () => {
         <form onSubmit={SubmitForm} className=" w-full flex justify-center h-[90vh] sm:h-[80vh]">
 
             <div className="sm:w-[90%] w-full ml-3 mt-2  h-auto overflow-y-auto">
-                <p className="font-medium w-full text-start text-xl px-12  py-2 ">Add Doctor</p>
-                <div className="flex items-center gap-2 w-[200px]">
+                <Button
+                    variant="contained"
+                    color="error"
+                    style={{ padding: "12px", letterSpacing: "2px", marginTop: "5px" }}
+                    className="text-center bg-[black]   w-full"
+                >
+                    Add Doctor
+                </Button>
+                <div className={`flex mt-2 items-center gap-2 w-[200px] ${theme === '#0f1214' ? 'text-[white]': 'text-black'}`}>
                     <label htmlFor="doc_img">
                         <img className="w-[80px] h-[80px] rounded-full cursor-pointer" src={image ? URL.createObjectURL(image) : assets.image_upload} />
                     </label>
@@ -84,19 +95,19 @@ const AddDoctor = () => {
                 <div className="flex sm:flex-row gap-10 flex-col w-full">
                     <div className=" sm:p-5" >
                         <div >
-                            <p>Doctor Name :</p>
+                            <p className={`${theme=== '#0f1214' ? 'text-white' : 'text-black'}`}>Doctor Name :</p>
                             <input onChange={(e) => setName(e.target.value)} value={name} required className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" type="text" placeholder="Full Name" />
                         </div>
                         <div>
-                            <p>Doctor Email :</p>
+                            <p className={`${theme=== '#0f1214' ? 'text-white' : 'text-black'}`}>Doctor Email :</p>
                             <input onChange={(e) => setEmail(e.target.value)} value={email} className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" required type="email" placeholder="Email" />
                         </div>
                         <div>
-                            <p>Doctor Password :</p>
+                            <p className={`${theme=== '#0f1214' ? 'text-white' : 'text-black'}`}>Doctor Password :</p>
                             <input onChange={(e) => setPassword(e.target.value)} value={password} className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" required type="password" placeholder="Password" />
                         </div>
                         <div>
-                            <p>Experience :</p>
+                            <p className={`${theme=== '#0f1214' ? 'text-white' : 'text-black'}`}>Experience :</p>
                             <select onChange={(e) => setExperience(e.target.value)} value={experience} className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm">
 
                                 <option value="1 Years">1 Years</option>
@@ -113,13 +124,13 @@ const AddDoctor = () => {
                             </select>
                         </div>
                         <div>
-                            <p>Fees</p>
+                            <p className={`${theme=== '#0f1214' ? 'text-white' : 'text-black'}`}>Fees</p>
                             <input onChange={(e) => setfees(e.target.value)} value={fees} className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" required type="number" placeholder="Fees" />
                         </div>
                     </div>
                     <div className="mt-5">
                         <div>
-                            <p>Speciality :</p>
+                            <p className={`${theme=== '#0f1214' ? 'text-white' : 'text-black'}`}>Speciality :</p>
                             <select onChange={(e) => setSpeciality(e.target.value)} value={speciality} className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" name="" id="" required>
                                 <option value="General physician">General physician</option>
                                 <option value="Gynecologist">Gynecologist</option>
@@ -132,11 +143,11 @@ const AddDoctor = () => {
                             </select>
                         </div>
                         <div>
-                            <p>Degree :</p>
+                            <p className={`${theme=== '#0f1214' ? 'text-white' : 'text-black'}`}>Degree :</p>
                             <input onChange={(e) => setDegree(e.target.value)} value={degree.toUpperCase()} className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" type="text" placeholder="Degree" required />
                         </div>
                         <div>
-                            <p>Address :</p>
+                            <p className={`${theme=== '#0f1214' ? 'text-white' : 'text-black'}`}>Address :</p>
                             <input onChange={(e) => setAddress1(e.target.value)} value={address1} className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" type="text" placeholder="Line 1" required />
                             <br></br>
                             <input onChange={(e) => setAddress2(e.target.value)} value={address2} className="p-2 my-1 min-w-64 sm:w-80 border rounded-sm" type="text" placeholder="Line 1" required />
@@ -144,7 +155,7 @@ const AddDoctor = () => {
                     </div>
                 </div>
                 <div className="sm:w-[70%] w-[80%]  ml-3 mt-2">
-                    <p>About</p>
+                    <p className={`${theme=== '#0f1214' ? 'text-white' : 'text-black'}`}>About</p>
                     <textarea onChange={(e) => setAbout(e.target.value)} value={about} className="w-full p-2" rows="5" placeholder="Some Doctor's Summary" required />
                 </div>
 
