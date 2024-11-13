@@ -52,12 +52,12 @@ const Dashboard = () => {
         className="text-center bg-[black] py-3  w-full"
       >
         Dashboard Admin
-      </Button>
+      </Button> 
       <div className="p-1 overflow-x-auto h-[80vh]">
         <div className="flex flex-col sm:flex-row gap-1 sm:justify-around m-3 w-[90%] sm:w-[80%]">
-          <Card style={{ width: "230px", height: "240px" }}>
+          <Card  style={{ width: "230px", height: "240px" }}>
             <CardMedia component="img" image={assets.docgrp} alt="Doctors" />
-            <CardContent>
+            <CardContent className={`  ${theme === '#0f1214' ? 'bg-[#923] text-white' : 'bg-[#fff] text-black'}`}>
               <Typography style={{ textAlign: "center" }} variant="h6">
                 <h1>Doctors: <span>{adminDash.doctors}</span></h1>
               </Typography>
@@ -71,7 +71,7 @@ const Dashboard = () => {
               alt="Appointments"
             />
 
-            <CardContent>
+            <CardContent className={`  ${theme === '#0f1214' ? 'bg-[#923] text-white' : 'bg-[#fff] text-black'}`}>
               <Typography style={{ textAlign: "center" }} variant="h6">
                 <h1>Appointments: <span>{adminDash.appointments}</span></h1>
               </Typography>
@@ -84,7 +84,7 @@ const Dashboard = () => {
               image={assets.pat}
               alt="Patients"
             />
-            <CardContent>
+            <CardContent className={`  ${theme === '#0f1214' ? 'bg-[#923] text-white' : 'bg-[#fff] text-black'}`}>
               <Typography style={{ textAlign: "center" }} variant="h6">
                 <h1>Patients: <span>{adminDash.patients}</span></h1>
               </Typography>
