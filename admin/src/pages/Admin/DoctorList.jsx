@@ -3,10 +3,12 @@
 
 import { useContext, useEffect } from "react"
 import { AdminContext } from "../../context/AdminContext"
+import { AppContext } from "../../context/appContext"
 
 const DoctorList = () => {
 
   const { doctors, aToken, getAllDoctors , changeAvailability} = useContext(AdminContext)
+  const {theme} = useContext(AppContext)
 
   useEffect(() => {
 
@@ -19,7 +21,7 @@ const DoctorList = () => {
 
   return (
 
-    <div className="bg-[#f8f4f4] w-full p-2">
+    <div className={` ${theme === '#0f1214' ? 'bg-[#0f1214]':'bg-[#f8f4f4]'} w-full p-2`}>
       <h1 className="font-medium text-xl px-16 sm:px-10 sm:my-5">All Doctors List</h1>
 
       <div className="flex flex-row flex-wrap p-2">
