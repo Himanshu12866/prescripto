@@ -68,7 +68,7 @@ const AddDoctor = () => {
     }
 
     return (
-        <form onSubmit={SubmitForm} className=" bg-[#b0a8a81c] w-full flex justify-center h-[90vh] sm:h-[80vh]">
+        <form onSubmit={SubmitForm} className=" w-full flex justify-center h-[90vh] sm:h-[80vh]">
 
             <div className="sm:w-[90%] w-full ml-3 mt-2  h-auto overflow-y-auto">
                 <p className="font-medium w-full text-start text-xl px-12  py-2 ">Add Doctor</p>
