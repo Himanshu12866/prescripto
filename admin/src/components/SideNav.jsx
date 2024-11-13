@@ -10,14 +10,14 @@ import { DarkModeSwitch } from 'react-toggle-dark-mode';
 const SideNav = () => {
 
     const { aToken } = useContext(AdminContext)
-    const { isDarkMode, toggleDarkMode,  } = useContext(AppContext)
+    const { isDarkMode, toggleDarkMode, theme } = useContext(AppContext)
     const { docToken } = useContext(DoctorContext)
     return (
 
-        <div className="min-h-screen bg-white border">
+        <div className={`min-h-screen ${theme === '#0f1214' ? 'bg-[#0f1214]' : 'bg-[#fff]'} border`}>
             {
                 aToken ? (
-                    <ul className="text-[#6b6a6a] mt-2">
+                    <ul className={`${theme === '#0f1214' ? 'text-[#0ef]':'text-[#6b6a6a] '} font-medium mt-2`}>
                         <NavLink to={"/dashboard"} className={(({ isActive }) => `flex items-center py-3.5 gap-5 px-5 md:px-9 md:min-w-72 cursor-pointer ${isActive ? 'bg-[#bf4545] border-r-4 font-medium border-[#000000] text-white' : ''}`)}>
                             <span className=" bi bi-house"></span>
                             <p className="hidden sm:block">Dashboard</p>
@@ -34,11 +34,11 @@ const SideNav = () => {
                             <span className=" bi bi-people"></span>
                             <p className="hidden sm:block">All Doctors</p>
                         </NavLink>
-                        <DarkModeSwitch className="sm:hidden"
+                        <DarkModeSwitch className="sm:hidden mx-4"
                             style={{ marginBottom: '0rem' }}
                             checked={isDarkMode}
                             onChange={toggleDarkMode}
-                            size={35}
+                            size={28}
                         />
                     </ul>
                 ) : null
@@ -58,7 +58,12 @@ const SideNav = () => {
                             <span className=" bi bi-person"></span>
                             <p className="hidden sm:block">Doctor Profile</p>
                         </NavLink>
-
+                        <DarkModeSwitch className="sm:hidden  py-3.5 gap-5 px-5 md:px-9 md:min-w-72 cursor-pointer"
+                            style={{ marginBottom: '0rem' }}
+                            checked={isDarkMode}
+                            onChange={toggleDarkMode}
+                            size={35}
+                        />
                     </ul>
                 ) : null
             }
