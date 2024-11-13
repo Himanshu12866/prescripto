@@ -16,10 +16,12 @@ import {
 import { CardContent } from "@mui/material";
 import { Typography } from "@mui/material";
 import { CardMedia } from "@mui/material";
+import { AppContext } from "../../context/appContext";
 
 const Dashboard = () => {
   const { adminDash, aToken, getAdminDash } = useContext(AdminContext);
   const [info, setInfo] = useState([]);
+  const { theme } = useContext(AppContext)
 
   useEffect(() => {
     if (aToken) {
@@ -42,7 +44,7 @@ const Dashboard = () => {
 
 
   return (
-    <div className="w-full p-1">
+    <div className={`w-full p-1  ${theme === '#0f1214' ? 'bg-[#0f1214]' : 'bg-[#fff]'}`}>
       <Button
         variant="contained"
         color="error"
@@ -133,45 +135,45 @@ const Dashboard = () => {
           </Table>
         </TableContainer>
         <div className="mr-1 sm:hidden">
-        {
-          info.map((item, index) =>
-            <div className="w-full bg-[#756e6e] h-auto text-[white] text-center p-2 m-1 " key={index}>
-              <div className="flex flex-row gap-32 text-left">
-                <p>Sr.No :</p>
-                <p className="text-center" >{index + 1}</p>
-              </div>
-              <hr></hr>
-              <div className="flex flex-row gap-12 text-left">
-                <p className="font-medium">Doctor:</p>
-                <p className="text-center w-full">{item.docData?.name}</p>
-              </div>
-              <hr></hr>
-              <div className="flex flex-row  gap-10">
-                <p>Patient:</p>
-                <p className="text-center w-full">{item.userData?.name}</p>
-              </div>
-              <hr></hr>
-           
-              <hr></hr>
-              <div className="flex flex-row  gap-16">
-                <p>Date:</p>
-                <p className="text-center w-full">{item.slotDate}</p>
-              </div>
-              <hr></hr>
-              <div className="flex flex-row  gap-12">
-                <p>Time:</p>
-                <p className="text-center w-full">{item.slotTime}</p>
-              </div>
-              <hr></hr>
-              <div className="flex flex-row  gap-10">
-                <p>Status:</p>
-                <p className="text-center w-full">{`${item.cancelled ? "Cancelled" : "Confirmed"}`}</p>
-              </div>
-            </div>
+          {
+            info.map((item, index) =>
+              <div className="w-full bg-[#756e6e] h-auto text-[white] text-center p-2 m-1 " key={index}>
+                <div className="flex flex-row gap-32 text-left">
+                  <p>Sr.No :</p>
+                  <p className="text-center" >{index + 1}</p>
+                </div>
+                <hr></hr>
+                <div className="flex flex-row gap-12 text-left">
+                  <p className="font-medium">Doctor:</p>
+                  <p className="text-center w-full">{item.docData?.name}</p>
+                </div>
+                <hr></hr>
+                <div className="flex flex-row  gap-10">
+                  <p>Patient:</p>
+                  <p className="text-center w-full">{item.userData?.name}</p>
+                </div>
+                <hr></hr>
 
-          )
-        }
-      </div>
+                <hr></hr>
+                <div className="flex flex-row  gap-16">
+                  <p>Date:</p>
+                  <p className="text-center w-full">{item.slotDate}</p>
+                </div>
+                <hr></hr>
+                <div className="flex flex-row  gap-12">
+                  <p>Time:</p>
+                  <p className="text-center w-full">{item.slotTime}</p>
+                </div>
+                <hr></hr>
+                <div className="flex flex-row  gap-10">
+                  <p>Status:</p>
+                  <p className="text-center w-full">{`${item.cancelled ? "Cancelled" : "Confirmed"}`}</p>
+                </div>
+              </div>
+
+            )
+          }
+        </div>
       </div>
     </div>
   );

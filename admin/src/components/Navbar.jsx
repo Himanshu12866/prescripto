@@ -4,12 +4,12 @@ import { AdminContext } from "../context/AdminContext";
 import { useNavigate } from "react-router-dom";
 import { DoctorContext } from "../context/doctorContext";
 import { Avatar, Button } from "@mui/material";
-// import { DarkModeSwitch } from 'react-toggle-dark-mode';
-// import AppContextProvider from "../context/appContext";
+import { DarkModeSwitch } from 'react-toggle-dark-mode';
+import { AppContext } from "../context/appContext";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  // const {isDarkMode , toggleDarkMode} = useContext(AppContextProvider)
+  const { isDarkMode , toggleDarkMode  } = useContext(AppContext)
   const { aToken, setAToken } = useContext(AdminContext);
   const { docToken, setDocToken, } = useContext(DoctorContext);
 
@@ -34,12 +34,12 @@ const Navbar = () => {
 
           {aToken ? <span className="border rounded-2xl bg-[#e83b3b] text-white px-5 py-1">Admin</span> : <span className="border rounded-2xl bg-[#e3e1e1] px-5 py-1">Doctor</span>}
         </p>
-        {/* <DarkModeSwitch
-          style={{ marginBottom: '2rem' }}
+        <DarkModeSwitch
+          style={{ marginBottom: '0rem' }}
           checked={isDarkMode}
           onChange={toggleDarkMode}
-          size={30}
-        /> */}
+          size={35}
+        />
       </div>
       {(aToken || docToken) ? (
         <Button onClick={LogOut} variant="outlined" color="error" className="bg-gray-100 translate-y-7 sm:translate-y-0  text-black font-medium px-4 sm:px-4 py-1 shadow-sm rounded-full">Log Out</Button>
