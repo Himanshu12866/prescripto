@@ -2,12 +2,15 @@ import { useContext } from "react"
 import { AdminContext } from "../context/AdminContext"
 import { NavLink } from "react-router-dom"
 import { DoctorContext } from "../context/doctorContext"
+import { AppContext } from "../context/appContext";
+import { DarkModeSwitch } from 'react-toggle-dark-mode';
 // import { assets } from "../assets/assets"
 
 
 const SideNav = () => {
 
     const { aToken } = useContext(AdminContext)
+    const { isDarkMode, toggleDarkMode,  } = useContext(AppContext)
     const { docToken } = useContext(DoctorContext)
     return (
 
@@ -31,6 +34,12 @@ const SideNav = () => {
                             <span className=" bi bi-people"></span>
                             <p className="hidden sm:block">All Doctors</p>
                         </NavLink>
+                        <DarkModeSwitch className="sm:hidden"
+                            style={{ marginBottom: '0rem' }}
+                            checked={isDarkMode}
+                            onChange={toggleDarkMode}
+                            size={35}
+                        />
                     </ul>
                 ) : null
             }
