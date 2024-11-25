@@ -10,7 +10,7 @@ const addDoctor = async (req, res) => {
         const { name, email, password, speciality, degree, experience, about, address, fees } = req.body;
         const imageFile = req.file;
 
-        // Validating all fields must be filled
+       
         if (!name || !email || !password || !speciality || !degree || !experience || !about || !address || !fees) {
             return res.status(400).json({ message: "Please fill all the fields 🙄", success: false });
         }
