@@ -15,7 +15,7 @@ const addDoctor = async (req, res) => {
             return res.status(400).json({ message: "Please fill all the fields 🙄", success: false });
         }
 
-        // Validating email w
+        // Validating email 
         if (!validator.isEmail(email)) {
             return res.status(400).json({ message: "Invalid email 🙄", success: false });
         }
